@@ -4,7 +4,8 @@ The website for the Philly Wins Pool 2026 season.
 
 | Page | File |
 | --- | --- |
-| This week (phone; wide screens go to the desktop layout) | `index.html` |
+| This week (phone; screens 1024px and wider go to the desktop layout) | `index.html` |
+| Standings and results for past weeks (`week.html?w=1`, `?w=2`, …) | `week.html` |
 | This week (desktop) | `desktop.html` |
 | Season and archive | `season.html` |
 | Coach page | `coaches.html` |
@@ -21,7 +22,7 @@ The website for the Philly Wins Pool 2026 season.
 Each page keeps its markup in a `<template id="dc-template">` and its data and logic in the
 `<script type="text/x-dc" data-dc-script>` block at the bottom. `support.js` fills the template's
 `{{holes}}` from that script's `renderVals()`, repeats `<sc-for>` blocks, and wires up buttons.
-To update the weekly results, edit the data inside each page's script block.
+To update the weekly results, edit the data inside each page's script block. Past-week pages are calculated from the scores in `RESULTS` inside `week.html`: add each new week's games there, and its headline to `INFO`.
 
 The light/dark choice is remembered across pages.
 

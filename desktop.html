@@ -17,7 +17,7 @@ a{color:#8A6B1C}a:hover{color:#6E5412}
 <body>
 <div id="dc-root"></div>
 <template id="dc-template">
-<div class="{{modeClass}}" style="width: 1280px; min-height: 100vh; margin: 0 auto; background: var(--bg); color: var(--ink); display: flex; flex-direction: column; font-size: 16px; line-height: 1.5">
+<div class="{{modeClass}}" style="width: 100%; min-width: 1000px; min-height: 100vh; background: var(--bg); color: var(--ink); display: flex; flex-direction: column; font-size: 16px; line-height: 1.5">
 
 <header style="display: flex; align-items: center; gap: 24px; height: 72px; padding: 0 80px; border-bottom: 1px solid var(--line); background: var(--panel)">
 <a href="desktop.html" style="display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink)">
@@ -271,7 +271,7 @@ class Component extends DCLogic {
     var weeks = [];
     for (var n = 1; n <= 18; n++) {
       var past = n <= 3, cur = n === 3;
-      weeks.push({ n: n, href: cur ? 'desktop.html' : 'season.html', current: cur ? 'page' : 'false',
+      weeks.push({ n: n, href: cur ? 'desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
         border: cur ? '1px solid var(--gold)' : past ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: cur ? 'var(--gold)' : past ? 'var(--panel)' : 'transparent',
         fg: cur ? 'var(--ongold)' : past ? 'var(--ink)' : 'var(--soft)', weight: cur ? '800' : past ? '700' : '500',
