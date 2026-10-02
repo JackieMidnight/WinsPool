@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philly Wins Pool, season so far</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;background:#0A1F14}
+a{color:#C9A24B}a:hover{color:#E2BE6A}
+.pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
+.pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+</style>
+<script src="support.js" defer></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="{{modeClass}}" style="width: 100%; max-width: 480px; min-height: 100vh; margin: 0 auto; box-sizing: border-box; background: var(--bg); color: var(--ink); display: flex; flex-direction: column; font-size: 16px; line-height: 1.5">
+
+<header style="display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 16px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink)">
+<svg width="26" height="31" viewBox="0 0 60 72" aria-hidden="true"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="4"></path><ellipse cx="30" cy="37" rx="13" ry="8" fill="#9A5530" transform="rotate(-28 30 37)"></ellipse><path d="M24 40.5 L36 33.5" stroke="#F4F1E4" stroke-width="2"></path></svg>
+<span style="font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-size: 21px; letter-spacing: .03em; line-height: 1">PHILLY WINS POOL</span>
+</a>
+<button type="button" aria-label="Switch theme" onClick="{{toggleMode}}" style="margin-left: auto; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--soft); cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</button>
+</header>
+<nav aria-label="Site sections" style="display: flex; gap: 2px; overflow-x: auto; padding: 0 8px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">This week</a>
+<a href="season.html" aria-current="page" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; box-shadow: inset 0 -3px 0 var(--gold)">Season</a>
+<a href="coaches.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Coaches</a>
+<a href="teams.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Teams</a>
+<a href="rosters.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rosters</a>
+<a href="rules.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rules</a>
+</nav>
+
+<section style="padding: 26px 16px 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 42px; line-height: 1">The season so far</h1>
+<p style="margin: 0; font-size: 15px; color: var(--soft)">Every Tuesday update stays here. Tap a week to reopen it exactly as it went out.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<a href="index.html" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; background: var(--panel); border: 1px solid var(--gold); border-radius: 6px; text-decoration: none; color: var(--ink)">
+<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700; color: var(--soft)">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px; color: var(--gold)">3</span></span>
+<span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 16px">Drew goes 4-0</b><span style="font-size: 13px; color: var(--soft)">Games Sep 24–28 · Leader: Drew, 8</span></span>
+<span style="font-size: 11.5px; font-weight: 800; padding: 3px 7px; border-radius: 4px; background: var(--gold); color: var(--ongold)">LATEST</span>
+</a>
+<a href="index.html" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink)">
+<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700; color: var(--soft)">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px">2</span></span>
+<span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 16px">Virginia and I tie for first</b><span style="font-size: 13px; color: var(--soft)">Games Sep 17–21 · Leaders: Virginia and Jack, 5</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--soft)"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+<a href="index.html" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink)">
+<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700; color: var(--soft)">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px">1</span></span>
+<span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 16px">Luke and Drew open 3-1</b><span style="font-size: 13px; color: var(--soft)">Games Sep 10–14 · Leaders: Luke and Drew, 3</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--soft)"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+<div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; align-items: center; padding: 12px 14px; border: 1px dashed var(--line); border-radius: 6px; color: var(--soft)">
+<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px">4</span></span>
+<span style="display: flex; flex-direction: column"><b style="font-size: 15px; font-weight: 600">Posts Tuesday, Oct 6</b><span style="font-size: 13px">Games Oct 1–5</span></span>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="chart-h" style="padding: 38px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 id="chart-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Rank, week by week</h2>
+<p style="margin: 0; font-size: 14.5px; color: var(--soft)">Pick a coach to follow their line. Ties share a spot, so some lines sit on top of each other.</p>
+</div>
+<div role="group" aria-label="Coach to highlight" style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="8">
+<button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" style="min-height: 40px; padding: 0 13px; border-radius: 20px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}">{{c.name}}</button>
+</sc-for>
+</div>
+<div style="position: relative; width: 358px; height: 240px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; box-sizing: border-box">
+<svg width="356" height="238" viewBox="0 0 356 238" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+<g style="stroke: var(--line)" stroke-width="1"><line x1="34" y1="14" x2="336" y2="14"></line><line x1="34" y1="42" x2="336" y2="42"></line><line x1="34" y1="70" x2="336" y2="70"></line><line x1="34" y1="98" x2="336" y2="98"></line><line x1="34" y1="126" x2="336" y2="126"></line><line x1="34" y1="154" x2="336" y2="154"></line><line x1="34" y1="182" x2="336" y2="182"></line><line x1="34" y1="210" x2="336" y2="210"></line></g>
+<g style="fill: var(--soft)" font-size="11" font-family="Libre Franklin, sans-serif" text-anchor="end"><text x="24" y="18">1st</text><text x="24" y="46">2</text><text x="24" y="74">3</text><text x="24" y="102">4</text><text x="24" y="130">5</text><text x="24" y="158">6</text><text x="24" y="186">7</text><text x="24" y="214">8th</text></g>
+</svg>
+<sc-for list="{{lines}}" as="l" hint-placeholder-count="8">
+<svg width="356" height="238" viewBox="0 0 356 238" aria-hidden="true" style="position: absolute; left: 0; top: 0"><polyline dc-points="{{l.pts}}" fill="none" stroke-width="{{l.w}}" stroke-linejoin="round" stroke-linecap="round" style="stroke: {{l.color}}; opacity: {{l.op}}"></polyline></svg>
+</sc-for>
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="3">
+<span style="position: absolute; left: {{d.left}}px; top: {{d.top}}px; width: 14px; height: 14px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px var(--panel)"></span>
+</sc-for>
+<sc-for list="{{wkLabels}}" as="w" hint-placeholder-count="3">
+<span style="position: absolute; left: {{w.left}}px; top: 216px; width: 50px; text-align: center; font-size: 11.5px; font-weight: 600; color: var(--soft)">{{w.label}}</span>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 14.5px"><b>{{sel}}</b>: {{selPath}}</p>
+</section>
+
+<section aria-labelledby="h2h-h" style="padding: 38px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 id="h2h-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Season head-to-head</h2>
+<p style="margin: 0; font-size: 14.5px; color: var(--soft)">Every time two of our teams have met. Read across: that row's record against the column.</p>
+</div>
+<div role="table" aria-label="Head-to-head records" style="display: flex; flex-direction: column; gap: 2px">
+<div role="row" style="display: grid; grid-template-columns: 64px repeat(8, minmax(0, 1fr)); gap: 2px">
+<span role="columnheader"></span>
+<sc-for list="{{cols}}" as="c" hint-placeholder-count="8"><span role="columnheader" style="font-size: 11px; font-weight: 600; color: var(--soft); text-align: center">{{c}}</span></sc-for>
+</div>
+<sc-for list="{{grid}}" as="row" hint-placeholder-count="8">
+<div role="row" style="display: grid; grid-template-columns: 64px repeat(8, minmax(0, 1fr)); gap: 2px">
+<span role="rowheader" style="font-size: 12.5px; font-weight: 700; align-self: center; color: {{row.nameColor}}">{{row.name}}</span>
+<sc-for list="{{row.cells}}" as="cell" hint-placeholder-count="8">
+<span role="cell" style="display: flex; align-items: center; justify-content: center; height: 32px; border-radius: 3px; font-size: 11.5px; font-weight: 700; font-variant-numeric: tabular-nums; background: {{cell.bg}}; color: {{cell.fg}}; border: {{cell.border}}">{{cell.t}}</span>
+</sc-for>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--soft)">Three sweeps so far: Drew is 3-0 against me, I'm 3-0 against Caleb, and Virginia is 3-0 against Mike. Empty boxes are pairs whose teams haven't met yet. The dashes are you against yourself: Virginia has had two of those games, Luke and Court one each.</p>
+</section>
+
+<footer style="margin-top: auto; padding: 36px 16px 40px; text-align: center; border-top: 1px solid var(--line)">
+<span style="font-size: 11.5px; font-weight: 700; letter-spacing: .08em; color: var(--up)">FOUR TEAMS. ONE GOAL. BRAGGING RIGHTS FOR A YEAR.</span>
+</footer>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Theme"},"$preview":{"width":390,"height":2000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var st = this.state || {};
+    var mode = st.mode || this.props.mode || 'dark';
+    var OWN = { LAR: 'Nicole', CHI: 'Nicole', DAL: 'Nicole', ARI: 'Nicole', PHI: 'Luke', JAX: 'Luke', PIT: 'Luke', TEN: 'Luke', BUF: 'Virginia', CIN: 'Virginia', TB: 'Virginia', CLE: 'Virginia', SEA: 'Jack', GB: 'Jack', IND: 'Jack', LV: 'Jack', DEN: 'Caleb', NE: 'Caleb', NO: 'Caleb', NYJ: 'Caleb', SF: 'Court', LAC: 'Court', WAS: 'Court', MIA: 'Court', BAL: 'Drew', DET: 'Drew', MIN: 'Drew', ATL: 'Drew', HOU: 'Mike', KC: 'Mike', NYG: 'Mike', CAR: 'Mike' };
+    // Results only: away home awayScore homeScore. Everything on this page is computed from these.
+    var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
+      '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
+      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27';
+    var C = ['Nicole', 'Luke', 'Virginia', 'Jack', 'Caleb', 'Court', 'Drew', 'Mike'];
+    var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
+    var pts = {}, h2h = {}, self2 = {};
+    C.forEach(function (c) { pts[c] = 0; self2[c] = 0; C.forEach(function (d) { h2h[c + '|' + d] = [0, 0]; }); });
+    var rankHist = {}; C.forEach(function (c) { rankHist[c] = []; });
+    var order = C.slice();
+    weeks.forEach(function (games) {
+      games.forEach(function (g) {
+        var win = g.as > g.hs ? g.a : g.h, lose = g.as > g.hs ? g.h : g.a;
+        var ow = OWN[win], ol = OWN[lose];
+        pts[ow] += 1;
+        if (ow === ol) self2[ow] += 1; else { h2h[ow + '|' + ol][0] += 1; h2h[ol + '|' + ow][1] += 1; }
+      });
+      order = C.slice().sort(function (x, y) { return pts[y] - pts[x]; });
+      order.forEach(function (c, i) {
+        var r = (i > 0 && pts[c] === pts[order[i - 1]]) ? rankHist[order[i - 1]][rankHist[order[i - 1]].length - 1] : i + 1;
+        rankHist[c].push(r);
+      });
+    });
+    // standings order after the latest week, ties in the order the Week 3 update used
+    var display = ['Drew', 'Virginia', 'Jack', 'Mike', 'Luke', 'Nicole', 'Caleb', 'Court'];
+    var sel = st.sel || 'Drew';
+    var n = weeks.length, L = 34, R = 28, T = 14, step = 28;
+    var xAt = function (i) { return n === 1 ? L : L + i * (356 - L - R) / (n - 1); };
+    var yAt = function (r) { return T + (r - 1) * step; };
+    var lines = C.filter(function (c) { return c !== sel; }).concat([sel]).map(function (c) {
+      return { pts: rankHist[c].map(function (r, i) { return xAt(i).toFixed(1) + ',' + yAt(r); }).join(' '),
+        color: c === sel ? 'var(--gold)' : 'var(--soft)', w: c === sel ? 3.5 : 1.5, op: c === sel ? 1 : 0.45 };
+    });
+    var dots = rankHist[sel].map(function (r, i) { return { left: (xAt(i) - 7).toFixed(1), top: yAt(r) - 7 }; });
+    var wkLabels = weeks.map(function (w, i) { return { left: (xAt(i) - 25).toFixed(1), label: 'Week ' + (i + 1) }; });
+    var tie = function (c, i) { var r = rankHist[c][i]; var shared = C.some(function (d) { return d !== c && rankHist[d][i] === r; }); return (shared ? 'T' : '') + r; };
+    var selPath = rankHist[sel].map(function (r, i) { return tie(sel, i); }).join(' → ') + ' (' + pts[sel] + ' pts)';
+    var chips = display.map(function (c) {
+      var on = c === sel;
+      return { name: c, pressed: on ? 'true' : 'false', pick: function () { self.setState({ sel: c }); },
+        border: on ? 'var(--gold)' : 'var(--line)', bg: on ? 'var(--gold)' : 'var(--panel)', fg: on ? 'var(--ongold)' : 'var(--ink)' };
+    });
+    var grid = display.map(function (r) {
+      return { name: r, nameColor: r === sel ? 'var(--gold)' : 'var(--ink)', cells: display.map(function (c) {
+        if (r === c) return { t: '—', bg: 'transparent', fg: 'var(--soft)', border: '1px solid transparent' };
+        var wl = h2h[r + '|' + c], w = wl[0], l = wl[1];
+        if (w + l === 0) return { t: '', bg: 'transparent', fg: 'var(--soft)', border: '1px dashed var(--line)' };
+        return { t: w + '-' + l, border: '1px solid transparent',
+          bg: w > l ? 'color-mix(in srgb, var(--up) 30%, var(--panel))' : w < l ? 'color-mix(in srgb, var(--dn) 22%, var(--panel))' : 'var(--track)',
+          fg: w < l ? 'var(--soft)' : 'var(--ink)' };
+      }) };
+    });
+    return { modeClass: 'pwp-' + mode, toggleMode: function () { self.setState({ mode: mode === 'dark' ? 'light' : 'dark' }); },
+      chips: chips, lines: lines, dots: dots, wkLabels: wkLabels, sel: sel, selPath: selPath,
+      cols: display.map(function (c) { return c.slice(0, 3); }), grid: grid };
+  }
+}
+</script>
+</body>
+</html>

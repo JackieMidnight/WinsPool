@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philly Wins Pool, start here and rules</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;background:#0A1F14}
+a{color:#C9A24B}a:hover{color:#E2BE6A}
+.pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
+.pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+</style>
+<script src="support.js" defer></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="{{modeClass}}" style="width: 100%; max-width: 480px; min-height: 100vh; margin: 0 auto; box-sizing: border-box; background: var(--bg); color: var(--ink); display: flex; flex-direction: column; font-size: 16px; line-height: 1.5">
+
+<header style="display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 16px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink)">
+<svg width="26" height="31" viewBox="0 0 60 72" aria-hidden="true"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="4"></path><ellipse cx="30" cy="37" rx="13" ry="8" fill="#9A5530" transform="rotate(-28 30 37)"></ellipse><path d="M24 40.5 L36 33.5" stroke="#F4F1E4" stroke-width="2"></path></svg>
+<span style="font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-size: 21px; letter-spacing: .03em; line-height: 1">PHILLY WINS POOL</span>
+</a>
+<button type="button" aria-label="Switch to light mode" style="margin-left: auto; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--soft); cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</button>
+</header>
+<nav aria-label="Site sections" style="display: flex; gap: 2px; overflow-x: auto; padding: 0 8px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">This week</a>
+<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Season</a>
+<a href="coaches.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Coaches</a>
+<a href="teams.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Teams</a>
+<a href="rosters.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rosters</a>
+<a href="rules.html" aria-current="page" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; box-shadow: inset 0 -3px 0 var(--gold)">Rules</a>
+</nav>
+
+<section aria-labelledby="start-h" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%); color: #EFEDE0; padding: 28px 16px 26px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 14px">
+<svg width="58" height="70" viewBox="0 0 60 72" aria-hidden="true" style="flex: none"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="3"></path><path d="M30 9 L50 15 V35 C50 48 42 56 30 62 C18 56 10 48 10 35 V15 Z" fill="none" stroke="#9CCB55" stroke-opacity=".45" stroke-width="1"></path><ellipse cx="30" cy="35" rx="12" ry="7.5" fill="#9A5530" transform="rotate(-28 30 35)"></ellipse><path d="M24.5 38.5 L35.5 31.5" stroke="#F4F1E4" stroke-width="1.6"></path><path d="M27 34 L29 37.5 M29.5 32.6 L31.5 36 M32 31.2 L34 34.6" stroke="#F4F1E4" stroke-width="1.2"></path><rect x="18" y="49" width="24" height="9" rx="2" fill="#0A1F14" stroke="#C9A24B" stroke-width="1"></rect><text x="30" y="56.2" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="7" fill="#EFEDE0">2026</text></svg>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 800; letter-spacing: .12em; color: #9CCB55">START HERE</span>
+<h1 id="start-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 40px; line-height: 1">The whole thing in 30 seconds</h1>
+</div>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px">
+<li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start"><span style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #C9A24B; font-family: Anton, Impact, sans-serif; font-size: 17px; color: #C9A24B">1</span><span style="font-size: 16px; line-height: 1.5; color: #D6E0D8">Each of us drafted four NFL teams, so all 32 are taken. They're yours all season. No lineups, no waivers, no trades.</span></li>
+<li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start"><span style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #C9A24B; font-family: Anton, Impact, sans-serif; font-size: 17px; color: #C9A24B">2</span><span style="font-size: 16px; line-height: 1.5; color: #D6E0D8">Every time one of your teams wins, you get a point. A tie is half a point. Your score is your four teams added together.</span></li>
+<li style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start"><span style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #C9A24B; font-family: Anton, Impact, sans-serif; font-size: 17px; color: #C9A24B">3</span><span style="font-size: 16px; line-height: 1.5; color: #D6E0D8">In January, playoff wins pay bonus points that stack. Most points after the Super Bowl wins the pool.</span></li>
+</ol>
+<span style="font-family: Anton, Impact, sans-serif; font-size: 26px; letter-spacing: .04em; color: #9CCB55">DRAFT. ROOT. WIN.</span>
+</section>
+
+<section aria-labelledby="score-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 14px">
+<h2 id="score-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Regular season</h2>
+<svg width="358" height="74" viewBox="0 0 358 74" role="img" aria-label="Football field" style="display: block; border-radius: 6px">
+<rect x="0" y="0" width="358" height="74" fill="#1C5E33"></rect>
+<rect x="26" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="87.2" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="148.4" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="209.6" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="270.8" y="0" width="30.6" height="74" fill="#1F6737"></rect>
+<rect x="0" y="0" width="26" height="74" fill="#14452C"></rect><rect x="332" y="0" width="26" height="74" fill="#14452C"></rect>
+<g stroke="#EFEDE0" stroke-opacity=".75" stroke-width="1.2"><line x1="26" y1="0" x2="26" y2="74"></line><line x1="56.6" y1="0" x2="56.6" y2="74"></line><line x1="87.2" y1="0" x2="87.2" y2="74"></line><line x1="117.8" y1="0" x2="117.8" y2="74"></line><line x1="148.4" y1="0" x2="148.4" y2="74"></line><line x1="179" y1="0" x2="179" y2="74"></line><line x1="209.6" y1="0" x2="209.6" y2="74"></line><line x1="240.2" y1="0" x2="240.2" y2="74"></line><line x1="270.8" y1="0" x2="270.8" y2="74"></line><line x1="301.4" y1="0" x2="301.4" y2="74"></line><line x1="332" y1="0" x2="332" y2="74"></line></g>
+<g fill="#EFEDE0" fill-opacity=".85" font-family="Anton, Impact, sans-serif" font-size="12" text-anchor="middle"><text x="56.6" y="68">10</text><text x="87.2" y="68">20</text><text x="117.8" y="68">30</text><text x="148.4" y="68">40</text><text x="179" y="68">50</text><text x="209.6" y="68">40</text><text x="240.2" y="68">30</text><text x="270.8" y="68">20</text><text x="301.4" y="68">10</text></g>
+<g fill="#C9A24B" font-family="Anton, Impact, sans-serif" font-size="11" text-anchor="middle" letter-spacing="2"><text x="13" y="41" transform="rotate(-90 13 37)">PHILLY</text><text x="345" y="41" transform="rotate(90 345 37)">PHILLY</text></g>
+</svg>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div style="display: flex; flex-direction: column; align-items: center; padding: 12px 6px; background: var(--panel); border: 1px solid var(--gold); border-radius: 6px"><span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--soft)">WIN</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 36px; line-height: 1.1; color: var(--up)">+1</b><span style="font-size: 12px; color: var(--soft)">point</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; padding: 12px 6px; background: var(--panel); border: 1px solid var(--gold); border-radius: 6px"><span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--soft)">TIE</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 36px; line-height: 1.1; color: var(--up)">+0.5</b><span style="font-size: 12px; color: var(--soft)">point</span></div>
+<div style="display: flex; flex-direction: column; align-items: center; padding: 12px 6px; background: var(--panel); border: 1px solid var(--gold); border-radius: 6px"><span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--soft)">LOSS</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 36px; line-height: 1.1">0</b><span style="font-size: 12px; color: var(--soft)">points</span></div>
+</div>
+<p style="margin: 0; font-size: 14.5px; color: var(--soft)">Every game counts for someone. Since all 32 teams are owned, each result gives one of us a point.</p>
+</section>
+
+<section aria-labelledby="po-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 id="po-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Playoff bonus points</h2>
+<p style="margin: 0; font-size: 14.5px; color: var(--soft)">Earned for winning each playoff round, and they stack.</p>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0">
+<li style="display: grid; grid-template-columns: minmax(0, 1fr) 70px; align-items: center; min-height: 54px; padding: 0 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px 6px 0 0"><span style="font-size: 15.5px; font-weight: 700">Win the Wild Card round</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 26px; text-align: right; color: var(--up)">+2</b></li>
+<li style="display: grid; grid-template-columns: minmax(0, 1fr) 70px; align-items: center; min-height: 54px; padding: 0 14px; background: var(--panel); border: 1px solid var(--line); border-top: 0"><span style="font-size: 15.5px; font-weight: 700">Win the Divisional round</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 26px; text-align: right; color: var(--up)">+2</b></li>
+<li style="display: grid; grid-template-columns: minmax(0, 1fr) 70px; align-items: center; min-height: 54px; padding: 0 14px; background: var(--panel); border: 1px solid var(--line); border-top: 0"><span style="font-size: 15.5px; font-weight: 700">Win the Conference Championship</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 26px; text-align: right; color: var(--up)">+3</b></li>
+<li style="display: grid; grid-template-columns: minmax(0, 1fr) 70px; align-items: center; min-height: 54px; padding: 0 14px; background: var(--panel); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 6px 6px"><span style="font-size: 15.5px; font-weight: 700">Win the Super Bowl</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 26px; text-align: right; color: var(--up)">+5</b></li>
+</ol>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: var(--goldsoft); border: 1px solid var(--gold); border-radius: 6px"><span style="font-size: 14px; font-weight: 800; letter-spacing: .04em">MAX BONUS FOR ONE TEAM</span><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 28px; color: var(--gold)">+12</b></div>
+<p style="margin: 0; font-size: 13.5px; color: var(--soft)">A team with a first-round bye has no Wild Card win available. It can still earn every bonus after that.</p>
+</section>
+
+<section aria-labelledby="ex-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<h2 id="ex-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Example</h2>
+<div style="display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
+<div style="display: flex; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 15px"><span>Team A goes 12-5</span><b>12</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 15px"><span>Wins its Wild Card game</span><b style="color: var(--up)">+2</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 15px"><span>Wins its Divisional game</span><b style="color: var(--up)">+2</b></div>
+<div style="display: flex; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: 15px"><span>Loses the Conference Championship</span><b style="color: var(--soft)">+0</b></div>
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: var(--goldsoft); font-size: 15px"><b>Total for Team A</b><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 24px; color: var(--gold)">16 points</b></div>
+</div>
+</section>
+
+<section aria-labelledby="win-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<h2 id="win-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Winning and ties</h2>
+<p style="margin: 0; font-size: 15px">The pool ends after the Super Bowl. Highest total of regular-season points plus playoff bonus points wins. If two of us finish level:</p>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<li style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: center; padding: 10px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px"><span style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--goldsoft); color: var(--gold); font-weight: 800; font-size: 14px">1</span><span style="font-size: 14.5px">Most combined regular-season wins from your four teams.</span></li>
+<li style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: center; padding: 10px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px"><span style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--goldsoft); color: var(--gold); font-weight: 800; font-size: 14px">2</span><span style="font-size: 14.5px">Most playoff bonus points.</span></li>
+<li style="display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: center; padding: 10px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px"><span style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--goldsoft); color: var(--gold); font-weight: 800; font-size: 14px">3</span><span style="font-size: 14.5px">Still tied? Split the title, or settle it with a coin flip.</span></li>
+</ol>
+</section>
+
+<section aria-labelledby="draft-h" style="padding: 34px 16px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<h2 id="draft-h" style="grid-column: 1 / -1; margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Draft and buy-in</h2>
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--gold)">THE DRAFT</span>
+<span style="font-size: 14px; line-height: 1.5">Snake draft: picks 1 to 8, then 8 to 1, until all 32 teams were gone. No pick clock. We drafted in the group text.</span>
+<a href="rosters.html" style="display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; text-decoration: none">See every pick</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--gold)">BUY-IN</span>
+<b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 44px; line-height: 1.05">$10</b>
+<span style="font-size: 14px; line-height: 1.5; color: var(--soft)">Per person, for the whole season.</span>
+</div>
+</section>
+
+<footer style="margin-top: auto; padding: 36px 16px 40px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; border-top: 1px solid var(--line)">
+<span style="font-size: 13px; color: var(--soft)">Questions about the rules? Text me.</span>
+<span style="font-size: 11.5px; font-weight: 700; letter-spacing: .08em; color: var(--up)">FOUR TEAMS. ONE GOAL. BRAGGING RIGHTS FOR A YEAR.</span>
+</footer>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Theme"},"$preview":{"width":390,"height":2600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { modeClass: 'pwp-' + (this.props.mode ?? 'dark') };
+  }
+}
+</script>
+</body>
+</html>
