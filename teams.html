@@ -37,7 +37,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <a href="rules.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rules</a>
 </nav>
 
-<section style="padding: 26px 16px 0; display: flex; flex-direction: column; gap: 14px">
+<section data-wide="left" data-sticky="" style="padding: 26px 16px 0; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; flex-direction: column; gap: 6px">
 <h1 style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 42px; line-height: 1">All 32 teams</h1>
 <p style="margin: 0; font-size: 15px; color: var(--soft)">Every team, who owns it, and how its pace compares with what Vegas expected before the season.</p>
@@ -55,7 +55,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <p style="margin: 0; font-size: 14px">{{summary}}</p>
 </section>
 
-<section aria-label="Team list" style="padding: 14px 16px 0; display: flex; flex-direction: column">
+<section data-wide="right" aria-label="Team list" style="padding: 14px 16px 0; display: flex; flex-direction: column">
 <div style="display: grid; grid-template-columns: minmax(0, 1fr) 136px 46px; gap: 10px; padding: 0 0 6px; border-bottom: 1px solid var(--line); font-size: 11.5px; font-weight: 600; color: var(--soft)"><span>Team, owner, record</span><span style="text-align: center">Behind · pace vs Vegas · ahead</span><span style="text-align: right">Gap</span></div>
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="32">
 <div style="display: grid; grid-template-columns: minmax(0, 1fr) 136px 46px; gap: 10px; align-items: center; height: 54px; border-bottom: 1px solid var(--line)">

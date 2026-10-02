@@ -37,7 +37,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <a href="rules.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rules</a>
 </nav>
 
-<div role="note" style="margin: 16px 16px 0; padding: 12px 14px; border: 1px dashed var(--gold); border-radius: 6px; background: var(--goldsoft); font-size: 13.5px; line-height: 1.5">
+<div data-wide="full" data-pad="" role="note" style="margin: 16px 16px 0; padding: 12px 14px; border: 1px dashed var(--gold); border-radius: 6px; background: var(--goldsoft); font-size: 13.5px; line-height: 1.5">
 <b>Preview.</b> This tab appears after Week 18. To show how it works, it's filled in with our rosters and the real 2025 playoffs, the way it would have looked right after last season's Divisional round.
 </div>
 
@@ -47,7 +47,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <p style="margin: 0; font-size: 15px; color: var(--soft)">Four teams left, three coaches with a pulse. Max is the most a coach can still finish with if everything breaks their way.</p>
 </section>
 
-<section aria-label="Coaches" style="padding: 16px 16px 0; display: flex; flex-direction: column">
+<section data-wide="left" aria-label="Coaches" style="padding: 16px 16px 0; display: flex; flex-direction: column">
 <div style="display: grid; grid-template-columns: minmax(0, 1fr) 46px 46px 50px 50px; gap: 6px; padding-bottom: 6px; border-bottom: 1px solid var(--line); font-size: 11px; font-weight: 600; color: var(--soft)"><span>Coach · teams alive</span><span style="text-align: right">Reg.</span><span style="text-align: right">Bonus</span><span style="text-align: right">Now</span><span style="text-align: right">Max</span></div>
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
 <div style="display: grid; grid-template-columns: minmax(0, 1fr) 46px 46px 50px 50px; gap: 6px; align-items: center; min-height: 56px; border-bottom: 1px solid var(--line); opacity: {{r.op}}">
@@ -61,6 +61,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <p style="margin: 12px 0 0; font-size: 13.5px; line-height: 1.5">Caleb has both AFC teams left, so one of them is in the Super Bowl no matter what. That locks him at 46 or better. My Seahawks can't get me past that, so Nicole's Rams are the only thing standing in his way, and they have to win it all.</p>
 </section>
 
+<div data-wide="right" data-stack="" style="display: contents">
 <section aria-labelledby="left-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
 <h2 id="left-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Still alive</h2>
 <sc-for list="{{games}}" as="g" hint-placeholder-count="2">
@@ -92,6 +93,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <span style="font-size: 14.5px; line-height: 1.5">Seattle beat the Rams 31-27, New England beat Denver 10-7, and Seattle won the Super Bowl 29-13. Caleb takes last year's replay 46 to my 44.5.</span>
 </div>
 </section>
+</div>
 
 <footer style="margin-top: auto; padding: 36px 16px 40px; text-align: center; border-top: 1px solid var(--line)">
 <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .08em; color: var(--up)">FOUR TEAMS. ONE GOAL. BRAGGING RIGHTS FOR A YEAR.</span>
