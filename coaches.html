@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philly Wins Pool, coach page</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;background:#0A1F14}
+a{color:#C9A24B}a:hover{color:#E2BE6A}
+.pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
+.pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+</style>
+<script src="support.js" defer></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="{{modeClass}}" style="width: 100%; max-width: 480px; min-height: 100vh; margin: 0 auto; box-sizing: border-box; background: var(--bg); color: var(--ink); display: flex; flex-direction: column; font-size: 16px; line-height: 1.5">
+
+<header style="display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 16px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink)">
+<svg width="26" height="31" viewBox="0 0 60 72" aria-hidden="true"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="4"></path><ellipse cx="30" cy="37" rx="13" ry="8" fill="#9A5530" transform="rotate(-28 30 37)"></ellipse><path d="M24 40.5 L36 33.5" stroke="#F4F1E4" stroke-width="2"></path></svg>
+<span style="font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-size: 21px; letter-spacing: .03em; line-height: 1">PHILLY WINS POOL</span>
+</a>
+<button type="button" aria-label="Switch theme" onClick="{{toggleMode}}" style="margin-left: auto; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--soft); cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</button>
+</header>
+<nav aria-label="Site sections" style="display: flex; gap: 2px; overflow-x: auto; padding: 0 8px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">This week</a>
+<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Season</a>
+<a href="coaches.html" aria-current="page" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; box-shadow: inset 0 -3px 0 var(--gold)">Coaches</a>
+<a href="teams.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Teams</a>
+<a href="rosters.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rosters</a>
+<a href="rules.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rules</a>
+</nav>
+
+<section aria-label="Pick a coach" style="padding: 16px 16px 0; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--soft)">Whose page?</span>
+<div role="group" aria-label="Coaches" style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="8">
+<button type="button" aria-pressed="{{c.pressed}}" onClick="{{c.pick}}" style="min-height: 40px; padding: 0 13px; border-radius: 20px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}">{{c.name}}</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="coach-name" style="margin: 18px 16px 0; padding: 20px 16px 16px; background-color: #0A1F14; background-image: repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 36px); color: #EFEDE0; border-radius: 8px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 700; color: #C9A24B">After Week 3</span>
+<h1 id="coach-name" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 48px; line-height: 1">{{name}}</h1>
+<span style="font-size: 15px; color: #C3D2C7">{{summary}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div style="display: flex; flex-direction: column; padding: 10px; background: #051109; border: 1px solid #1D4530; border-radius: 6px"><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 28px; line-height: 1.1">{{place}}</b><span style="font-size: 12px; color: #8FA898">place</span></div>
+<div style="display: flex; flex-direction: column; padding: 10px; background: #051109; border: 1px solid #1D4530; border-radius: 6px"><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 28px; line-height: 1.1; color: #C9A24B">{{pts}}</b><span style="font-size: 12px; color: #8FA898">points</span></div>
+<div style="display: flex; flex-direction: column; padding: 10px; background: #051109; border: 1px solid #1D4530; border-radius: 6px"><b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 28px; line-height: 1.1">{{odds}}</b><span style="font-size: 12px; color: #8FA898">to win it ({{oddsChange}})</span></div>
+</div>
+<span style="font-size: 12.5px; color: #8FA898">Likely final score {{range}}, per my model. That's where 8 in 10 simulated seasons landed.</span>
+</section>
+
+<section aria-labelledby="teams-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<h2 id="teams-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">{{teamsTitle}}</h2>
+<sc-for list="{{teams}}" as="t" hint-placeholder-count="4">
+<article style="background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: baseline; gap: 10px">
+<b style="font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 26px; line-height: 1; letter-spacing: .02em">{{t.abbr}}</b>
+<span style="font-size: 15px; font-weight: 600">{{t.nick}}</span>
+<span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 22px">{{t.rec}}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{t.games}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; align-items: center; padding: 6px 4px; background: var(--panel2); border: 1px solid var(--line); border-radius: 5px; line-height: 1.3">
+<span style="font-size: 11px; color: var(--soft)">{{g.wk}}</span>
+<b style="font-size: 13.5px; color: {{g.color}}">{{g.res}}</b>
+<span style="font-size: 12px; color: var(--soft)">{{g.opp}}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--soft)">
+<span><b style="color: var(--ink)">{{t.pts}}</b> pts to {{name}}</span>
+<span>Pace <b style="color: var(--ink)">{{t.pace}}</b> vs Vegas {{t.vegas}} <b style="color: {{t.diffColor}}">{{t.diff}}</b></span>
+<span>Bye <b style="color: var(--ink)">Week {{t.bye}}</b></span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding-top: 9px; border-top: 1px solid var(--line); font-size: 13.5px">
+<span style="font-size: 11.5px; font-weight: 800; letter-spacing: .04em; color: var(--gold)">NEXT</span>
+<span>{{t.next}}</span>
+</div>
+</article>
+</sc-for>
+</section>
+
+<section aria-labelledby="root-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<h2 id="root-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Week 4 rooting guide</h2>
+<ul style="margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line)">
+<sc-for list="{{rooting}}" as="r" hint-placeholder-count="3">
+<li style="display: flex; justify-content: space-between; gap: 10px; min-height: 44px; align-items: center; border-bottom: 1px dashed var(--line); font-size: 15px"><span>{{r.label}}</span><b style="color: var(--gold)">{{r.swing}}</b></li>
+</sc-for>
+</ul>
+<p style="margin: 0; font-size: 13px; color: var(--soft)">The number is how much the title odds swing between the two results, in percentage points. Games your teams aren't in count too.</p>
+</section>
+
+<section aria-labelledby="vs-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<h2 id="vs-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Against the group</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{vs}}" as="v" hint-placeholder-count="7">
+<div style="display: flex; justify-content: space-between; align-items: center; min-height: 44px; padding: 0 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; font-size: 14.5px"><span>vs {{v.name}}</span><b style="color: {{v.color}}">{{v.rec}}</b></div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: var(--soft)">{{selfNote}}</p>
+</section>
+
+<footer style="margin-top: auto; padding: 36px 16px 40px; text-align: center; border-top: 1px solid var(--line)">
+<span style="font-size: 11.5px; font-weight: 700; letter-spacing: .08em; color: var(--up)">FOUR TEAMS. ONE GOAL. BRAGGING RIGHTS FOR A YEAR.</span>
+</footer>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Theme"},"coach":{"editor":"enum","options":["Jack","Drew","Virginia","Mike","Luke","Nicole","Caleb","Court"],"default":"Jack","section":"Content"},"$preview":{"width":390,"height":2250}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var self = this, st = this.state || {};
+    var mode = st.mode || this.props.mode || 'dark';
+    var sel = st.sel || this.props.coach || 'Jack';
+    var C = ['Nicole', 'Luke', 'Virginia', 'Jack', 'Caleb', 'Court', 'Drew', 'Mike'];
+    var ROSTER = { Nicole: ['LAR', 'CHI', 'DAL', 'ARI'], Luke: ['PHI', 'JAX', 'PIT', 'TEN'], Virginia: ['BUF', 'CIN', 'TB', 'CLE'], Jack: ['SEA', 'GB', 'IND', 'LV'], Caleb: ['DEN', 'NE', 'NO', 'NYJ'], Court: ['SF', 'LAC', 'WAS', 'MIA'], Drew: ['BAL', 'DET', 'MIN', 'ATL'], Mike: ['HOU', 'KC', 'NYG', 'CAR'] };
+    var OWN = {}; C.forEach(function (c) { ROSTER[c].forEach(function (t) { OWN[t] = c; }); });
+    var NICK = { ARI: 'Cardinals', ATL: 'Falcons', BAL: 'Ravens', BUF: 'Bills', CAR: 'Panthers', CHI: 'Bears', CIN: 'Bengals', CLE: 'Browns', DAL: 'Cowboys', DEN: 'Broncos', DET: 'Lions', GB: 'Packers', HOU: 'Texans', IND: 'Colts', JAX: 'Jaguars', KC: 'Chiefs', LAC: 'Chargers', LAR: 'Rams', LV: 'Raiders', MIA: 'Dolphins', MIN: 'Vikings', NE: 'Patriots', NO: 'Saints', NYG: 'Giants', NYJ: 'Jets', PHI: 'Eagles', PIT: 'Steelers', SEA: 'Seahawks', SF: '49ers', TB: 'Buccaneers', TEN: 'Titans', WAS: 'Commanders' };
+    var VEGAS = { BUF: 10.5, CIN: 10.5, TB: 8.5, CLE: 5.5, SEA: 10.5, LV: 5.5, GB: 9.5, IND: 7.5, PHI: 10.5, JAX: 8.5, PIT: 8.5, TEN: 6.5, BAL: 11.5, DET: 10.5, MIN: 8.5, ATL: 7.5, KC: 10.5, NYG: 7.5, HOU: 9.5, CAR: 7.5, NYJ: 5.5, DEN: 9.5, NE: 10.5, NO: 7.5, CHI: 9.5, ARI: 3.5, LAR: 11.5, DAL: 9.5, SF: 9.5, LAC: 9.5, WAS: 7.5, MIA: 3.5 };
+    var BYE = { CAR: 5, KC: 5, CIN: 6, DET: 6, MIA: 6, MIN: 6, BUF: 7, JAX: 7, LAC: 7, WAS: 7, HOU: 8, NO: 8, NYG: 8, SF: 8, PIT: 9, TEN: 9, CHI: 10, DEN: 10, PHI: 10, TB: 10, ATL: 11, CLE: 11, GB: 11, LAR: 11, NE: 11, SEA: 11, BAL: 13, IND: 13, LV: 13, NYJ: 13, ARI: 14, DAL: 14 };
+    var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
+      '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
+      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27';
+    var NEXT = 'Thu 8:15|PIT|CLE,Sun 9:30 a.m.|IND|WAS,Sun 1:00|DAL|HOU,Sun 1:00|NYJ|CHI,Sun 1:00|JAX|CIN,Sun 1:00|TEN|BAL,Sun 1:00|ARI|NYG,Sun 1:00|LAR|PHI,Sun 1:00|GB|TB,Sun 1:00|NE|BUF,Sun 4:05|MIA|MIN,Sun 4:25|DEN|SF,Sun 4:25|LAC|SEA,Sun 4:25|KC|LV,Sun 8:20|DET|CAR,Mon 8:15|ATL|NO'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
+    // Title-odds model output after Week 3 (win chance now, a week ago, 10th and 90th percentile final score), coach order as C
+    var WIN = [4.1, 7.6, 18.5, 7.0, 2.1, 0.5, 49.4, 10.8], W2 = [9.1, 10.8, 26.6, 11.3, 6.0, 0.7, 23.3, 12.2];
+    var P10 = [28, 30, 34, 31, 27, 24, 39, 32], P90 = [43, 46, 50, 46, 40, 38, 57, 48];
+    var LEV = [[[4.1,8.5,17.0,7.1,2.1,0.5,49.7,10.9],[4.0,6.2,20.7,7.0,2.1,0.5,48.9,10.6]],[[4.1,7.5,18.3,7.9,2.1,0.4,49.1,10.6],[4.0,7.7,18.7,6.2,2.1,0.7,49.6,11.0]],[[4.7,7.7,18.5,7.1,2.1,0.5,49.7,9.6],[3.4,7.5,18.5,7.0,2.1,0.5,49.0,12.0]],[[3.1,7.6,18.4,7.1,2.6,0.5,50.0,10.8],[4.3,7.6,18.5,7.0,2.0,0.5,49.2,10.8]],[[4.2,9.2,15.5,7.2,2.2,0.6,50.4,10.7],[4.0,6.7,20.1,7.0,2.1,0.5,48.8,10.8]],[[4.3,9.7,20.2,7.6,2.5,0.6,43.6,11.7],[4.0,7.2,18.2,7.0,2.1,0.5,50.4,10.6]],[[5.0,7.9,18.6,7.3,2.1,0.6,50.0,8.5],[3.8,7.5,18.5,7.0,2.1,0.5,49.2,11.4]],[[5.1,6.3,18.5,7.1,2.1,0.5,49.4,10.9],[3.2,8.7,18.5,7.0,2.1,0.5,49.3,10.7]],[[4.1,7.7,16.8,8.1,2.1,0.6,49.7,10.9],[3.9,7.4,20.6,5.7,2.2,0.5,48.9,10.7]],[[4.2,7.8,16.0,7.3,2.8,0.6,50.2,11.1],[4.0,7.5,19.8,6.9,1.8,0.5,48.9,10.6]],[[4.6,8.3,20.1,7.9,2.3,0.9,44.5,11.5],[4.0,7.5,18.3,6.9,2.1,0.5,50.0,10.7]],[[4.2,7.5,18.2,7.1,2.6,0.4,49.4,10.7],[4.0,7.7,18.7,7.0,1.8,0.6,49.3,10.9]],[[4.4,7.7,18.7,5.4,2.2,0.8,50.0,10.9],[3.9,7.6,18.4,7.8,2.1,0.4,49.1,10.8]],[[4.1,7.6,18.4,6.4,2.1,0.5,49.3,11.6],[4.0,7.7,18.6,8.5,2.1,0.5,49.5,9.0]],[[3.9,7.3,18.0,6.7,2.0,0.5,52.2,9.4],[4.4,8.1,19.4,7.6,2.3,0.6,44.1,13.5]],[[3.8,7.3,17.5,6.7,1.6,0.5,52.5,10.1],[4.2,7.9,19.3,7.3,2.6,0.6,46.8,11.3]]];
+
+    var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
+    var pts = {}, h2h = {}, selfGames = {}, rec = {}, log = {};
+    C.forEach(function (c) { pts[c] = 0; selfGames[c] = 0; C.forEach(function (d) { h2h[c + '|' + d] = [0, 0]; }); });
+    Object.keys(OWN).forEach(function (t) { rec[t] = [0, 0]; log[t] = []; });
+    weeks.forEach(function (games, wi) {
+      games.forEach(function (g) {
+        var awayWon = g.as > g.hs, win = awayWon ? g.a : g.h, lose = awayWon ? g.h : g.a;
+        rec[win][0]++; rec[lose][1]++; pts[OWN[win]]++;
+        log[g.a].push({ wk: 'Wk ' + (wi + 1), res: (awayWon ? 'W ' : 'L ') + g.as + '-' + g.hs, opp: '@ ' + g.h, color: awayWon ? 'var(--up)' : 'var(--soft)' });
+        log[g.h].push({ wk: 'Wk ' + (wi + 1), res: (awayWon ? 'L ' : 'W ') + g.hs + '-' + g.as, opp: 'vs ' + g.a, color: awayWon ? 'var(--soft)' : 'var(--up)' });
+        if (OWN[win] === OWN[lose]) selfGames[OWN[win]]++; else { h2h[OWN[win] + '|' + OWN[lose]][0]++; h2h[OWN[lose] + '|' + OWN[win]][1]++; }
+      });
+    });
+    var nWeeks = weeks.length;
+    var display = ['Drew', 'Virginia', 'Jack', 'Mike', 'Luke', 'Nicole', 'Caleb', 'Court'];
+    var lead = Math.max.apply(null, C.map(function (c) { return pts[c]; }));
+    var better = C.filter(function (c) { return pts[c] > pts[sel]; }).length;
+    var tied = C.some(function (c) { return c !== sel && pts[c] === pts[sel]; });
+    var ord = function (n) { return n + (n === 1 ? 'st' : n === 2 ? 'nd' : n === 3 ? 'rd' : 'th'); };
+    var place = (tied ? 'T-' : '') + ord(better + 1);
+    var leaders = C.filter(function (c) { return pts[c] === lead; });
+    var back = lead - pts[sel];
+    var summary = back === 0 ? (tied ? 'Tied for first.' : 'Alone in first.') : back + (back === 1 ? ' point' : ' points') + ' behind ' + leaders.join(' and ') + '.';
+    summary = ROSTER[sel].join(' · ') + '. ' + summary;
+    var i = C.indexOf(sel);
+    var ch = WIN[i] - W2[i];
+    var teams = ROSTER[sel].map(function (t) {
+      var pace = rec[t][0] / nWeeks * 17, d = pace - VEGAS[t];
+      var nx = NEXT.filter(function (g) { return g.a === t || g.h === t; })[0];
+      var opp = nx.a === t ? nx.h : nx.a, oppOwner = OWN[opp];
+      return { abbr: t, nick: NICK[t], rec: rec[t][0] + '-' + rec[t][1], games: log[t], pts: rec[t][0],
+        pace: pace.toFixed(1), vegas: VEGAS[t], diff: (d >= 0 ? '+' : '') + d.toFixed(1), diffColor: d >= 0 ? 'var(--up)' : 'var(--soft)',
+        bye: BYE[t], next: 'Week 4 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + (oppOwner === 'Jack' ? 'Jack' : oppOwner) + ') · ' + nx.day };
+    });
+    var rooting = LEV.map(function (g, gi) {
+      var d = g[0][i] - g[1][i], nx = NEXT[gi];
+      return { d: Math.abs(d), label: NICK[d > 0 ? nx.a : nx.h] + ' over ' + NICK[d > 0 ? nx.h : nx.a], swing: Math.abs(d).toFixed(1) };
+    }).sort(function (x, y) { return y.d - x.d; }).slice(0, 3);
+    var vs = display.filter(function (c) { return c !== sel; }).map(function (c) {
+      var wl = h2h[sel + '|' + c];
+      return { name: c, rec: wl[0] + wl[1] ? wl[0] + '-' + wl[1] : 'Not yet', color: wl[0] > wl[1] ? 'var(--up)' : wl[0] < wl[1] ? 'var(--soft)' : 'var(--ink)' };
+    });
+    var sg = selfGames[sel];
+    var chips = display.map(function (c) {
+      var on = c === sel;
+      return { name: c, pressed: on ? 'true' : 'false', pick: function () { self.setState({ sel: c }); },
+        border: on ? 'var(--gold)' : 'var(--line)', bg: on ? 'var(--gold)' : 'var(--panel)', fg: on ? 'var(--ongold)' : 'var(--ink)' };
+    });
+    return { modeClass: 'pwp-' + mode, toggleMode: function () { self.setState({ mode: mode === 'dark' ? 'light' : 'dark' }); },
+      chips: chips, name: sel, summary: summary, place: place, pts: pts[sel], odds: WIN[i].toFixed(1) + '%',
+      oddsChange: (ch >= 0 ? '+' : '') + ch.toFixed(1), range: P10[i] + '–' + P90[i],
+      teamsTitle: sel === 'Jack' ? 'My four teams' : sel + '’s four teams', teams: teams, rooting: rooting, vs: vs,
+      selfNote: sg ? (sel === 'Jack' ? 'My' : sel + '\u2019s') + ' own teams have played each other ' + (sg === 1 ? 'once' : sg === 2 ? 'twice' : sg + ' times') + ', a guaranteed point either way.' : (sel === 'Jack' ? 'My' : sel + '\u2019s') + ' own teams haven\u2019t played each other yet.' };
+  }
+}
+</script>
+</body>
+</html>
