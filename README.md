@@ -24,7 +24,7 @@ Each page keeps its markup in a `<template id="dc-template">` and its data and l
 `{{holes}}` from that script's `renderVals()`, repeats `<sc-for>` blocks, and wires up buttons.
 To update the weekly results, edit the data inside each page's script block. Past-week pages are calculated from the scores in `RESULTS` inside `week.html`: add each new week's games there, and its headline to `INFO`.
 
-The light/dark choice is remembered across pages.
+The light/dark choice is remembered across pages. On screens 1024px and wider, `support.js` gives every page a desktop layout (menu in the header, sections in two columns); each section's `data-wide` attribute says where it goes.
 
 ## Publishing with GitHub Pages
 

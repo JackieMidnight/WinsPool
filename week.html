@@ -38,7 +38,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <a href="rules.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rules</a>
 </nav>
 
-<div role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 10px 16px; border-bottom: 1px solid var(--line)">
+<div data-wide="bleed" role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 10px 16px; border-bottom: 1px solid var(--line)">
 <span style="flex: none; font-size: 12.5px; font-weight: 700; color: var(--soft); margin-right: 2px">Week</span>
 <sc-for list="{{weekChips}}" as="w" hint-placeholder-count="6">
 <sc-if value="{{w.link}}" hint-placeholder-val="{{true}}"><a href="{{w.href}}" aria-current="{{w.current}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid {{w.border}}; border-radius: 6px; background: {{w.bg}}; color: {{w.fg}}; font-weight: {{w.weight}}; font-size: 15px; text-decoration: none">{{w.n}}</a></sc-if>
@@ -47,7 +47,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 6px 0 8px; font-size: 13.5px; font-weight: 700; text-decoration: none">All weeks</a>
 </div>
 
-<section aria-labelledby="wk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 39px); color: #EFEDE0; padding: 24px 16px 22px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
+<section data-wide="bleed" aria-labelledby="wk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 39px); color: #EFEDE0; padding: 24px 16px 22px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; align-items: flex-start; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0">
 <span style="font-size: 13.5px; font-weight: 700; color: #C9A24B; letter-spacing: .02em">{{kicker}}</span>

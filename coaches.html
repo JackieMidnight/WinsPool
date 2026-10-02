@@ -46,7 +46,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 </div>
 </section>
 
-<section aria-labelledby="coach-name" style="margin: 18px 16px 0; padding: 20px 16px 16px; background-color: #0A1F14; background-image: repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 36px); color: #EFEDE0; border-radius: 8px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
+<section data-wide="full" data-pad="" aria-labelledby="coach-name" style="margin: 18px 16px 0; padding: 20px 16px 16px; background-color: #0A1F14; background-image: repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 36px); color: #EFEDE0; border-radius: 8px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 2px">
 <span style="font-size: 13px; font-weight: 700; color: #C9A24B">After Week 3</span>
 <h1 id="coach-name" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 48px; line-height: 1">{{name}}</h1>
@@ -60,7 +60,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <span style="font-size: 12.5px; color: #8FA898">Likely final score {{range}}, per my model. That's where 8 in 10 simulated seasons landed.</span>
 </section>
 
-<section aria-labelledby="teams-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<section data-wide="left" aria-labelledby="teams-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
 <h2 id="teams-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">{{teamsTitle}}</h2>
 <sc-for list="{{teams}}" as="t" hint-placeholder-count="4">
 <article style="background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 10px">
@@ -91,6 +91,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 </sc-for>
 </section>
 
+<div data-wide="right" data-stack="" style="display: contents">
 <section aria-labelledby="root-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
 <h2 id="root-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Week 4 rooting guide</h2>
 <ul style="margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line)">
@@ -110,6 +111,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 </div>
 <p style="margin: 0; font-size: 13px; color: var(--soft)">{{selfNote}}</p>
 </section>
+</div>
 
 <footer style="margin-top: auto; padding: 36px 16px 40px; text-align: center; border-top: 1px solid var(--line)">
 <span style="font-size: 11.5px; font-weight: 700; letter-spacing: .08em; color: var(--up)">FOUR TEAMS. ONE GOAL. BRAGGING RIGHTS FOR A YEAR.</span>
