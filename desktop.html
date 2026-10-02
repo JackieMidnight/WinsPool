@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1300">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var wide = window.matchMedia('(min-width: 1024px)');
+  var go = function () { if (!wide.matches) location.replace('index.html'); };
+  go();
+  if (wide.addEventListener) wide.addEventListener('change', go); else if (wide.addListener) wide.addListener(go);
+})();
+</script>
 <title>Philly Wins Pool, Week 3 (desktop)</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -12,7 +20,7 @@ a{color:#8A6B1C}a:hover{color:#6E5412}
 .pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
 .pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
 </style>
-<script src="support.js?v=3" defer></script>
+<script src="support.js?v=4" defer></script>
 </head>
 <body>
 <div id="dc-root"></div>

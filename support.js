@@ -188,6 +188,11 @@
     var footer = root.querySelector(':scope > footer');
     while (header.nextSibling && header.nextSibling !== footer) main.appendChild(header.nextSibling);
     root.insertBefore(main, footer);
+    // "This week" goes straight to the desktop version instead of bouncing
+    // through the phone page's redirect.
+    Array.prototype.forEach.call(root.querySelectorAll('a[href="index.html"]'), function (a) {
+      a.setAttribute('href', 'desktop.html');
+    });
   }
 
   function boot() {
@@ -203,8 +208,11 @@
       if (k.charAt(0) !== '$' && defs[k] && 'default' in defs[k]) props[k] = defs[k]['default'];
     });
     var themed = defs.mode && defs.mode.options;
+    // Until someone picks a theme, wide screens use the desktop page's light
+    // theme and phones the dark one, so every page in a visit matches.
+    var defaultMode = function () { return WIDE.matches ? 'light' : 'dark'; };
     var saved = readTheme();
-    if (themed && saved && themed.indexOf(saved) >= 0) props.mode = saved;
+    if (themed) props.mode = saved && themed.indexOf(saved) >= 0 ? saved : defaultMode();
 
     var Component = new Function('DCLogic', scriptEl.textContent + '\nreturn Component;')(DCLogic);
     var comp = new Component(props);
@@ -242,7 +250,12 @@
       }
     };
     comp.__render();
-    if (WIDE.addEventListener) WIDE.addEventListener('change', function () { comp.__render(); });
+    var onWidthChange = function () {
+      if (themed && !readTheme()) comp.props = Object.assign({}, comp.props, { mode: defaultMode() });
+      comp.__render();
+    };
+    if (WIDE.addEventListener) WIDE.addEventListener('change', onWidthChange);
+    else if (WIDE.addListener) WIDE.addListener(onWidthChange);
     if (typeof comp.componentDidMount === 'function') comp.componentDidMount();
   }
 
