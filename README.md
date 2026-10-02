@@ -32,4 +32,7 @@ In the repository on GitHub: **Settings → Pages → Build and deployment → S
 pick the branch and `/ (root)`, then save. The site appears at
 `https://<your-username>.github.io/WinsPool/` a minute or two later.
 
+Browsers keep a copy of `support.js` for about 10 minutes. Whenever you change it, bump the `?v=` number on its
+`<script src="support.js?v=…">` line in every page so visitors get the new version along with the new pages.
+
 To preview locally: `python3 -m http.server` in this folder, then open http://localhost:8000.
