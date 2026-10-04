@@ -145,7 +145,7 @@
   var WIDE = window.matchMedia('(min-width: 1024px)');
   var WIDE_CSS = [
     '.pwp-wide{max-width:none!important}',
-    '.pwp-wide>header{height:72px!important;gap:24px!important;padding:0 max(40px,calc((100% - 1200px)/2))!important;background:var(--panel)}',
+    '.pwp-wide>header{height:72px!important;gap:24px!important;padding:0 max(88px,calc((100% - 1200px)/2))!important;background:var(--panel)}',
     '.pwp-wide>header>nav{margin-left:auto;padding:0!important;border:0!important;overflow:visible!important}',
     '.pwp-wide>header>nav a{min-height:72px!important;padding:0 14px!important;font-size:15px!important}',
     '.pwp-wide>header>button{margin-left:0!important}',
@@ -165,7 +165,7 @@
     '.pwp-wide [aria-labelledby=wk-title]>[role=group]{grid-column:2;grid-row:1/span 3}',
     '.pwp-wide [aria-labelledby=wk-title]>[role=group]+p{grid-column:2;grid-row:4}',
     '.pwp-wide [aria-labelledby=wk-title] h1{font-size:88px!important}',
-    '.pwp-wide [aria-labelledby=ledger-h]>div:last-child{grid-template-columns:repeat(4,minmax(0,1fr))!important}',
+    '.pwp-wide [aria-labelledby=ledger-h]>div:not(:first-child){grid-template-columns:repeat(4,minmax(0,1fr))!important}',
     '.pwp-wide [aria-label=Rosters]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px!important}',
     '.pwp-wide [aria-label=Rosters]>p{grid-column:1/-1}'
   ].join('\n');
@@ -188,6 +188,11 @@
     var footer = root.querySelector(':scope > footer');
     while (header.nextSibling && header.nextSibling !== footer) main.appendChild(header.nextSibling);
     root.insertBefore(main, footer);
+    // "This week" goes straight to the desktop version instead of bouncing
+    // through the phone page's redirect.
+    Array.prototype.forEach.call(root.querySelectorAll('a[href="index.html"]'), function (a) {
+      a.setAttribute('href', 'desktop.html');
+    });
   }
 
   function boot() {
@@ -203,8 +208,11 @@
       if (k.charAt(0) !== '$' && defs[k] && 'default' in defs[k]) props[k] = defs[k]['default'];
     });
     var themed = defs.mode && defs.mode.options;
+    // Until someone picks a theme, wide screens use the desktop page's light
+    // theme and phones the dark one, so every page in a visit matches.
+    var defaultMode = function () { return WIDE.matches ? 'light' : 'dark'; };
     var saved = readTheme();
-    if (themed && saved && themed.indexOf(saved) >= 0) props.mode = saved;
+    if (themed) props.mode = saved && themed.indexOf(saved) >= 0 ? saved : defaultMode();
 
     var Component = new Function('DCLogic', scriptEl.textContent + '\nreturn Component;')(DCLogic);
     var comp = new Component(props);
@@ -242,7 +250,25 @@
       }
     };
     comp.__render();
-    if (WIDE.addEventListener) WIDE.addEventListener('change', function () { comp.__render(); });
+    var onWidthChange = function () {
+      // Printing narrows the page to the paper width; keep the screen layout.
+      if (window.matchMedia('print').matches) return;
+      if (themed && !readTheme() && !comp.state.mode) comp.props = Object.assign({}, comp.props, { mode: defaultMode() });
+      comp.__render();
+    };
+    // A page brought back with the Back button, or left open in another tab,
+    // picks up a theme chosen elsewhere in the meantime.
+    var resyncTheme = function () {
+      var t = readTheme();
+      if (!themed || !t || themed.indexOf(t) < 0 || t === comp.props.mode) return;
+      comp.props = Object.assign({}, comp.props, { mode: t });
+      if (comp.state.mode) comp.state = Object.assign({}, comp.state, { mode: t });
+      comp.__render();
+    };
+    window.addEventListener('pageshow', function (e) { if (e.persisted) resyncTheme(); });
+    window.addEventListener('storage', function (e) { if (e.key === THEME_KEY) resyncTheme(); });
+    if (WIDE.addEventListener) WIDE.addEventListener('change', onWidthChange);
+    else if (WIDE.addListener) WIDE.addListener(onWidthChange);
     if (typeof comp.componentDidMount === 'function') comp.componentDidMount();
   }
 

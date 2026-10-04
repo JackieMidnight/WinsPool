@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Paint the right background before the page renders: the saved theme, else light on wide screens and dark on phones.
+try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pwp-theme') || (window.matchMedia('(min-width: 1024px)').matches ? 'light' : 'dark')); } catch (e) {}
+</script>
 <title>Philly Wins Pool, all 32 teams</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -11,8 +15,9 @@ body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sa
 a{color:#C9A24B}a:hover{color:#E2BE6A}
 .pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
 .pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{background:#0A1F14}
 </style>
-<script src="support.js?v=3" defer></script>
+<script src="support.js?v=5" defer></script>
 </head>
 <body>
 <div id="dc-root"></div>
