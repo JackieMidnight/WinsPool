@@ -16,6 +16,8 @@
  * (both columns, the default) or "bleed" (edge to edge). data-pad keeps a
  * boxed section's own side padding; data-sticky pins a left column in place;
  * data-stack stacks its child sections in one column.
+ * Elements marked data-phone-only or data-wide-only are dropped from the
+ * other layout, for sections that need a different design on each.
  */
 (function () {
   var THEME_KEY = 'pwp-theme';
@@ -149,6 +151,9 @@
     '.pwp-wide>header>nav{margin-left:auto;padding:0!important;border:0!important;overflow:visible!important}',
     '.pwp-wide>header>nav a{min-height:72px!important;padding:0 14px!important;font-size:15px!important}',
     '.pwp-wide>header>button{margin-left:0!important}',
+    '.pwp-wide>header>a{gap:11px!important}',
+    '.pwp-wide>header>a>svg{width:32px;height:38px}',
+    '.pwp-wide>header>a>span{font-size:25px!important}',
     '.pwp-wide>main{display:grid;grid-template-columns:minmax(40px,1fr) minmax(0,576px) minmax(0,576px) minmax(40px,1fr);column-gap:48px;align-items:start;padding-bottom:56px}',
     '.pwp-wide>main>*{grid-column:2/4;min-width:0;margin-left:0!important;margin-right:0!important}',
     '.pwp-wide>main>:not([data-pad]){padding-left:0!important;padding-right:0!important}',
@@ -158,13 +163,6 @@
     '.pwp-wide>main>[data-sticky]{position:sticky;top:24px}',
     '.pwp-wide>main>[data-stack]{display:flex!important;flex-direction:column}',
     '.pwp-wide>main>[data-stack]>*{padding-left:0!important;padding-right:0!important}',
-    // Past-week hero: headline on the left, standings on the right.
-    '.pwp-wide [aria-labelledby=wk-title]{display:grid!important;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-rows:auto auto 1fr;column-gap:64px;align-items:start;padding-top:48px!important;padding-bottom:48px!important}',
-    '.pwp-wide [aria-labelledby=wk-title]>*{grid-column:1}',
-    '.pwp-wide [aria-labelledby=wk-title]>svg{display:none!important}',
-    '.pwp-wide [aria-labelledby=wk-title]>[role=group]{grid-column:2;grid-row:1/span 3}',
-    '.pwp-wide [aria-labelledby=wk-title]>[role=group]+p{grid-column:2;grid-row:4}',
-    '.pwp-wide [aria-labelledby=wk-title] h1{font-size:88px!important}',
     '.pwp-wide [aria-labelledby=ledger-h]>div:not(:first-child){grid-template-columns:repeat(4,minmax(0,1fr))!important}',
     '.pwp-wide [aria-label=Rosters]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px!important}',
     '.pwp-wide [aria-label=Rosters]>p{grid-column:1/-1}'
@@ -188,10 +186,11 @@
     var footer = root.querySelector(':scope > footer');
     while (header.nextSibling && header.nextSibling !== footer) main.appendChild(header.nextSibling);
     root.insertBefore(main, footer);
-    // "This week" goes straight to the desktop version instead of bouncing
-    // through the phone page's redirect.
-    Array.prototype.forEach.call(root.querySelectorAll('a[href="index.html"]'), function (a) {
-      a.setAttribute('href', 'desktop.html');
+    // A week's write-up has a phone page (week3.html) and a desktop page
+    // (week3-desktop.html); link straight to the desktop one.
+    Array.prototype.forEach.call(root.querySelectorAll('a[href]'), function (a) {
+      var m = /^week(\d+)\.html$/.exec(a.getAttribute('href'));
+      if (m) a.setAttribute('href', 'week' + m[1] + '-desktop.html');
     });
   }
 
@@ -238,8 +237,12 @@
         btn.setAttribute('aria-label', 'Switch to ' + (comp.props.mode === 'dark' ? 'light' : 'dark') + ' mode');
       }
 
+      var wide = WIDE.matches;
+      Array.prototype.forEach.call(mount.querySelectorAll(wide ? '[data-phone-only]' : '[data-wide-only]'), function (el) {
+        el.parentNode.removeChild(el);
+      });
       var root = mount.firstElementChild;
-      if (root && WIDE.matches) applyWide(root);
+      if (root && wide) applyWide(root);
       if (root) {
         var bg = getComputedStyle(root).getPropertyValue('--bg').trim();
         if (bg) document.body.style.background = bg;

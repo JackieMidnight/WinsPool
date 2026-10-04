@@ -17,7 +17,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 .pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
 html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{background:#0A1F14}
 </style>
-<script src="support.js?v=5" defer></script>
+<script src="support.js?v=6" defer></script>
 </head>
 <body>
 <div id="dc-root"></div>
@@ -35,7 +35,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 </header>
 
 <nav aria-label="Site sections" style="display: flex; gap: 2px; overflow-x: auto; padding: 0 8px; border-bottom: 1px solid var(--line)">
-<a href="index.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">This week</a>
+<a href="index.html" aria-current="{{navCurrent}}" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: {{navWeight}}; color: {{navColor}}; text-decoration: none; box-shadow: {{navShadow}}">This week</a>
 <a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Season</a>
 <a href="coaches.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Coaches</a>
 <a href="teams.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Teams</a>
@@ -43,7 +43,46 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 <a href="rules.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rules</a>
 </nav>
 
-<div data-wide="bleed" role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 10px 16px; border-bottom: 1px solid var(--line)">
+<div data-wide-only="" data-wide="bleed" role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; height: 64px; padding: 0 clamp(32px, calc((100vw - 1000px) * 2), 80px); overflow-x: auto; border-bottom: 1px solid var(--line)">
+<span style="font-size: 13px; font-weight: 700; color: var(--soft); margin-right: 6px">Week</span>
+<sc-for list="{{deskWeeks}}" as="w" hint-placeholder-count="18">
+<a href="{{w.href}}" aria-current="{{w.current}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 6px; font-size: 15px; text-decoration: none; border: {{w.border}}; background: {{w.bg}}; color: {{w.fg}}; font-weight: {{w.weight}}; opacity: {{w.opacity}}">{{w.n}}</a>
+</sc-for>
+<a href="season.html" style="flex: none; white-space: nowrap; margin-left: 10px; display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; text-decoration: none">All weeks</a>
+</div>
+
+<section data-wide-only="" data-wide="bleed" aria-labelledby="dwk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 4% -10%, rgba(255,248,214,.13), transparent 34%), radial-gradient(ellipse at 96% -10%, rgba(255,248,214,.13), transparent 34%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 128px); color: #EFEDE0; padding: 52px 80px 56px; border-bottom: 4px solid #C9A24B">
+<svg width="100%" height="70" viewBox="0 0 358 40" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; bottom: 0; display: block"><path d="M0 40 V30 H14 V22 H26 V30 H34 V16 H48 V26 H58 V12 H64 V5 H66 V12 H72 V28 H84 V20 H98 V30 H110 V14 H118 V4 H121 V14 H128 V26 H142 V18 H156 V30 H168 V22 H178 V8 H181 V1 H183 V8 H186 V22 H196 V28 H210 V16 H224 V26 H236 V10 H244 V26 H256 V20 H270 V30 H282 V18 H290 V12 H300 V24 H314 V28 H326 V20 H338 V30 H358 V40 Z" fill="#12301F"></path></svg>
+<div style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, 560px); gap: clamp(32px, 4vw, 56px); align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; gap: 14px">
+<svg width="46" height="55" viewBox="0 0 60 72" aria-hidden="true"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="3"></path><ellipse cx="30" cy="35" rx="12" ry="7.5" fill="#9A5530" transform="rotate(-28 30 35)"></ellipse><path d="M24.5 38.5 L35.5 31.5" stroke="#F4F1E4" stroke-width="1.6"></path><rect x="18" y="49" width="24" height="9" rx="2" fill="#0A1F14" stroke="#C9A24B" stroke-width="1"></rect><text x="30" y="56.2" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="7" fill="#EFEDE0">2026</text></svg>
+<span style="font-size: 15px; font-weight: 700; color: #C9A24B; letter-spacing: .02em">{{kicker}}</span>
+</div>
+<h1 id="dwk-title" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: clamp(64px, 6.4vw, 92px); line-height: .95; letter-spacing: .005em; text-wrap: balance">{{headline}}</h1>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #C3D2C7; max-width: 30em; text-wrap: pretty">{{summary}}</p>
+<a href="rules.html" style="display: flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 700; color: #C9A24B; text-decoration: none">First time here? How scoring works<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div role="group" aria-label="Standings after Week {{week}}" style="background: #051109; border: 1px solid #1D4530; border-radius: 8px; padding: 4px 18px 2px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid #1D4530; font-size: 13px; color: #8FA898"><span style="font-weight: 700; color: #C9A24B">Standings after Week {{week}}</span><span>{{statusLabel}}</span></div>
+<div style="display: grid; grid-template-columns: 36px minmax(0, 1fr) 60px 60px 50px; gap: 12px; padding: 8px 0 4px; font-size: 12px; color: #8FA898"><span></span><span>Coach and teams</span><span style="text-align: right">Week {{week}}</span><span style="text-align: right">Points</span><span style="text-align: right">Move</span></div>
+<sc-for list="{{standings}}" as="r" hint-placeholder-count="8">
+<div style="display: grid; grid-template-columns: 36px minmax(0, 1fr) 60px 60px 50px; gap: 12px; align-items: center; height: 56px; border-top: 1px solid #12301F">
+<span style="font-family: Anton, Impact, sans-serif; font-size: 18px; color: #8FA898; text-align: right">{{r.rk}}</span>
+<span style="display: flex; align-items: baseline; gap: 12px; min-width: 0"><b style="font-size: 17px; font-weight: 700; color: {{r.nameColor}}">{{r.name}}</b><small style="font-size: 12.5px; color: #8FA898; letter-spacing: .05em; white-space: nowrap">{{r.teams}}</small></span>
+<span style="font-size: 14px; color: #C3D2C7; text-align: right">{{r.wk}}</span>
+<span style="font-family: Anton, Impact, sans-serif; font-size: 34px; line-height: 1; text-align: right; color: {{r.ptsColor}}">{{r.pts}}</span>
+<span aria-label="{{r.mvLabel}}" style="font-size: 13px; font-weight: 700; text-align: right; color: {{r.mvColor}}">{{r.mv}}</span>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: #8FA898">{{standingsNote}}</p>
+</div>
+</div>
+</section>
+
+<div data-phone-only="" role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 10px 16px; border-bottom: 1px solid var(--line)">
 <span style="flex: none; font-size: 12.5px; font-weight: 700; color: var(--soft); margin-right: 2px">Week</span>
 <sc-for list="{{weekChips}}" as="w" hint-placeholder-count="6">
 <sc-if value="{{w.link}}" hint-placeholder-val="{{true}}"><a href="{{w.href}}" aria-current="{{w.current}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid {{w.border}}; border-radius: 6px; background: {{w.bg}}; color: {{w.fg}}; font-weight: {{w.weight}}; font-size: 15px; text-decoration: none">{{w.n}}</a></sc-if>
@@ -52,7 +91,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 <a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 6px 0 8px; font-size: 13.5px; font-weight: 700; color: var(--gold); text-decoration: none">All weeks</a>
 </div>
 
-<section data-wide="bleed" aria-labelledby="wk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 39px); color: #EFEDE0; padding: 24px 16px 22px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
+<section data-phone-only="" aria-labelledby="wk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 39px); color: #EFEDE0; padding: 24px 16px 22px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; align-items: flex-start; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0">
 <span style="font-size: 13.5px; font-weight: 700; color: #C9A24B; letter-spacing: .02em">{{kicker}}</span>
@@ -199,15 +238,29 @@ class Component extends DCLogic {
     var weekChips = [];
     for (var n = 1; n <= Math.min(SHOWN_WEEKS, SEASON_WEEKS); n++) {
       var cur = n === wk, played = n <= latest;
-      weekChips.push({ n: n, link: played, future: !played, href: n === POSTED ? 'index.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
+      weekChips.push({ n: n, link: played, future: !played, href: n === POSTED ? 'week' + n + '.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
         border: cur ? 'var(--gold)' : 'var(--line)', bg: cur ? 'var(--gold)' : 'var(--panel)', fg: cur ? 'var(--ongold)' : 'var(--ink)', weight: cur ? '800' : '700' });
     }
+
+    var CURRENT = 4; // the week "This week" opens (keep in step with index.html)
+    var deskWeeks = [];
+    for (var d = 1; d <= SEASON_WEEKS; d++) {
+      var dcur = d === wk, dpast = d <= latest;
+      deskWeeks.push({ n: d, href: dcur ? 'week.html?w=' + d : d === POSTED ? 'week' + d + '.html' : dpast ? 'week.html?w=' + d : 'season.html', current: dcur ? 'page' : 'false',
+        border: dcur ? '1px solid var(--gold)' : dpast ? '1px solid var(--line)' : '1px dashed var(--line)',
+        bg: dcur ? 'var(--gold)' : dpast ? 'var(--panel)' : 'transparent',
+        fg: dcur ? 'var(--ongold)' : dpast ? 'var(--ink)' : 'var(--soft)', weight: dcur ? '800' : dpast ? '700' : '500',
+        opacity: dpast ? '1' : '.6' });
+    }
+    var isCurrent = wk === CURRENT;
 
     var info = INFO[wk - 1] || { headline: 'Week ' + wk, posted: '' };
     document.title = 'Philly Wins Pool, Week ' + wk;
     return {
       modeClass: 'pwp-' + mode, week: wk, weekChips: weekChips, standings: standings, ledger: ledger, summary: summary,
       upcoming: upcoming, live: live,
+      deskWeeks: deskWeeks,
+      navCurrent: isCurrent ? 'page' : 'false', navWeight: isCurrent ? '700' : '600', navColor: isCurrent ? 'var(--ink)' : 'var(--soft)', navShadow: isCurrent ? 'inset 0 -3px 0 var(--gold)' : 'none',
       headline: info.headline,
       statusLabel: live ? 'So far' : 'Final',
       kicker: 'Week ' + wk + (live ? ' · In progress · ' + weeks[wk - 1].length + ' of ' + (weeks[wk - 1].length + pending.length) + ' games final' : ' · Final' + (info.posted ? ' · Posted ' + info.posted : '')),
