@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Paint the right background before the page renders: the saved theme, else light on wide screens and dark on phones.
+try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pwp-theme') || (window.matchMedia('(min-width: 1024px)').matches ? 'light' : 'dark')); } catch (e) {}
+</script>
 <title>Philly Wins Pool, start here and rules</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -11,8 +15,9 @@ body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sa
 a{color:#C9A24B}a:hover{color:#E2BE6A}
 .pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
 .pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{background:#0A1F14}
 </style>
-<script src="support.js?v=4" defer></script>
+<script src="support.js?v=5" defer></script>
 </head>
 <body>
 <div id="dc-root"></div>
@@ -55,7 +60,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 
 <section data-wide="left" aria-labelledby="score-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 14px">
 <h2 id="score-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Regular season</h2>
-<svg width="358" height="74" viewBox="0 0 358 74" role="img" aria-label="Football field" style="display: block; border-radius: 6px">
+<svg width="358" height="74" viewBox="0 0 358 74" role="img" aria-label="Football field" style="display: block; width: 100%; max-width: 358px; height: auto; border-radius: 6px">
 <rect x="0" y="0" width="358" height="74" fill="#1C5E33"></rect>
 <rect x="26" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="87.2" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="148.4" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="209.6" y="0" width="30.6" height="74" fill="#1F6737"></rect><rect x="270.8" y="0" width="30.6" height="74" fill="#1F6737"></rect>
 <rect x="0" y="0" width="26" height="74" fill="#14452C"></rect><rect x="332" y="0" width="26" height="74" fill="#14452C"></rect>
@@ -112,7 +117,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
 <span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--gold)">THE DRAFT</span>
 <span style="font-size: 14px; line-height: 1.5">Snake draft: picks 1 to 8, then 8 to 1, until all 32 teams were gone. No pick clock. We drafted in the group text.</span>
-<a href="rosters.html" style="display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; text-decoration: none">See every pick</a>
+<a href="rosters.html" style="display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; color: var(--gold); text-decoration: none">See every pick</a>
 </div>
 <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
 <span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--gold)">BUY-IN</span>

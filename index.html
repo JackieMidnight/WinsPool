@@ -3,11 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Paint the right background before the page renders: the saved theme, else light on wide screens and dark on phones.
+try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pwp-theme') || (window.matchMedia('(min-width: 1024px)').matches ? 'light' : 'dark')); } catch (e) {}
+</script>
 <title>Philly Wins Pool, Week 3</title>
 <script>
 (function () {
   var wide = window.matchMedia('(min-width: 1024px)');
-  var go = function () { if (wide.matches && !/[?&]phone\b/.test(location.search)) location.replace('desktop.html'); };
+  var go = function () { if (wide.matches && !window.matchMedia('print').matches) location.replace('desktop.html'); };
   go();
   if (wide.addEventListener) wide.addEventListener('change', go); else if (wide.addListener) wide.addListener(go);
 })();
@@ -19,8 +23,9 @@ body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sa
 a{color:#C9A24B}a:hover{color:#E2BE6A}
 .pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
 .pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{background:#0A1F14}
 </style>
-<script src="support.js?v=4" defer></script>
+<script src="support.js?v=5" defer></script>
 </head>
 <body>
 <div id="dc-root"></div>
@@ -51,10 +56,10 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <a href="week.html?w=1" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">1</a>
 <a href="week.html?w=2" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">2</a>
 <a href="index.html" aria-current="page" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--gold); border-radius: 6px; background: var(--gold); color: var(--ongold); font-weight: 800; font-size: 15px; text-decoration: none">3</a>
-<span aria-disabled="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px dashed var(--line); border-radius: 6px; color: var(--soft); font-size: 15px; opacity: .6">4</span>
+<a href="week.html?w=4" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px dashed var(--gold); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none" aria-label="Week 4, in progress">4</a>
 <span aria-disabled="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px dashed var(--line); border-radius: 6px; color: var(--soft); font-size: 15px; opacity: .6">5</span>
 <span aria-disabled="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px dashed var(--line); border-radius: 6px; color: var(--soft); font-size: 15px; opacity: .6">6</span>
-<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 6px 0 8px; font-size: 13.5px; font-weight: 700; text-decoration: none">All weeks</a>
+<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 6px 0 8px; font-size: 13.5px; font-weight: 700; color: var(--gold); text-decoration: none">All weeks</a>
 </div>
 
 <section aria-labelledby="wk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 39px); color: #EFEDE0; padding: 24px 16px 22px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">

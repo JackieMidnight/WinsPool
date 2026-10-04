@@ -4,9 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
+// Paint the right background before the page renders: the saved theme, else light on wide screens and dark on phones.
+try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pwp-theme') || (window.matchMedia('(min-width: 1024px)').matches ? 'light' : 'dark')); } catch (e) {}
+</script>
+<script>
 (function () {
   var wide = window.matchMedia('(min-width: 1024px)');
-  var go = function () { if (!wide.matches) location.replace('index.html'); };
+  var go = function () { if (!wide.matches && !window.matchMedia('print').matches) location.replace('index.html'); };
   go();
   if (wide.addEventListener) wide.addEventListener('change', go); else if (wide.addListener) wide.addListener(go);
 })();
@@ -19,8 +23,9 @@ body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sa
 a{color:#8A6B1C}a:hover{color:#6E5412}
 .pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
 .pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{background:#0A1F14}
 </style>
-<script src="support.js?v=4" defer></script>
+<script src="support.js?v=5" defer></script>
 </head>
 <body>
 <div id="dc-root"></div>
@@ -45,27 +50,27 @@ a{color:#8A6B1C}a:hover{color:#6E5412}
 </button>
 </header>
 
-<div role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; height: 64px; padding: 0 80px; border-bottom: 1px solid var(--line)">
+<div role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; height: 64px; padding: 0 clamp(32px, calc((100vw - 1000px) * 2), 80px); overflow-x: auto; border-bottom: 1px solid var(--line)">
 <span style="font-size: 13px; font-weight: 700; color: var(--soft); margin-right: 6px">Week</span>
 <sc-for list="{{weeks}}" as="w" hint-placeholder-count="18">
 <a href="{{w.href}}" aria-current="{{w.current}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 6px; font-size: 15px; text-decoration: none; border: {{w.border}}; background: {{w.bg}}; color: {{w.fg}}; font-weight: {{w.weight}}; opacity: {{w.opacity}}">{{w.n}}</a>
 </sc-for>
-<a href="season.html" style="margin-left: 10px; display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; text-decoration: none">All weeks</a>
+<a href="season.html" style="flex: none; white-space: nowrap; margin-left: 10px; display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; text-decoration: none">All weeks</a>
 </div>
 
 <section aria-labelledby="dwk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 4% -10%, rgba(255,248,214,.13), transparent 34%), radial-gradient(ellipse at 96% -10%, rgba(255,248,214,.13), transparent 34%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 128px); color: #EFEDE0; padding: 52px 80px 56px; border-bottom: 4px solid #C9A24B">
-<svg width="1280" height="70" viewBox="0 0 358 40" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; bottom: 0; display: block"><path d="M0 40 V30 H14 V22 H26 V30 H34 V16 H48 V26 H58 V12 H64 V5 H66 V12 H72 V28 H84 V20 H98 V30 H110 V14 H118 V4 H121 V14 H128 V26 H142 V18 H156 V30 H168 V22 H178 V8 H181 V1 H183 V8 H186 V22 H196 V28 H210 V16 H224 V26 H236 V10 H244 V26 H256 V20 H270 V30 H282 V18 H290 V12 H300 V24 H314 V28 H326 V20 H338 V30 H358 V40 Z" fill="#12301F"></path></svg>
-<div style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 560px; gap: 56px; align-items: start">
+<svg width="100%" height="70" viewBox="0 0 358 40" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; bottom: 0; display: block"><path d="M0 40 V30 H14 V22 H26 V30 H34 V16 H48 V26 H58 V12 H64 V5 H66 V12 H72 V28 H84 V20 H98 V30 H110 V14 H118 V4 H121 V14 H128 V26 H142 V18 H156 V30 H168 V22 H178 V8 H181 V1 H183 V8 H186 V22 H196 V28 H210 V16 H224 V26 H236 V10 H244 V26 H256 V20 H270 V30 H282 V18 H290 V12 H300 V24 H314 V28 H326 V20 H338 V30 H358 V40 Z" fill="#12301F"></path></svg>
+<div style="position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(420px, 560px); gap: clamp(32px, 4vw, 56px); align-items: start">
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div style="display: flex; align-items: center; gap: 14px">
 <svg width="46" height="55" viewBox="0 0 60 72" aria-hidden="true"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="3"></path><ellipse cx="30" cy="35" rx="12" ry="7.5" fill="#9A5530" transform="rotate(-28 30 35)"></ellipse><path d="M24.5 38.5 L35.5 31.5" stroke="#F4F1E4" stroke-width="1.6"></path><rect x="18" y="49" width="24" height="9" rx="2" fill="#0A1F14" stroke="#C9A24B" stroke-width="1"></rect><text x="30" y="56.2" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="7" fill="#EFEDE0">2026</text></svg>
 <span style="font-size: 15px; font-weight: 700; color: #C9A24B; letter-spacing: .02em">Week 3 · Final · Posted Tuesday, Sep 29</span>
 </div>
-<h1 id="dwk-title" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 92px; line-height: .95; letter-spacing: .005em; text-wrap: balance">Drew goes 4-0</h1>
+<h1 id="dwk-title" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: clamp(64px, 6.4vw, 92px); line-height: .95; letter-spacing: .005em; text-wrap: balance">Drew goes 4-0</h1>
 <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #C3D2C7; max-width: 30em; text-wrap: pretty">Drew went four for four and has first place to himself for the first time all season. The Bears won Monday night, so Nicole got her only point of the week and Luke stays two back.</p>
 <div style="display: flex; gap: 10px; margin-top: 8px">
-<a href="share.html" style="display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 6px; background: #C9A24B; color: #0A1F14; font-size: 15px; font-weight: 800; text-decoration: none"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"></path></svg>Save standings image</a>
-<button type="button" style="display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 6px; border: 1px solid #2A5A3F; background: transparent; color: #EFEDE0; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg>Copy group text</button>
+<a href="share.html" style="flex: none; white-space: nowrap; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 6px; background: #C9A24B; color: #0A1F14; font-size: 15px; font-weight: 800; text-decoration: none"><svg width="17" height="17" style="flex: none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"></path></svg>Save standings image</a>
+<button type="button" style="flex: none; white-space: nowrap; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 6px; border: 1px solid #2A5A3F; background: transparent; color: #EFEDE0; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer"><svg width="17" height="17" style="flex: none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg>Copy group text</button>
 </div>
 <a href="rules.html" style="display: flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 700; color: #C9A24B; text-decoration: none">First time here? How scoring works<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
@@ -105,7 +110,7 @@ a{color:#8A6B1C}a:hover{color:#6E5412}
 <div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: start">
 <section aria-labelledby="dledger-h" style="display: flex; flex-direction: column; gap: 16px">
 <div style="display: flex; flex-direction: column; gap: 4px"><h2 id="dledger-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 36px; line-height: 1.05">Head-to-head ledger</h2><span style="font-size: 15px; color: var(--soft)">Every game is one of us against another. The winner's coach gets the point.</span></div>
-<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px">
 <sc-for list="{{ledger}}" as="g" hint-placeholder-count="16">
 <div style="background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px 9px; display: flex; flex-direction: column; gap: 1px; min-width: 0">
 <span style="font-size: 11.5px; color: var(--soft); margin-bottom: 2px">{{g.day}}</span>
@@ -278,7 +283,7 @@ class Component extends DCLogic {
     ].map(function (g) { return { day: g[0], a: g[1], ac: g[2], ar: rec[g[1]], h: '@ ' + g[3], hc: g[4], hr: rec[g[3]] }; });
     var weeks = [];
     for (var n = 1; n <= 18; n++) {
-      var past = n <= 3, cur = n === 3;
+      var past = n <= 4, cur = n === 3; // week 4 is in progress
       weeks.push({ n: n, href: cur ? 'desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
         border: cur ? '1px solid var(--gold)' : past ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: cur ? 'var(--gold)' : past ? 'var(--panel)' : 'transparent',

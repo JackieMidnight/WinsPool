@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Paint the right background before the page renders: the saved theme, else light on wide screens and dark on phones.
+try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pwp-theme') || (window.matchMedia('(min-width: 1024px)').matches ? 'light' : 'dark')); } catch (e) {}
+</script>
 <title>Philly Wins Pool, past week</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -11,8 +15,9 @@ body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sa
 a{color:#C9A24B}a:hover{color:#E2BE6A}
 .pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
 .pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{background:#0A1F14}
 </style>
-<script src="support.js?v=4" defer></script>
+<script src="support.js?v=5" defer></script>
 </head>
 <body>
 <div id="dc-root"></div>
@@ -44,7 +49,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <sc-if value="{{w.link}}" hint-placeholder-val="{{true}}"><a href="{{w.href}}" aria-current="{{w.current}}" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid {{w.border}}; border-radius: 6px; background: {{w.bg}}; color: {{w.fg}}; font-weight: {{w.weight}}; font-size: 15px; text-decoration: none">{{w.n}}</a></sc-if>
 <sc-if value="{{w.future}}" hint-placeholder-val="{{false}}"><span aria-disabled="true" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px dashed var(--line); border-radius: 6px; color: var(--soft); font-size: 15px; opacity: .6">{{w.n}}</span></sc-if>
 </sc-for>
-<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 6px 0 8px; font-size: 13.5px; font-weight: 700; text-decoration: none">All weeks</a>
+<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 6px 0 8px; font-size: 13.5px; font-weight: 700; color: var(--gold); text-decoration: none">All weeks</a>
 </div>
 
 <section data-wide="bleed" aria-labelledby="wk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 39px); color: #EFEDE0; padding: 24px 16px 22px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
@@ -59,7 +64,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 
 <svg width="358" height="30" viewBox="0 0 358 40" preserveAspectRatio="none" aria-hidden="true" style="display: block; margin-bottom: -12px"><path d="M0 40 V30 H14 V22 H26 V30 H34 V16 H48 V26 H58 V12 H64 V5 H66 V12 H72 V28 H84 V20 H98 V30 H110 V14 H118 V4 H121 V14 H128 V26 H142 V18 H156 V30 H168 V22 H178 V8 H181 V1 H183 V8 H186 V22 H196 V28 H210 V16 H224 V26 H236 V10 H244 V26 H256 V20 H270 V30 H282 V18 H290 V12 H300 V24 H314 V28 H326 V20 H338 V30 H358 V40 Z" fill="#1D4530"></path></svg>
 <div role="group" aria-label="Standings after Week {{week}}" style="position: relative; background: #051109; border: 1px solid #1D4530; border-radius: 6px; padding: 4px 12px 2px">
-<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #1D4530; font-size: 12.5px; color: #8FA898"><span style="font-weight: 700; color: #C9A24B">Standings after Week {{week}}</span><span>Final</span></div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #1D4530; font-size: 12.5px; color: #8FA898"><span style="font-weight: 700; color: #C9A24B">Standings after Week {{week}}</span><span>{{statusLabel}}</span></div>
 <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr) 44px 48px 36px; gap: 8px; padding: 7px 0 3px; font-size: 11px; color: #8FA898"><span></span><span>Coach and teams</span><span style="text-align: right">Wk {{week}}</span><span style="text-align: right">Pts</span><span style="text-align: right">Move</span></div>
 <sc-for list="{{standings}}" as="r" hint-placeholder-count="8">
 <div style="display: grid; grid-template-columns: 30px minmax(0, 1fr) 44px 48px 36px; gap: 8px; align-items: center; height: 54px; border-top: 1px solid #12301F">
@@ -78,7 +83,7 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <section aria-labelledby="ledger-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 6px">
 <h2 id="ledger-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Head-to-head ledger</h2>
-<p style="margin: 0; font-size: 14.5px; color: var(--soft)">Every Week {{week}} game, with each team's coach. The winner's coach gets the point.</p>
+<p style="margin: 0; font-size: 14.5px; color: var(--soft)">Every finished Week {{week}} game, with each team's coach. The winner's coach gets the point.</p>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
 <sc-for list="{{ledger}}" as="g" hint-placeholder-count="16">
@@ -88,6 +93,18 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 </div>
 </sc-for>
 </div>
+<sc-if value="{{live}}" hint-placeholder-val="{{false}}">
+<h3 style="margin: 10px 0 0; font-size: 15px; font-weight: 800; color: var(--soft)">Still to play</h3>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{upcoming}}" as="u" hint-placeholder-count="6">
+<div style="border: 1px dashed var(--line); border-radius: 6px; padding: 7px 10px 8px; display: flex; flex-direction: column; gap: 1px; min-width: 0">
+<span style="font-size: 11px; color: var(--soft); margin-bottom: 2px">{{u.day}}</span>
+<div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 4px; font-size: 13.5px"><b style="letter-spacing: .02em; white-space: nowrap">{{u.a}}</b><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{u.ac}}</span></div>
+<div style="display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 4px; font-size: 13.5px"><b style="letter-spacing: .02em; white-space: nowrap">@ {{u.h}}</b><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{u.hc}}</span></div>
+</div>
+</sc-for>
+</div>
+</sc-if>
 </section>
 
 
@@ -105,12 +122,20 @@ class Component extends DCLogic {
     // Results by week: away home awayScore homeScore. Add a week by appending '/...' with its games.
     var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
       '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
-      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27';
+      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27' +
+      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 21 26,ARI NYG 24 27,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14';
+    // Week 4 is in progress: its finished games are in RESULTS above, the rest are listed here.
+    // When the week is over, add its last games to RESULTS and empty its PENDING entry.
+    var PENDING = {
+      4: [['Sun 1:00', 'DAL', 'HOU'], ['Sun 1:00', 'JAX', 'CIN'], ['Sun 1:00', 'LAR', 'PHI'], ['Sun 4:05', 'MIA', 'MIN'], ['Sun 4:25', 'DEN', 'SF'], ['Sun 4:25', 'LAC', 'SEA'], ['Sun 4:25', 'KC', 'LV'], ['Sun 8:20', 'DET', 'CAR'], ['Mon 8:15', 'ATL', 'NO']]
+    };
     var INFO = [
-      { headline: 'Luke and Drew open 3-1', games: 'Sep 10–14', posted: 'Tuesday, Sep 15' },
-      { headline: 'Virginia and I tie for first', games: 'Sep 17–21', posted: 'Tuesday, Sep 22' },
-      { headline: 'Drew goes 4-0', games: 'Sep 24–28', posted: 'Tuesday, Sep 29' }
+      { headline: 'Luke and Drew open 3-1', posted: 'Tuesday, Sep 15' },
+      { headline: 'Virginia and I tie for first', posted: 'Tuesday, Sep 22' },
+      { headline: 'Drew goes 4-0', posted: 'Tuesday, Sep 29' },
+      { headline: 'Week 4 so far', posted: '' }
     ];
+    var POSTED = 3; // the week the home page's write-up covers
     var SEASON_WEEKS = 18, SHOWN_WEEKS = 6;
     var OWN = {}; Object.keys(ROSTER).forEach(function (c) { ROSTER[c].forEach(function (t) { OWN[t] = c; }); });
     var C = Object.keys(ROSTER);
@@ -118,26 +143,32 @@ class Component extends DCLogic {
     var latest = weeks.length;
     var m = /[?&]w=(\d+)/.exec(location.search);
     var wk = Math.min(Math.max(m ? +m[1] : 1, 1), latest);
+    var pending = PENDING[wk] || [];
+    var live = pending.length > 0;
 
+    // A win is a point, a tie half a point to each side.
     var pts = {}; C.forEach(function (c) { pts[c] = 0; });
     var ranks = [], recs = [];
     weeks.slice(0, wk).forEach(function (games) {
-      var rec = {}; C.forEach(function (c) { rec[c] = [0, 0]; });
+      var rec = {}; C.forEach(function (c) { rec[c] = [0, 0, 0]; });
       games.forEach(function (g) {
-        var awayWon = g.as > g.hs, win = awayWon ? g.a : g.h, lose = awayWon ? g.h : g.a;
-        pts[OWN[win]] += 1; rec[OWN[win]][0] += 1; rec[OWN[lose]][1] += 1;
+        var oa = OWN[g.a], oh = OWN[g.h];
+        if (g.as === g.hs) { pts[oa] += 0.5; pts[oh] += 0.5; rec[oa][2] += 1; rec[oh][2] += 1; return; }
+        var awayWon = g.as > g.hs, win = awayWon ? oa : oh, lose = awayWon ? oh : oa;
+        pts[win] += 1; rec[win][0] += 1; rec[lose][1] += 1;
       });
       var r = {};
       C.forEach(function (c) { r[c] = 1 + C.filter(function (d) { return pts[d] > pts[c]; }).length; });
       ranks.push(r); recs.push(rec);
     });
+    var fmtRec = function (r) { return r[0] + '-' + r[1] + (r[2] ? '-' + r[2] : ''); };
     var rank = ranks[wk - 1], prev = ranks[wk - 2], rec = recs[wk - 1];
     var tied = function (c) { return C.some(function (d) { return d !== c && rank[d] === rank[c]; }); };
     var order = C.slice().sort(function (x, y) { return pts[y] - pts[x] || x.localeCompare(y); });
     var standings = order.map(function (c, i) {
       var mv = prev ? prev[c] - rank[c] : 0, lead = rank[c] === 1;
       return {
-        rk: (tied(c) ? 'T' : '') + rank[c], name: c, teams: ROSTER[c].join(' '), wk: rec[c].join('-'), pts: pts[c],
+        rk: (tied(c) ? 'T' : '') + rank[c], name: c, teams: ROSTER[c].join(' '), wk: fmtRec(rec[c]), pts: pts[c],
         nameColor: lead ? '#C9A24B' : '#EFEDE0', ptsColor: lead ? '#C9A24B' : '#EFEDE0',
         mv: !prev ? '' : mv > 0 ? '▲' + mv : mv < 0 ? '▼' + (-mv) : '–',
         mvColor: mv > 0 ? '#9CCB55' : '#8FA898',
@@ -147,34 +178,40 @@ class Component extends DCLogic {
 
     var list = function (xs) { return xs.length === 1 ? xs[0] : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1]; };
     var leaders = order.filter(function (c) { return rank[c] === 1; });
-    var best = Math.max.apply(null, C.map(function (c) { return rec[c][0]; }));
-    var bestCoaches = order.filter(function (c) { return rec[c][0] === best; });
-    var summary = list(leaders) + (leaders.length > 1 ? ' share first' : ' leads') + ' with ' + pts[leaders[0]] + ' points after Week ' + wk + '. ' +
-      'Best week: ' + list(bestCoaches) + ' at ' + best + '-' + rec[bestCoaches[0]][1] + '.';
+    var wkPts = function (c) { return rec[c][0] + rec[c][2] / 2; };
+    var best = Math.max.apply(null, C.map(wkPts));
+    var bestCoaches = order.filter(function (c) { return wkPts(c) === best; });
+    var gamesLeft = pending.length === 1 ? '1 game' : pending.length + ' games';
+    var summary = list(leaders) + (leaders.length > 1 ? ' share first' : ' leads') + ' with ' + pts[leaders[0]] + ' points' +
+      (live ? ', and ' + gamesLeft + ' are still to play this week. Best week so far: ' : ' after Week ' + wk + '. Best week: ') +
+      list(bestCoaches) + ' at ' + fmtRec(rec[bestCoaches[0]]) + '.';
 
     var ledger = weeks[wk - 1].map(function (g) {
-      var aw = g.as > g.hs;
+      var tie = g.as === g.hs, aw = g.as > g.hs;
       return {
-        a: g.a, ac: OWN[g.a] + (aw ? '  +1' : ''), as: g.as, h: g.h, hc: OWN[g.h] + (aw ? '' : '  +1'), hs: g.hs,
-        aColor: aw ? 'var(--ink)' : 'var(--soft)', hColor: aw ? 'var(--soft)' : 'var(--ink)',
-        aWeight: aw ? '700' : '400', hWeight: aw ? '400' : '700'
+        a: g.a, ac: OWN[g.a] + (tie ? '  +½' : aw ? '  +1' : ''), as: g.as, h: g.h, hc: OWN[g.h] + (tie ? '  +½' : aw ? '' : '  +1'), hs: g.hs,
+        aColor: aw || tie ? 'var(--ink)' : 'var(--soft)', hColor: !aw || tie ? 'var(--ink)' : 'var(--soft)',
+        aWeight: aw && !tie ? '700' : '400', hWeight: !aw && !tie ? '700' : '400'
       };
     });
+    var upcoming = pending.map(function (g) { return { day: g[0], a: g[1], ac: OWN[g[1]], h: g[2], hc: OWN[g[2]] }; });
 
     var weekChips = [];
     for (var n = 1; n <= Math.min(SHOWN_WEEKS, SEASON_WEEKS); n++) {
       var cur = n === wk, played = n <= latest;
-      weekChips.push({ n: n, link: played, future: !played, href: n === latest ? 'index.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
+      weekChips.push({ n: n, link: played, future: !played, href: n === POSTED ? 'index.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
         border: cur ? 'var(--gold)' : 'var(--line)', bg: cur ? 'var(--gold)' : 'var(--panel)', fg: cur ? 'var(--ongold)' : 'var(--ink)', weight: cur ? '800' : '700' });
     }
 
-    var info = INFO[wk - 1] || { headline: 'Week ' + wk, games: '', posted: '' };
+    var info = INFO[wk - 1] || { headline: 'Week ' + wk, posted: '' };
     document.title = 'Philly Wins Pool, Week ' + wk;
     return {
       modeClass: 'pwp-' + mode, week: wk, weekChips: weekChips, standings: standings, ledger: ledger, summary: summary,
+      upcoming: upcoming, live: live,
       headline: info.headline,
-      kicker: 'Week ' + wk + ' · Final' + (info.posted ? ' · Posted ' + info.posted : ''),
-      standingsNote: 'Big number is total points.' + (prev ? ' Arrows are places moved since Week ' + (wk - 1) + '.' : '') + ' Tied coaches share a rank.'
+      statusLabel: live ? 'So far' : 'Final',
+      kicker: 'Week ' + wk + (live ? ' · In progress · ' + weeks[wk - 1].length + ' of ' + (weeks[wk - 1].length + pending.length) + ' games final' : ' · Final' + (info.posted ? ' · Posted ' + info.posted : '')),
+      standingsNote: 'Big number is total points.' + (prev ? ' Arrows are places moved since Week ' + (wk - 1) + '.' : '') + ' Tied coaches share a rank.' + (live ? ' Updates as games finish.' : '')
     };
   }
 }
