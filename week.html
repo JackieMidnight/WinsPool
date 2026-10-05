@@ -162,11 +162,11 @@ class Component extends DCLogic {
     var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
       '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
       '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27' +
-      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20';
+      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32';
     // Week 4 is in progress: its finished games are in RESULTS above, the rest are listed here.
     // When the week is over, add its last games to RESULTS and empty its PENDING entry.
     var PENDING = {
-      4: [['Sun 4:05', 'MIA', 'MIN'], ['Sun 4:25', 'DEN', 'SF'], ['Sun 4:25', 'LAC', 'SEA'], ['Sun 4:25', 'KC', 'LV'], ['Sun 8:20', 'DET', 'CAR'], ['Mon 8:15', 'ATL', 'NO']]
+      4: [['Mon 8:15', 'ATL', 'NO']]
     };
     var INFO = [
       { headline: 'Luke and Drew open 3-1', posted: 'Tuesday, Sep 15' },
@@ -222,7 +222,7 @@ class Component extends DCLogic {
     var bestCoaches = order.filter(function (c) { return wkPts(c) === best; });
     var gamesLeft = pending.length === 1 ? '1 game' : pending.length + ' games';
     var summary = list(leaders) + (leaders.length > 1 ? ' share first' : ' leads') + ' with ' + pts[leaders[0]] + ' points' +
-      (live ? ', and ' + gamesLeft + ' are still to play this week. Best week so far: ' : ' after Week ' + wk + '. Best week: ') +
+      (live ? ', and ' + gamesLeft + (pending.length === 1 ? ' is' : ' are') + ' still to play this week. Best week so far: ' : ' after Week ' + wk + '. Best week: ') +
       list(bestCoaches) + ' at ' + fmtRec(rec[bestCoaches[0]]) + '.';
 
     var ledger = weeks[wk - 1].map(function (g) {
