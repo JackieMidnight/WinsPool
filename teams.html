@@ -75,7 +75,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 <span style="display: flex; flex-direction: column; align-items: flex-end; line-height: 1.2"><b style="font-size: 14px; color: {{r.diffColor}}">{{r.diff}}</b><span style="font-size: 11px; color: var(--soft)">{{r.paceTxt}}</span></span>
 </div>
 </sc-for>
-<p style="margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: var(--soft)">Pace is wins so far divided by games played, times 17. Vegas is the preseason win total from September 9. Three games in, one win moves a team's pace by 5.7, so read this loosely until October.</p>
+<p style="margin: 14px 0 0; font-size: 13px; line-height: 1.5; color: var(--soft)">Pace is wins so far divided by games played, times 17. Vegas is the preseason win total from September 9. Four games in, one win moves a team's pace by 4.3, so read this loosely for a few more weeks.</p>
 </section>
 
 <footer style="margin-top: auto; padding: 36px 16px 40px; text-align: center; border-top: 1px solid var(--line)">
@@ -96,7 +96,8 @@ class Component extends DCLogic {
     var VEGAS = { BUF: 10.5, CIN: 10.5, TB: 8.5, CLE: 5.5, SEA: 10.5, LV: 5.5, GB: 9.5, IND: 7.5, PHI: 10.5, JAX: 8.5, PIT: 8.5, TEN: 6.5, BAL: 11.5, DET: 10.5, MIN: 8.5, ATL: 7.5, KC: 10.5, NYG: 7.5, HOU: 9.5, CAR: 7.5, NYJ: 5.5, DEN: 9.5, NE: 10.5, NO: 7.5, CHI: 9.5, ARI: 3.5, LAR: 11.5, DAL: 9.5, SF: 9.5, LAC: 9.5, WAS: 7.5, MIA: 3.5 };
     var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
       '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
-      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27';
+      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27' +
+      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32,ATL NO 45 24';
     var rec = {}, gp = {};
     Object.keys(OWN).forEach(function (t) { rec[t] = [0, 0, 0]; gp[t] = 0; });
     RESULTS.split('/').forEach(function (w) {

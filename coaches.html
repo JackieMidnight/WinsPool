@@ -53,7 +53,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 
 <section data-wide="full" data-pad="" aria-labelledby="coach-name" style="margin: 18px 16px 0; padding: 20px 16px 16px; background-color: #0A1F14; background-image: repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 36px); color: #EFEDE0; border-radius: 8px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-size: 13px; font-weight: 700; color: #C9A24B">After Week 3</span>
+<span style="font-size: 13px; font-weight: 700; color: #C9A24B">After Week 4</span>
 <h1 id="coach-name" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 48px; line-height: 1">{{name}}</h1>
 <span style="font-size: 15px; color: #C3D2C7">{{summary}}</span>
 </div>
@@ -98,13 +98,13 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 
 <div data-wide="right" data-stack="" style="display: contents">
 <section aria-labelledby="root-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
-<h2 id="root-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Week 4 rooting guide</h2>
+<h2 id="root-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Week 5 rooting guide</h2>
 <ul style="margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line)">
 <sc-for list="{{rooting}}" as="r" hint-placeholder-count="3">
 <li style="display: flex; justify-content: space-between; gap: 10px; min-height: 44px; align-items: center; border-bottom: 1px dashed var(--line); font-size: 15px"><span>{{r.label}}</span><b style="color: var(--gold)">{{r.swing}}</b></li>
 </sc-for>
 </ul>
-<p style="margin: 0; font-size: 13px; color: var(--soft)">The number is how much the title odds swing between the two results, in percentage points. Games your teams aren't in count too.</p>
+<p style="margin: 0; font-size: 13px; color: var(--soft)">The number is how much the title odds swing between the two results, in percentage points. Games your teams aren't in count too. Odds come from 40,000 simulated seasons, playoffs included. Each game’s chances start from the preseason Vegas win totals and shift with each team’s record.</p>
 </section>
 
 <section aria-labelledby="vs-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
@@ -137,12 +137,14 @@ class Component extends DCLogic {
     var BYE = { CAR: 5, KC: 5, CIN: 6, DET: 6, MIA: 6, MIN: 6, BUF: 7, JAX: 7, LAC: 7, WAS: 7, HOU: 8, NO: 8, NYG: 8, SF: 8, PIT: 9, TEN: 9, CHI: 10, DEN: 10, PHI: 10, TB: 10, ATL: 11, CLE: 11, GB: 11, LAR: 11, NE: 11, SEA: 11, BAL: 13, IND: 13, LV: 13, NYJ: 13, ARI: 14, DAL: 14 };
     var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
       '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
-      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27';
-    var NEXT = 'Thu 8:15|PIT|CLE,Sun 9:30 a.m.|IND|WAS,Sun 1:00|DAL|HOU,Sun 1:00|NYJ|CHI,Sun 1:00|JAX|CIN,Sun 1:00|TEN|BAL,Sun 1:00|ARI|NYG,Sun 1:00|LAR|PHI,Sun 1:00|GB|TB,Sun 1:00|NE|BUF,Sun 4:05|MIA|MIN,Sun 4:25|DEN|SF,Sun 4:25|LAC|SEA,Sun 4:25|KC|LV,Sun 8:20|DET|CAR,Mon 8:15|ATL|NO'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
-    // Title-odds model output after Week 3 (win chance now, a week ago, 10th and 90th percentile final score), coach order as C
-    var WIN = [4.1, 7.6, 18.5, 7.0, 2.1, 0.5, 49.4, 10.8], W2 = [9.1, 10.8, 26.6, 11.3, 6.0, 0.7, 23.3, 12.2];
-    var P10 = [28, 30, 34, 31, 27, 24, 39, 32], P90 = [43, 46, 50, 46, 40, 38, 57, 48];
-    var LEV = [[[4.1,8.5,17.0,7.1,2.1,0.5,49.7,10.9],[4.0,6.2,20.7,7.0,2.1,0.5,48.9,10.6]],[[4.1,7.5,18.3,7.9,2.1,0.4,49.1,10.6],[4.0,7.7,18.7,6.2,2.1,0.7,49.6,11.0]],[[4.7,7.7,18.5,7.1,2.1,0.5,49.7,9.6],[3.4,7.5,18.5,7.0,2.1,0.5,49.0,12.0]],[[3.1,7.6,18.4,7.1,2.6,0.5,50.0,10.8],[4.3,7.6,18.5,7.0,2.0,0.5,49.2,10.8]],[[4.2,9.2,15.5,7.2,2.2,0.6,50.4,10.7],[4.0,6.7,20.1,7.0,2.1,0.5,48.8,10.8]],[[4.3,9.7,20.2,7.6,2.5,0.6,43.6,11.7],[4.0,7.2,18.2,7.0,2.1,0.5,50.4,10.6]],[[5.0,7.9,18.6,7.3,2.1,0.6,50.0,8.5],[3.8,7.5,18.5,7.0,2.1,0.5,49.2,11.4]],[[5.1,6.3,18.5,7.1,2.1,0.5,49.4,10.9],[3.2,8.7,18.5,7.0,2.1,0.5,49.3,10.7]],[[4.1,7.7,16.8,8.1,2.1,0.6,49.7,10.9],[3.9,7.4,20.6,5.7,2.2,0.5,48.9,10.7]],[[4.2,7.8,16.0,7.3,2.8,0.6,50.2,11.1],[4.0,7.5,19.8,6.9,1.8,0.5,48.9,10.6]],[[4.6,8.3,20.1,7.9,2.3,0.9,44.5,11.5],[4.0,7.5,18.3,6.9,2.1,0.5,50.0,10.7]],[[4.2,7.5,18.2,7.1,2.6,0.4,49.4,10.7],[4.0,7.7,18.7,7.0,1.8,0.6,49.3,10.9]],[[4.4,7.7,18.7,5.4,2.2,0.8,50.0,10.9],[3.9,7.6,18.4,7.8,2.1,0.4,49.1,10.8]],[[4.1,7.6,18.4,6.4,2.1,0.5,49.3,11.6],[4.0,7.7,18.6,8.5,2.1,0.5,49.5,9.0]],[[3.9,7.3,18.0,6.7,2.0,0.5,52.2,9.4],[4.4,8.1,19.4,7.6,2.3,0.6,44.1,13.5]],[[3.8,7.3,17.5,6.7,1.6,0.5,52.5,10.1],[4.2,7.9,19.3,7.3,2.6,0.6,46.8,11.3]]];
+      '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27' +
+      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32,ATL NO 45 24';
+    var NEXT = 'Thu 8:15|TB|DAL,Sun 9:30 a.m.|PHI|JAX,Sun 1:00|CHI|GB,Sun 1:00|HOU|TEN,Sun 1:00|CIN|MIA,Sun 1:00|LV|NE,Sun 1:00|MIN|NO,Sun 1:00|CLE|NYJ,Sun 1:00|IND|PIT,Sun 1:00|NYG|WAS,Sun 4:05|DEN|LAC,Sun 4:25|DET|ARI,Sun 4:25|SF|SEA,Sun 8:20|BAL|ATL,Mon 8:15|BUF|LAR'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
+    // Title-odds model output after Week 4, written by tools/odds.py (win chance now, a week ago, 10th and 90th percentile final score), coach order as C.
+    // LEV: for each NEXT game in order, odds if the away team wins, then if the home team wins.
+    var WIN = [5.6, 3.6, 8.4, 10.3, 1.5, 0.1, 53.2, 17.3], W2 = [2.3, 7.9, 22.2, 6.7, 2.2, 0.3, 48.5, 9.8];
+    var P10 = [30, 29, 32, 33, 27, 22, 40, 34], P90 = [45, 43, 47, 48, 40, 36, 58, 51];
+    var LEV = [[[4.0,3.9,10.0,10.8,1.4,0.1,52.6,17.3],[6.3,3.5,7.8,10.1,1.5,0.1,53.4,17.3]],[[5.4,3.8,8.6,10.3,1.6,0.1,53.2,17.1],[5.9,3.4,8.2,10.3,1.3,0.2,53.2,17.5]],[[6.9,3.6,8.4,8.7,1.5,0.1,53.4,17.5],[4.2,3.7,8.4,12.2,1.5,0.1,53.0,17.0]],[[5.5,3.3,8.4,10.4,1.4,0.1,52.3,18.8],[5.9,4.1,8.4,10.2,1.6,0.1,54.5,15.2]],[[5.7,3.6,8.7,10.3,1.4,0.1,53.0,17.2],[5.4,3.6,6.4,10.2,1.7,0.3,54.7,17.8]],[[5.4,3.5,7.9,12.4,0.9,0.1,52.9,17.0],[5.8,3.7,8.7,9.2,1.8,0.1,53.4,17.4]],[[5.3,3.5,8.0,9.9,1.2,0.1,55.5,16.6],[6.6,3.9,9.6,11.3,2.3,0.2,47.2,19.0]],[[5.7,3.5,9.4,10.0,1.2,0.1,52.7,17.3],[5.5,3.7,6.7,10.8,1.8,0.1,54.1,17.2]],[[5.6,2.6,8.4,12.2,1.5,0.1,52.6,16.9],[5.7,4.3,8.4,8.9,1.5,0.1,53.6,17.5]],[[5.3,3.4,8.2,10.0,1.5,0.1,52.2,19.4],[6.2,3.9,8.8,10.8,1.4,0.2,54.8,13.9]],[[5.6,3.6,8.2,10.4,1.7,0.1,53.2,17.2],[5.6,3.7,8.7,10.1,1.1,0.2,53.2,17.4]],[[5.2,3.5,8.2,10.0,1.4,0.1,54.8,16.8],[7.2,4.2,9.4,11.2,1.5,0.1,47.1,19.2]],[[5.8,3.5,8.5,8.0,1.5,0.2,54.7,17.8],[5.4,3.8,8.3,12.6,1.4,0.1,51.7,16.7]],[[5.7,3.5,8.3,10.1,1.4,0.1,53.6,17.2],[5.6,3.8,8.5,10.7,1.5,0.2,52.4,17.3]],[[4.4,3.4,10.1,10.5,1.3,0.1,53.3,17.0],[6.8,3.8,6.8,10.1,1.7,0.1,53.2,17.6]]];
 
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, selfGames = {}, rec = {}, log = {};
@@ -158,7 +160,7 @@ class Component extends DCLogic {
       });
     });
     var nWeeks = weeks.length;
-    var display = ['Drew', 'Virginia', 'Jack', 'Mike', 'Luke', 'Nicole', 'Caleb', 'Court'];
+    var display = ['Drew', 'Jack', 'Mike', 'Nicole', 'Virginia', 'Luke', 'Caleb', 'Court'];
     var lead = Math.max.apply(null, C.map(function (c) { return pts[c]; }));
     var better = C.filter(function (c) { return pts[c] > pts[sel]; }).length;
     var tied = C.some(function (c) { return c !== sel && pts[c] === pts[sel]; });
@@ -173,10 +175,10 @@ class Component extends DCLogic {
     var teams = ROSTER[sel].map(function (t) {
       var pace = rec[t][0] / nWeeks * 17, d = pace - VEGAS[t];
       var nx = NEXT.filter(function (g) { return g.a === t || g.h === t; })[0];
-      var opp = nx.a === t ? nx.h : nx.a, oppOwner = OWN[opp];
+      var opp = nx && (nx.a === t ? nx.h : nx.a), oppOwner = nx && OWN[opp];
       return { abbr: t, nick: NICK[t], rec: rec[t][0] + '-' + rec[t][1], games: log[t], pts: rec[t][0],
         pace: pace.toFixed(1), vegas: VEGAS[t], diff: (d >= 0 ? '+' : '') + d.toFixed(1), diffColor: d >= 0 ? 'var(--up)' : 'var(--soft)',
-        bye: BYE[t], next: 'Week 4 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + (oppOwner === 'Jack' ? 'Jack' : oppOwner) + ') · ' + nx.day };
+        bye: BYE[t], next: nx ? 'Week 5 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + oppOwner + ') · ' + nx.day : 'Bye in Week 5' };
     });
     var rooting = LEV.map(function (g, gi) {
       var d = g[0][i] - g[1][i], nx = NEXT[gi];

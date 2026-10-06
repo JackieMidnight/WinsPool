@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=760">
-<title>Group-text standings, Week 4</title>
+<title>Group-text standings, Week 3</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
@@ -22,13 +22,13 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 <svg width="84" height="101" viewBox="0 0 60 72" aria-hidden="true" style="flex: none"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="3"></path><path d="M30 9 L50 15 V35 C50 48 42 56 30 62 C18 56 10 48 10 35 V15 Z" fill="none" stroke="#9CCB55" stroke-opacity=".45" stroke-width="1"></path><ellipse cx="30" cy="35" rx="12" ry="7.5" fill="#9A5530" transform="rotate(-28 30 35)"></ellipse><path d="M24.5 38.5 L35.5 31.5" stroke="#F4F1E4" stroke-width="1.6"></path><path d="M27 34 L29 37.5 M29.5 32.6 L31.5 36 M32 31.2 L34 34.6" stroke="#F4F1E4" stroke-width="1.2"></path><rect x="18" y="49" width="24" height="9" rx="2" fill="#0A1F14" stroke="#C9A24B" stroke-width="1"></rect><text x="30" y="56.2" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="7" fill="#EFEDE0" letter-spacing=".6">2026</text></svg>
 <div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1">
 <span style="font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-size: 46px; line-height: .95; letter-spacing: .02em">PHILLY WINS POOL</span>
-<span style="font-size: 19px; font-weight: 800; letter-spacing: .14em; color: #9CCB55">STANDINGS AFTER WEEK 4</span>
+<span style="font-size: 19px; font-weight: 800; letter-spacing: .14em; color: #9CCB55">STANDINGS AFTER WEEK 3</span>
 </div>
 <span style="align-self: flex-start; font-size: 15px; font-weight: 800; letter-spacing: .08em; padding: 6px 10px; border: 1.5px solid #C9A24B; border-radius: 4px; color: #C9A24B">FINAL</span>
 </div>
 
 <div style="display: flex; flex-direction: column; background: #051109; border: 1px solid #1D4530; border-radius: 8px; padding: 4px 20px 2px">
-<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr) 80px 80px 60px; gap: 12px; padding: 10px 0 6px; font-size: 14px; font-weight: 700; color: #8FA898; letter-spacing: .04em"><span></span><span>COACH</span><span style="text-align: right">WEEK 4</span><span style="text-align: right">POINTS</span><span style="text-align: right">MOVE</span></div>
+<div style="display: grid; grid-template-columns: 50px minmax(0, 1fr) 80px 80px 60px; gap: 12px; padding: 10px 0 6px; font-size: 14px; font-weight: 700; color: #8FA898; letter-spacing: .04em"><span></span><span>COACH</span><span style="text-align: right">WEEK 3</span><span style="text-align: right">POINTS</span><span style="text-align: right">MOVE</span></div>
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
 <div style="display: grid; grid-template-columns: 50px minmax(0, 1fr) 80px 80px 60px; gap: 12px; align-items: center; height: 68px; border-top: 1px solid #143322">
 <span style="font-family: Anton, Impact, sans-serif; font-size: 26px; color: #8FA898; text-align: right">{{r.rk}}</span>
@@ -41,8 +41,8 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 6px; margin-top: auto">
-<span style="font-size: 21px; font-weight: 700; line-height: 1.35">Drew went 3-1 and holds first by a point.</span>
-<span style="font-size: 17px; line-height: 1.4; color: #C3D2C7">Week 5 starts Thursday: Buccaneers at Cowboys, Virginia vs Nicole.</span>
+<span style="font-size: 21px; font-weight: 700; line-height: 1.35">Drew went 4-0 and has first place to himself.</span>
+<span style="font-size: 17px; line-height: 1.4; color: #C3D2C7">Week 4 starts Thursday: Steelers at Browns, Luke vs Virginia.</span>
 <div style="display: flex; justify-content: center; margin-top: 12px; padding-top: 14px; border-top: 1px solid #1D4530">
 <span style="font-size: 14px; font-weight: 800; letter-spacing: .1em; color: #9CCB55">FOUR TEAMS. ONE GOAL. BRAGGING RIGHTS FOR A YEAR.</span>
 </div>
@@ -55,14 +55,14 @@ a{color:#C9A24B}a:hover{color:#E2BE6A}
 class Component extends DCLogic {
   renderVals() {
     var rows = [
-      ['1', 'Drew', 'BAL · DET · MIN · ATL', '3-1', 11, 0],
-      ['2', 'Jack', 'SEA · GB · IND · LV', '3-1', 10, 0],
-      ['3', 'Mike', 'HOU · KC · NYG · CAR', '3-1', 9, 1],
-      ['T4', 'Nicole', 'LAR · CHI · DAL · ARI', '3-1', 8, 2],
-      ['T4', 'Virginia', 'BUF · CIN · TB · CLE', '1-3', 8, -2],
-      ['6', 'Luke', 'PHI · JAX · PIT · TEN', '1-3', 7, -2],
-      ['7', 'Caleb', 'DEN · NE · NO · NYJ', '1-3', 6, -1],
-      ['8', 'Court', 'SF · LAC · WAS · MIA', '1-3', 5, 0]
+      ['1', 'Drew', 'BAL · DET · MIN · ATL', '4-0', 8, 2],
+      ['T2', 'Virginia', 'BUF · CIN · TB · CLE', '2-2', 7, -1],
+      ['T2', 'Jack', 'SEA · GB · IND · LV', '2-2', 7, -1],
+      ['T4', 'Mike', 'HOU · KC · NYG · CAR', '2-2', 6, -1],
+      ['T4', 'Luke', 'PHI · JAX · PIT · TEN', '2-2', 6, -1],
+      ['T6', 'Nicole', 'LAR · CHI · DAL · ARI', '1-3', 5, -3],
+      ['T6', 'Caleb', 'DEN · NE · NO · NYJ', '1-3', 5, -3],
+      ['8', 'Court', 'SF · LAC · WAS · MIA', '2-2', 4, 0]
     ].map(function (s, i) {
       var mv = s[5];
       return {
