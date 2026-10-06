@@ -162,19 +162,17 @@ class Component extends DCLogic {
     var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
       '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
       '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27' +
-      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32';
-    // Week 4 is in progress: its finished games are in RESULTS above, the rest are listed here.
+      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32,ATL NO 45 24';
+    // A week in progress lists its unplayed games here, e.g. 5: [['Thu 8:15', 'TB', 'DAL'], ...].
     // When the week is over, add its last games to RESULTS and empty its PENDING entry.
-    var PENDING = {
-      4: [['Mon 8:15', 'ATL', 'NO']]
-    };
+    var PENDING = {};
     var INFO = [
       { headline: 'Luke and Drew open 3-1', posted: 'Tuesday, Sep 15' },
       { headline: 'Virginia and I tie for first', posted: 'Tuesday, Sep 22' },
       { headline: 'Drew goes 4-0', posted: 'Tuesday, Sep 29' },
-      { headline: 'Week 4 so far', posted: '' }
+      { headline: 'Drew holds first', posted: 'Tuesday, Oct 6' }
     ];
-    var POSTED = 3; // the week the home page's write-up covers
+    var POSTED = 4; // the week the home page's write-up covers
     var SEASON_WEEKS = 18, SHOWN_WEEKS = 6;
     var OWN = {}; Object.keys(ROSTER).forEach(function (c) { ROSTER[c].forEach(function (t) { OWN[t] = c; }); });
     var C = Object.keys(ROSTER);
@@ -238,7 +236,7 @@ class Component extends DCLogic {
     var weekChips = [];
     for (var n = 1; n <= Math.min(SHOWN_WEEKS, SEASON_WEEKS); n++) {
       var cur = n === wk, played = n <= latest;
-      weekChips.push({ n: n, link: played, future: !played, href: n === POSTED ? 'week' + n + '.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
+      weekChips.push({ n: n, link: played, future: !played, href: (n === POSTED || n === 3) ? 'week' + n + '.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
         border: cur ? 'var(--gold)' : 'var(--line)', bg: cur ? 'var(--gold)' : 'var(--panel)', fg: cur ? 'var(--ongold)' : 'var(--ink)', weight: cur ? '800' : '700' });
     }
 
@@ -246,7 +244,7 @@ class Component extends DCLogic {
     var deskWeeks = [];
     for (var d = 1; d <= SEASON_WEEKS; d++) {
       var dcur = d === wk, dpast = d <= latest;
-      deskWeeks.push({ n: d, href: dcur ? 'week.html?w=' + d : d === POSTED ? 'week' + d + '.html' : dpast ? 'week.html?w=' + d : 'season.html', current: dcur ? 'page' : 'false',
+      deskWeeks.push({ n: d, href: dcur ? 'week.html?w=' + d : (d === POSTED || d === 3) ? 'week' + d + '.html' : dpast ? 'week.html?w=' + d : 'season.html', current: dcur ? 'page' : 'false',
         border: dcur ? '1px solid var(--gold)' : dpast ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: dcur ? 'var(--gold)' : dpast ? 'var(--panel)' : 'transparent',
         fg: dcur ? 'var(--ongold)' : dpast ? 'var(--ink)' : 'var(--soft)', weight: dcur ? '800' : dpast ? '700' : '500',
