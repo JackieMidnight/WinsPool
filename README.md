@@ -32,6 +32,17 @@ Posting a Tuesday write-up: save it as `weekN.html` / `weekN-desktop.html` and s
 
 The light/dark choice is remembered across pages. On screens 1024px and wider, `support.js` gives every page a desktop layout (menu in the header, sections in two columns); each section's `data-wide` attribute says where it goes.
 
+## Title odds (Coaches page)
+
+`tools/odds.py` simulates the rest of the season and the playoffs 40,000 times and writes each
+coach's title odds, likely final-score range and next week's rooting guide into `coaches.html`.
+Its method is described at the top of the file. Each week, after adding the scores and the next
+week's games (`RESULTS` and `NEXT` in `coaches.html`, in schedule order), run:
+
+    python3 tools/check_schedule.py   # the full 2026 schedule in tools/schedule_2026.py
+    python3 tools/odds.py --write
+    python3 tools/test_odds.py
+
 ## Publishing with GitHub Pages
 
 In the repository on GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**,
