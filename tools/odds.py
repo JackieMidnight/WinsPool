@@ -17,6 +17,8 @@ Playoffs (bonus points from the Rules page)
   A win is worth +2 (Wild Card), +2 (Divisional), +3 (Conference), +5 (Super Bowl).
   Ties on record are broken at random.
 
+Ties already played count half a win to each team; simulated games have no ties.
+
 Pool winner: most regular-season points plus bonus points; level coaches go to most
 regular-season wins; still level, the title is split.
 
@@ -44,6 +46,12 @@ def site_data():
     roster = {n: re.findall(r"'(\w+)'", t) for n, t in re.findall(r"(\w+): (\[[^\]]+\])", week.split("var ROSTER = ")[1].split("};")[0])}
     raw = "".join(re.findall(r"'([^']*)'", week.split("var RESULTS = ")[1].split(";")[0]))
     results = [[(g.split()[0], g.split()[1], int(g.split()[2]), int(g.split()[3])) for g in w.split(",")] for w in raw.split("/")]
+    # Only finished weeks count: a week in progress has fewer results than scheduled games.
+    scheduled = {}
+    for w, a, h in games():
+        scheduled[w] = scheduled.get(w, 0) + 1
+    while results and len(results[-1]) < scheduled[len(results)]:
+        results.pop()
     coaches = (ROOT / "coaches.html").read_text()
     vegas = {t: float(v) for t, v in re.findall(r"(\w+): ([\d.]+)", coaches.split("var VEGAS = {")[1].split("}")[0])}
     return roster, results, vegas
@@ -59,7 +67,10 @@ def simulate(roster, results, vegas, weeks_played, next_week, sims=SIMS, seed=SE
     for w in played:
         for a, h, sa, sh in w:
             games0[a] += 1; games0[h] += 1
-            wins0[a if sa > sh else h] += 1
+            if sa == sh:  # a tie is half a win each
+                wins0[a] += 0.5; wins0[h] += 0.5
+            else:
+                wins0[a if sa > sh else h] += 1
     base = {}
     for t in own:
         p = (vegas[t] / 17 * PRIOR_GAMES + wins0[t]) / (PRIOR_GAMES + games0[t])
