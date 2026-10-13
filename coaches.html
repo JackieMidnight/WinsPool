@@ -53,7 +53,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 
 <section data-wide="full" data-pad="" aria-labelledby="coach-name" style="margin: 18px 16px 0; padding: 20px 16px 16px; background-color: #0A1F14; background-image: repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 36px); color: #EFEDE0; border-radius: 8px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-size: 13px; font-weight: 700; color: #C9A24B">After Week 4</span>
+<span style="font-size: 13px; font-weight: 700; color: #C9A24B">After Week 5</span>
 <h1 id="coach-name" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 48px; line-height: 1">{{name}}</h1>
 <span style="font-size: 15px; color: #C3D2C7">{{summary}}</span>
 </div>
@@ -98,7 +98,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 
 <div data-wide="right" data-stack="" style="display: contents">
 <section aria-labelledby="root-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 10px">
-<h2 id="root-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Week 5 rooting guide</h2>
+<h2 id="root-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Week 6 rooting guide</h2>
 <ul style="margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line)">
 <sc-for list="{{rooting}}" as="r" hint-placeholder-count="3">
 <li style="display: flex; justify-content: space-between; gap: 10px; min-height: 44px; align-items: center; border-bottom: 1px dashed var(--line); font-size: 15px"><span>{{r.label}}</span><b style="color: var(--gold)">{{r.swing}}</b></li>
@@ -138,13 +138,14 @@ class Component extends DCLogic {
     var RESULTS = 'BUF HOU 36 31,TB CIN 27 33,CLE JAX 10 34,NE SEA 10 13,MIA LV 13 27,GB MIN 22 39,BAL IND 41 23,WAS PHI 22 24,ATL PIT 13 20,NYJ TEN 23 10,NO DET 30 31,DEN KC 10 31,DAL NYG 20 28,CHI CAR 59 37,ARI LAC 26 14,SF LAR 27 7' +
       '/DET BUF 31 41,PHI TEN 24 20,PIT NE 3 20,MIN CHI 9 3,CAR ATL 34 3,GB NYJ 20 17,NO BAL 24 17,CIN HOU 20 6,CLE TB 23 19,JAX DEN 13 20,LV LAC 26 14,SEA ARI 31 7,MIA SF 13 35,WAS DAL 20 37,IND KC 30 33,NYG LAR 6 28' +
       '/ATL GB 35 14,HOU IND 17 19,KC MIA 24 10,LAC BUF 16 24,TEN NYG 7 12,CIN PIT 27 30,SEA WAS 31 33,NE JAX 6 35,CAR CLE 18 21,NYJ DET 24 31,ARI SF 30 36,MIN TB 23 16,LV NO 35 27,BAL DAL 34 31,LAR DEN 26 30,PHI CHI 7 27' +
-      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32,ATL NO 45 24';
-    var NEXT = 'Thu 8:15|TB|DAL,Sun 9:30 a.m.|PHI|JAX,Sun 1:00|CHI|GB,Sun 1:00|HOU|TEN,Sun 1:00|CIN|MIA,Sun 1:00|LV|NE,Sun 1:00|MIN|NO,Sun 1:00|CLE|NYJ,Sun 1:00|IND|PIT,Sun 1:00|NYG|WAS,Sun 4:05|DEN|LAC,Sun 4:25|DET|ARI,Sun 4:25|SF|SEA,Sun 8:20|BAL|ATL,Mon 8:15|BUF|LAR'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
-    // Title-odds model output after Week 4, written by tools/odds.py (win chance now, a week ago, 10th and 90th percentile final score), coach order as C.
+      '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32,ATL NO 45 24' +
+      '/TB DAL 24 16,PHI JAX 17 19,CHI GB 7 31,HOU TEN 26 3,CIN MIA 31 24,LV NE 17 45,MIN NO 23 13,CLE NYJ 12 17,IND PIT 22 34,NYG WAS 27 27,DEN LAC 23 17,DET ARI 45 21,SF SEA 32 29,BAL ATL 30 23,BUF LAR 37 34';
+    var NEXT = 'Thu 8:15|SEA|DEN,Sun 9:30 a.m.|HOU|JAX,Sun 1:00|NYJ|NE,Sun 1:00|PIT|TB,Sun 1:00|CAR|PHI,Sun 1:00|CHI|ATL,Sun 1:00|TEN|IND,Sun 1:00|NO|NYG,Sun 1:00|BAL|CLE,Sun 4:05|ARI|LAR,Sun 4:25|LAC|KC,Sun 4:25|BUF|LV,Sun 8:20|DAL|GB,Mon 8:15|WAS|SF'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
+    // Title-odds model output after Week 5, written by tools/odds.py (win chance now, a week ago, 10th and 90th percentile final score), coach order as C.
     // LEV: for each NEXT game in order, odds if the away team wins, then if the home team wins.
-    var WIN = [5.6, 3.6, 8.4, 10.3, 1.5, 0.1, 53.2, 17.3], W2 = [2.3, 7.9, 22.2, 6.7, 2.2, 0.3, 48.5, 9.8];
-    var P10 = [30, 29, 32, 33, 27, 22, 40, 34], P90 = [45, 43, 47, 48, 40, 36, 58, 51];
-    var LEV = [[[4.0,3.9,10.0,10.8,1.4,0.1,52.6,17.3],[6.3,3.5,7.8,10.1,1.5,0.1,53.4,17.3]],[[5.4,3.8,8.6,10.3,1.6,0.1,53.2,17.1],[5.9,3.4,8.2,10.3,1.3,0.2,53.2,17.5]],[[6.9,3.6,8.4,8.7,1.5,0.1,53.4,17.5],[4.2,3.7,8.4,12.2,1.5,0.1,53.0,17.0]],[[5.5,3.3,8.4,10.4,1.4,0.1,52.3,18.8],[5.9,4.1,8.4,10.2,1.6,0.1,54.5,15.2]],[[5.7,3.6,8.7,10.3,1.4,0.1,53.0,17.2],[5.4,3.6,6.4,10.2,1.7,0.3,54.7,17.8]],[[5.4,3.5,7.9,12.4,0.9,0.1,52.9,17.0],[5.8,3.7,8.7,9.2,1.8,0.1,53.4,17.4]],[[5.3,3.5,8.0,9.9,1.2,0.1,55.5,16.6],[6.6,3.9,9.6,11.3,2.3,0.2,47.2,19.0]],[[5.7,3.5,9.4,10.0,1.2,0.1,52.7,17.3],[5.5,3.7,6.7,10.8,1.8,0.1,54.1,17.2]],[[5.6,2.6,8.4,12.2,1.5,0.1,52.6,16.9],[5.7,4.3,8.4,8.9,1.5,0.1,53.6,17.5]],[[5.3,3.4,8.2,10.0,1.5,0.1,52.2,19.4],[6.2,3.9,8.8,10.8,1.4,0.2,54.8,13.9]],[[5.6,3.6,8.2,10.4,1.7,0.1,53.2,17.2],[5.6,3.7,8.7,10.1,1.1,0.2,53.2,17.4]],[[5.2,3.5,8.2,10.0,1.4,0.1,54.8,16.8],[7.2,4.2,9.4,11.2,1.5,0.1,47.1,19.2]],[[5.8,3.5,8.5,8.0,1.5,0.2,54.7,17.8],[5.4,3.8,8.3,12.6,1.4,0.1,51.7,16.7]],[[5.7,3.5,8.3,10.1,1.4,0.1,53.6,17.2],[5.6,3.8,8.5,10.7,1.5,0.2,52.4,17.3]],[[4.4,3.4,10.1,10.5,1.3,0.1,53.3,17.0],[6.8,3.8,6.8,10.1,1.7,0.1,53.2,17.6]]];
+    var WIN = [0.9, 3.0, 10.6, 5.1, 2.2, 0.1, 60.0, 18.1], W2 = [5.6, 3.6, 8.4, 10.3, 1.5, 0.1, 53.2, 17.3];
+    var P10 = [26, 30, 33, 31, 30, 23.5, 42, 34.5], P90 = [39, 43, 48, 45, 42, 36.5, 60, 51.5];
+    var LEV = [[[0.9,3.0,10.6,6.4,1.7,0.1,59.6,17.7],[1.0,3.1,10.5,3.8,2.6,0.1,60.4,18.5]],[[0.9,2.2,10.2,5.0,2.2,0.1,58.8,20.5],[0.9,3.4,10.7,5.1,2.1,0.1,60.6,17.0]],[[1.0,2.7,11.3,5.3,1.8,0.1,60.5,17.5],[0.9,3.1,10.3,5.0,2.3,0.1,59.9,18.3]],[[0.9,3.5,9.3,5.2,2.1,0.1,60.6,18.2],[0.9,2.3,12.4,5.0,2.2,0.1,59.1,18.1]],[[0.9,2.1,10.2,4.8,2.1,0.1,58.5,21.3],[0.9,3.6,10.8,5.3,2.2,0.1,61.0,16.2]],[[1.2,3.2,11.5,5.2,2.4,0.1,57.3,19.2],[0.5,2.8,9.2,5.0,1.8,0.1,64.1,16.5]],[[1.0,3.8,10.3,3.9,2.1,0.1,60.8,18.0],[0.9,2.8,10.6,5.5,2.2,0.1,59.7,18.2]],[[1.0,3.3,10.5,5.5,3.1,0.1,62.2,14.2],[0.9,2.9,10.6,4.9,1.8,0.1,59.2,19.7]],[[0.9,2.8,9.2,5.0,2.0,0.1,62.6,17.4],[1.0,3.7,14.2,5.3,2.5,0.1,53.0,20.1]],[[0.7,3.3,10.6,5.6,2.1,0.1,59.3,18.4],[0.9,3.0,10.5,5.0,2.2,0.1,60.1,18.1]],[[0.8,3.0,11.3,5.2,2.5,0.1,63.3,13.9],[0.9,3.0,10.4,5.1,2.1,0.1,59.5,18.8]],[[0.9,3.0,11.7,4.5,2.1,0.1,59.9,17.8],[1.0,3.0,7.9,6.4,2.4,0.1,60.3,18.9]],[[1.4,3.0,10.5,3.7,2.3,0.1,61.2,17.9],[0.6,3.0,10.6,6.0,2.1,0.1,59.3,18.3]],[[0.8,3.0,10.2,4.9,2.4,0.1,61.0,17.6],[0.9,3.0,10.6,5.1,2.1,0.1,59.8,18.3]]];
 
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, selfGames = {}, rec = {}, log = {};
@@ -166,7 +167,7 @@ class Component extends DCLogic {
         if (OWN[win] === OWN[lose]) selfGames[OWN[win]]++; else { h2h[OWN[win] + '|' + OWN[lose]][0]++; h2h[OWN[lose] + '|' + OWN[win]][1]++; }
       });
     });
-    var display = ['Drew', 'Jack', 'Mike', 'Nicole', 'Virginia', 'Luke', 'Caleb', 'Court'];
+    var display = ['Drew', 'Jack', 'Virginia', 'Mike', 'Caleb', 'Luke', 'Nicole', 'Court'];
     var lead = Math.max.apply(null, C.map(function (c) { return pts[c]; }));
     var better = C.filter(function (c) { return pts[c] > pts[sel]; }).length;
     var tied = C.some(function (c) { return c !== sel && pts[c] === pts[sel]; });
@@ -185,7 +186,7 @@ class Component extends DCLogic {
       var opp = nx && (nx.a === t ? nx.h : nx.a), oppOwner = nx && OWN[opp];
       return { abbr: t, nick: NICK[t], rec: rec[t][0] + '-' + rec[t][1] + (rec[t][2] ? '-' + rec[t][2] : ''), games: log[t], pts: won,
         pace: pace.toFixed(1), vegas: VEGAS[t], diff: (d >= 0 ? '+' : '') + d.toFixed(1), diffColor: d >= 0 ? 'var(--up)' : 'var(--soft)',
-        bye: BYE[t], next: nx ? 'Week 5 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + oppOwner + ') · ' + nx.day : 'Bye in Week 5' };
+        bye: BYE[t], next: nx ? 'Week 6 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + oppOwner + ') · ' + nx.day : 'Bye in Week 6' };
     });
     var rooting = LEV.map(function (g, gi) {
       var d = g[0][i] - g[1][i], nx = NEXT[gi];
