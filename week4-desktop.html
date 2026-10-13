@@ -69,7 +69,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 <h1 id="dwk-title" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: clamp(64px, 6.4vw, 92px); line-height: .95; letter-spacing: .005em; text-wrap: balance">Drew holds first</h1>
 <p style="margin: 0; font-size: 19px; line-height: 1.55; color: #C3D2C7; max-width: 30em; text-wrap: pretty">Atlanta’s 45-24 win in New Orleans on Monday night gave Drew a 3-1 week and kept him a point ahead of me. Mike and Nicole also went 3-1, and Nicole climbed from a tie for sixth to a tie for fourth.</p>
 <div style="display: flex; gap: 10px; margin-top: 8px">
-<a href="share.html" style="flex: none; white-space: nowrap; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 6px; background: #C9A24B; color: #0A1F14; font-size: 15px; font-weight: 800; text-decoration: none"><svg width="17" height="17" style="flex: none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"></path></svg>Save standings image</a>
+<a href="share-week4.html" style="flex: none; white-space: nowrap; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 6px; background: #C9A24B; color: #0A1F14; font-size: 15px; font-weight: 800; text-decoration: none"><svg width="17" height="17" style="flex: none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"></path></svg>Save standings image</a>
 <button type="button" style="flex: none; white-space: nowrap; display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 6px; border: 1px solid #2A5A3F; background: transparent; color: #EFEDE0; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer"><svg width="17" height="17" style="flex: none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a1 1 0 0 1 1-1h10"></path></svg>Copy group text</button>
 </div>
 <a href="rules.html" style="display: flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 700; color: #C9A24B; text-decoration: none">First time here? How scoring works<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
@@ -151,7 +151,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0">
 <div style="display: flex; flex-direction: column"><h2 id="dshare-h" style="margin: 0; font-size: 17px; font-weight: 800">Standings for the group text</h2><span style="font-size: 14px; color: var(--soft)">An image sized for iMessage, plus a text version with the link.</span></div>
 <div style="display: flex; gap: 8px">
-<a href="share.html" style="display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 6px; background: var(--gold); color: var(--ongold); font-size: 14px; font-weight: 800; text-decoration: none">Save image</a>
+<a href="share-week4.html" style="display: flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 6px; background: var(--gold); color: var(--ongold); font-size: 14px; font-weight: 800; text-decoration: none">Save image</a>
 <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Copy text</button>
 </div>
 </div>
@@ -292,7 +292,7 @@ class Component extends DCLogic {
     var weeks = [];
     for (var n = 1; n <= 18; n++) {
       var past = n <= 5, cur = n === 4;
-      weeks.push({ n: n, href: cur ? 'week4-desktop.html' : n === 3 ? 'week3-desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
+      weeks.push({ n: n, href: cur ? 'week4-desktop.html' : (n === 3 || n === 5) ? 'week' + n + '-desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
         border: cur ? '1px solid var(--gold)' : past ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: cur ? 'var(--gold)' : past ? 'var(--panel)' : 'transparent',
         fg: cur ? 'var(--ongold)' : past ? 'var(--ink)' : 'var(--soft)', weight: cur ? '800' : past ? '700' : '500',
