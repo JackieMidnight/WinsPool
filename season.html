@@ -146,11 +146,17 @@ class Component extends DCLogic {
     var C = ['Nicole', 'Luke', 'Virginia', 'Jack', 'Caleb', 'Court', 'Drew', 'Mike'];
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, self2 = {};
-    C.forEach(function (c) { pts[c] = 0; self2[c] = 0; C.forEach(function (d) { h2h[c + '|' + d] = [0, 0]; }); });
+    C.forEach(function (c) { pts[c] = 0; self2[c] = 0; C.forEach(function (d) { h2h[c + '|' + d] = [0, 0, 0]; }); });
     var rankHist = {}; C.forEach(function (c) { rankHist[c] = []; });
     var order = C.slice();
     weeks.forEach(function (games) {
       games.forEach(function (g) {
+        if (g.as === g.hs) { // a tie: half a point to each coach
+          var oa = OWN[g.a], oh = OWN[g.h];
+          pts[oa] += 0.5; pts[oh] += 0.5;
+          if (oa === oh) self2[oa] += 1; else { h2h[oa + '|' + oh][2] += 1; h2h[oh + '|' + oa][2] += 1; }
+          return;
+        }
         var win = g.as > g.hs ? g.a : g.h, lose = g.as > g.hs ? g.h : g.a;
         var ow = OWN[win], ol = OWN[lose];
         pts[ow] += 1;
@@ -184,9 +190,9 @@ class Component extends DCLogic {
     var grid = display.map(function (r) {
       return { name: r, nameColor: r === sel ? 'var(--gold)' : 'var(--ink)', cells: display.map(function (c) {
         if (r === c) return { t: '—', bg: 'transparent', fg: 'var(--soft)', border: '1px solid transparent' };
-        var wl = h2h[r + '|' + c], w = wl[0], l = wl[1];
-        if (w + l === 0) return { t: '', bg: 'transparent', fg: 'var(--soft)', border: '1px dashed var(--line)' };
-        return { t: w + '-' + l, border: '1px solid transparent',
+        var wl = h2h[r + '|' + c], w = wl[0], l = wl[1], t = wl[2];
+        if (w + l + t === 0) return { t: '', bg: 'transparent', fg: 'var(--soft)', border: '1px dashed var(--line)' };
+        return { t: w + '-' + l + (t ? '-' + t : ''), border: '1px solid transparent',
           bg: w > l ? 'color-mix(in srgb, var(--up) 30%, var(--panel))' : w < l ? 'color-mix(in srgb, var(--dn) 22%, var(--panel))' : 'var(--track)',
           fg: w < l ? 'var(--soft)' : 'var(--ink)' };
       }) };

@@ -148,10 +148,17 @@ class Component extends DCLogic {
 
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, selfGames = {}, rec = {}, log = {};
-    C.forEach(function (c) { pts[c] = 0; selfGames[c] = 0; C.forEach(function (d) { h2h[c + '|' + d] = [0, 0]; }); });
-    Object.keys(OWN).forEach(function (t) { rec[t] = [0, 0]; log[t] = []; });
+    C.forEach(function (c) { pts[c] = 0; selfGames[c] = 0; C.forEach(function (d) { h2h[c + '|' + d] = [0, 0, 0]; }); });
+    Object.keys(OWN).forEach(function (t) { rec[t] = [0, 0, 0]; log[t] = []; });
     weeks.forEach(function (games, wi) {
       games.forEach(function (g) {
+        if (g.as === g.hs) { // a tie: half a point to each coach
+          rec[g.a][2]++; rec[g.h][2]++; pts[OWN[g.a]] += 0.5; pts[OWN[g.h]] += 0.5;
+          log[g.a].push({ wk: 'Wk ' + (wi + 1), res: 'T ' + g.as + '-' + g.hs, opp: '@ ' + g.h, color: 'var(--ink)' });
+          log[g.h].push({ wk: 'Wk ' + (wi + 1), res: 'T ' + g.hs + '-' + g.as, opp: 'vs ' + g.a, color: 'var(--ink)' });
+          if (OWN[g.a] === OWN[g.h]) selfGames[OWN[g.a]]++; else { h2h[OWN[g.a] + '|' + OWN[g.h]][2]++; h2h[OWN[g.h] + '|' + OWN[g.a]][2]++; }
+          return;
+        }
         var awayWon = g.as > g.hs, win = awayWon ? g.a : g.h, lose = awayWon ? g.h : g.a;
         rec[win][0]++; rec[lose][1]++; pts[OWN[win]]++;
         log[g.a].push({ wk: 'Wk ' + (wi + 1), res: (awayWon ? 'W ' : 'L ') + g.as + '-' + g.hs, opp: '@ ' + g.h, color: awayWon ? 'var(--up)' : 'var(--soft)' });
@@ -159,7 +166,6 @@ class Component extends DCLogic {
         if (OWN[win] === OWN[lose]) selfGames[OWN[win]]++; else { h2h[OWN[win] + '|' + OWN[lose]][0]++; h2h[OWN[lose] + '|' + OWN[win]][1]++; }
       });
     });
-    var nWeeks = weeks.length;
     var display = ['Drew', 'Jack', 'Mike', 'Nicole', 'Virginia', 'Luke', 'Caleb', 'Court'];
     var lead = Math.max.apply(null, C.map(function (c) { return pts[c]; }));
     var better = C.filter(function (c) { return pts[c] > pts[sel]; }).length;
@@ -173,10 +179,11 @@ class Component extends DCLogic {
     var i = C.indexOf(sel);
     var ch = WIN[i] - W2[i];
     var teams = ROSTER[sel].map(function (t) {
-      var pace = rec[t][0] / nWeeks * 17, d = pace - VEGAS[t];
+      var won = rec[t][0] + rec[t][2] / 2, played = rec[t][0] + rec[t][1] + rec[t][2];
+      var pace = won / played * 17, d = pace - VEGAS[t];
       var nx = NEXT.filter(function (g) { return g.a === t || g.h === t; })[0];
       var opp = nx && (nx.a === t ? nx.h : nx.a), oppOwner = nx && OWN[opp];
-      return { abbr: t, nick: NICK[t], rec: rec[t][0] + '-' + rec[t][1], games: log[t], pts: rec[t][0],
+      return { abbr: t, nick: NICK[t], rec: rec[t][0] + '-' + rec[t][1] + (rec[t][2] ? '-' + rec[t][2] : ''), games: log[t], pts: won,
         pace: pace.toFixed(1), vegas: VEGAS[t], diff: (d >= 0 ? '+' : '') + d.toFixed(1), diffColor: d >= 0 ? 'var(--up)' : 'var(--soft)',
         bye: BYE[t], next: nx ? 'Week 5 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + oppOwner + ') · ' + nx.day : 'Bye in Week 5' };
     });
@@ -186,7 +193,7 @@ class Component extends DCLogic {
     }).sort(function (x, y) { return y.d - x.d; }).slice(0, 3);
     var vs = display.filter(function (c) { return c !== sel; }).map(function (c) {
       var wl = h2h[sel + '|' + c];
-      return { name: c, rec: wl[0] + wl[1] ? wl[0] + '-' + wl[1] : 'Not yet', color: wl[0] > wl[1] ? 'var(--up)' : wl[0] < wl[1] ? 'var(--soft)' : 'var(--ink)' };
+      return { name: c, rec: wl[0] + wl[1] + wl[2] ? wl[0] + '-' + wl[1] + (wl[2] ? '-' + wl[2] : '') : 'Not yet', color: wl[0] > wl[1] ? 'var(--up)' : wl[0] < wl[1] ? 'var(--soft)' : 'var(--ink)' };
     });
     var sg = selfGames[sel];
     var chips = display.map(function (c) {
