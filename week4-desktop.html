@@ -292,7 +292,7 @@ class Component extends DCLogic {
     var weeks = [];
     for (var n = 1; n <= 18; n++) {
       var past = n <= 6, cur = n === 4;
-      weeks.push({ n: n, href: cur ? 'week4-desktop.html' : (n === 3 || n === 5) ? 'week' + n + '-desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
+      weeks.push({ n: n, href: cur ? 'week4-desktop.html' : (n === 3 || n === 5 || n === 6) ? 'week' + n + '-desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
         border: cur ? '1px solid var(--gold)' : past ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: cur ? 'var(--gold)' : past ? 'var(--panel)' : 'transparent',
         fg: cur ? 'var(--ongold)' : past ? 'var(--ink)' : 'var(--soft)', weight: cur ? '800' : past ? '700' : '500',
