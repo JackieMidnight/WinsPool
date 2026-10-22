@@ -150,7 +150,7 @@ class Component extends DCLogic {
     var games = CONF.map(function (g) {
       var a = g[1], h = g[2], oa = OWN[a], oh = OWN[h];
       return { label: g[0], a: NICK[a], ao: oa, ab: '+' + bank[a], h: NICK[h], ho: oh, hb: '+' + bank[h],
-        note: oa === oh ? oa + ' owns both, so he banks +3 either way.' : (oa === 'Jack' ? 'Me' : oa) + ' vs ' + (oh === 'Jack' ? 'me' : oh) + '. The winner also gets a shot at +5.' };
+        note: oa === oh ? oa + ' owns both, so ' + (['Court', 'Virginia', 'Nicole'].indexOf(oa) >= 0 ? 'she' : 'he') + ' banks +3 either way.' : (oa === 'Jack' ? 'Me' : oa) + ' vs ' + (oh === 'Jack' ? 'me' : oh) + '. The winner also gets a shot at +5.' };
     });
     var chip = function (t) { return { t: t, o: OWN[t] }; };
     return { modeClass: 'pwp-' + mode, rows: rows, games: games, wc: WC.map(chip), div: DIV.map(chip) };
