@@ -141,7 +141,7 @@ class Component extends DCLogic {
       '/PIT CLE 24 27,IND WAS 30 13,NE BUF 29 26,ARI NYG 24 36,NYJ CHI 12 23,TEN BAL 18 24,GB TB 17 14,DAL HOU 34 30,JAX CIN 22 17,LAR PHI 24 20,MIA MIN 10 15,DEN SF 14 24,LAC SEA 23 30,KC LV 30 27,DET CAR 26 32,ATL NO 45 24' +
       '/TB DAL 24 16,PHI JAX 17 19,CHI GB 7 31,HOU TEN 26 3,CIN MIA 31 24,LV NE 17 45,MIN NO 23 13,CLE NYJ 12 17,IND PIT 22 34,NYG WAS 27 27,DEN LAC 23 17,DET ARI 45 21,SF SEA 32 29,BAL ATL 30 23,BUF LAR 37 34' +
       '/SEA DEN 14 17,HOU JAX 34 31,NYJ NE 19 26,PIT TB 26 19,CAR PHI 25 14,CHI ATL 31 23,TEN IND 26 20,NO NYG 34 27,BAL CLE 10 13,ARI LAR 18 16,LAC KC 6 22,BUF LV 33 30,DAL GB 13 23,WAS SF 17 23' +
-      '/NE CHI 24 30,PIT NO 16 10,CLE TEN 27 24,MIA NYJ 28 25,IND MIN 10 16,CIN BAL 35 13,NYG HOU 27 21,TB CAR 43 13,SF ATL 20 29,DEN ARI 30 16,LAR LV 35 21,GB DET 17 20';
+      '/NE CHI 24 30,PIT NO 16 10,CLE TEN 27 24,MIA NYJ 28 25,IND MIN 10 16,CIN BAL 35 13,NYG HOU 27 21,TB CAR 43 13,SF ATL 20 29,DEN ARI 30 16,LAR LV 35 21,GB DET 17 20,KC SEA 3 20';
     var NEXT = 'Thu 8:15|NE|CHI,Sun 9:30 a.m.|PIT|NO,Sun 1:00|CLE|TEN,Sun 1:00|MIA|NYJ,Sun 1:00|IND|MIN,Sun 1:00|CIN|BAL,Sun 1:00|NYG|HOU,Sun 1:00|TB|CAR,Sun 1:00|SF|ATL,Sun 4:05|DEN|ARI,Sun 4:25|LAR|LV,Sun 4:25|GB|DET,Sun 8:20|KC|SEA,Mon 8:15|DAL|PHI'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
     // Title-odds model output after Week 6, written by tools/odds.py (win chance now, a week ago, 10th and 90th percentile final score), coach order as C.
     // LEV: for each NEXT game in order, odds if the away team wins, then if the home team wins.
