@@ -291,7 +291,7 @@ class Component extends DCLogic {
     ].map(function (g) { return { day: g[0], a: g[1], ac: g[2], ar: rec[g[1]], h: '@ ' + g[3], hc: g[4], hr: rec[g[3]] }; });
     var weeks = [];
     for (var n = 1; n <= 18; n++) {
-      var past = n <= 7, cur = n === 4;
+      var past = n <= 8, cur = n === 4;
       weeks.push({ n: n, href: cur ? 'week4-desktop.html' : (n === 3 || n === 5 || n === 6) ? 'week' + n + '-desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
         border: cur ? '1px solid var(--gold)' : past ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: cur ? 'var(--gold)' : past ? 'var(--panel)' : 'transparent',
