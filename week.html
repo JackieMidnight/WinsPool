@@ -166,12 +166,12 @@ class Component extends DCLogic {
       '/TB DAL 24 16,PHI JAX 17 19,CHI GB 7 31,HOU TEN 26 3,CIN MIA 31 24,LV NE 17 45,MIN NO 23 13,CLE NYJ 12 17,IND PIT 22 34,NYG WAS 27 27,DEN LAC 23 17,DET ARI 45 21,SF SEA 32 29,BAL ATL 30 23,BUF LAR 37 34' +
       '/SEA DEN 14 17,HOU JAX 34 31,NYJ NE 19 26,PIT TB 26 19,CAR PHI 25 14,CHI ATL 31 23,TEN IND 26 20,NO NYG 34 27,BAL CLE 10 13,ARI LAR 18 16,LAC KC 6 22,BUF LV 33 30,DAL GB 13 23,WAS SF 17 23' +
       '/NE CHI 24 30,PIT NO 16 10,CLE TEN 27 24,MIA NYJ 28 25,IND MIN 10 16,CIN BAL 35 13,NYG HOU 27 21,TB CAR 43 13,SF ATL 20 29,DEN ARI 30 16,LAR LV 35 21,GB DET 17 20,KC SEA 3 20,DAL PHI 38 21' +
-      '/CAR GB 19 27';
+      '/CAR GB 19 27,TEN CIN 36 43,IND JAX 7 42,CLE PIT 6 27,BAL BUF 10 36,ATL TB 0 16,MIN DET 15 19,ARI DAL 33 30,LV NYJ 38 33';
     // A week in progress lists its unplayed games here, e.g. 5: [['Thu 8:15', 'TB', 'DAL'], ...].
     // When the week is over, add its last games to RESULTS and empty its PENDING entry.
     // The next week can be listed here before any of its games are final.
     var PENDING = {
-      8: [['Sun 1:00', 'TEN', 'CIN'], ['Sun 1:00', 'IND', 'JAX'], ['Sun 1:00', 'CLE', 'PIT'], ['Sun 1:00', 'BAL', 'BUF'], ['Sun 1:00', 'ATL', 'TB'], ['Sun 1:00', 'MIN', 'DET'], ['Sun 1:00', 'ARI', 'DAL'], ['Sun 1:00', 'LV', 'NYJ'], ['Sun 4:05', 'LAC', 'LAR'], ['Sun 4:25', 'KC', 'DEN'], ['Sun 4:25', 'NE', 'MIA'], ['Sun 8:20', 'PHI', 'WAS'], ['Mon 8:15', 'CHI', 'SEA']]
+      8: [['Sun 4:05', 'LAC', 'LAR'], ['Sun 4:25', 'KC', 'DEN'], ['Sun 4:25', 'NE', 'MIA'], ['Sun 8:20', 'PHI', 'WAS'], ['Mon 8:15', 'CHI', 'SEA']]
     };
     var INFO = [
       { headline: 'Luke and Drew open 3-1', posted: 'Tuesday, Sep 15' },
