@@ -101,7 +101,7 @@ class Component extends DCLogic {
       '/TB DAL 24 16,PHI JAX 17 19,CHI GB 7 31,HOU TEN 26 3,CIN MIA 31 24,LV NE 17 45,MIN NO 23 13,CLE NYJ 12 17,IND PIT 22 34,NYG WAS 27 27,DEN LAC 23 17,DET ARI 45 21,SF SEA 32 29,BAL ATL 30 23,BUF LAR 37 34' +
       '/SEA DEN 14 17,HOU JAX 34 31,NYJ NE 19 26,PIT TB 26 19,CAR PHI 25 14,CHI ATL 31 23,TEN IND 26 20,NO NYG 34 27,BAL CLE 10 13,ARI LAR 18 16,LAC KC 6 22,BUF LV 33 30,DAL GB 13 23,WAS SF 17 23' +
       '/NE CHI 24 30,PIT NO 16 10,CLE TEN 27 24,MIA NYJ 28 25,IND MIN 10 16,CIN BAL 35 13,NYG HOU 27 21,TB CAR 43 13,SF ATL 20 29,DEN ARI 30 16,LAR LV 35 21,GB DET 17 20,KC SEA 3 20,DAL PHI 38 21' +
-      '/CAR GB 19 27,TEN CIN 36 43,IND JAX 7 42,CLE PIT 6 27,BAL BUF 10 36,ATL TB 0 16,MIN DET 15 19,ARI DAL 33 30,LV NYJ 38 33';
+      '/CAR GB 19 27,TEN CIN 36 43,IND JAX 7 42,CLE PIT 6 27,BAL BUF 10 36,ATL TB 0 16,MIN DET 15 19,ARI DAL 33 30,LV NYJ 38 33,LAC LAR 9 24,KC DEN 24 28,NE MIA 24 19';
     var rec = {}, gp = {};
     Object.keys(OWN).forEach(function (t) { rec[t] = [0, 0, 0]; gp[t] = 0; });
     RESULTS.split('/').forEach(function (w) {
@@ -111,7 +111,7 @@ class Component extends DCLogic {
         if (as === hs) { rec[a][2]++; rec[h][2]++; } else { var win = as > hs ? a : h, lose = as > hs ? h : a; rec[win][0]++; rec[lose][1]++; }
       });
     });
-    var display = ['Virginia', 'Drew', 'Jack', 'Mike', 'Luke', 'Nicole', 'Caleb', 'Court'];
+    var display = ['Virginia', 'Drew', 'Caleb', 'Jack', 'Nicole', 'Mike', 'Luke', 'Court'];
     var teams = Object.keys(OWN).map(function (t) {
       var pts = rec[t][0] + rec[t][2] * 0.5, pace = pts / gp[t] * 17, d = pace - VEGAS[t];
       return { t: t, pts: pts, pace: pace, d: d, owner: OWN[t] };
