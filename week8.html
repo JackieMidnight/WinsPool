@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+// Paint the right background before the page renders: the saved theme, else light on wide screens and dark on phones.
+try { document.documentElement.setAttribute('data-theme', localStorage.getItem('pwp-theme') || (window.matchMedia('(min-width: 1024px)').matches ? 'light' : 'dark')); } catch (e) {}
+</script>
+<title>Philly Wins Pool, Week 8 write-up</title>
+<script>
+(function () {
+  var wide = window.matchMedia('(min-width: 1024px)');
+  var go = function () { if (wide.matches && !window.matchMedia('print').matches) location.replace('week8-desktop.html'); };
+  go();
+  if (wide.addEventListener) wide.addEventListener('change', go); else if (wide.addListener) wide.addListener(go);
+})();
+</script>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Libre+Franklin:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Libre Franklin",system-ui,-apple-system,"Segoe UI",sans-serif;background:#0A1F14}
+a{color:#C9A24B}a:hover{color:#E2BE6A}
+.pwp-dark{--bg:#0A1F14;--panel:#102A1B;--panel2:#0D2518;--ink:#EFEDE0;--soft:#9DB5A4;--line:#1D4530;--gold:#C9A24B;--goldsoft:rgba(201,162,75,.16);--up:#9CCB55;--dn:#8A9C90;--track:#1B3A27;--chip:#163A26;--ongold:#0A1F14}
+.pwp-light{--bg:#EEF2EA;--panel:#FFFFFF;--panel2:#F6F8F3;--ink:#0C2418;--soft:#4A6353;--line:#C7D6C7;--gold:#8A6B1C;--goldsoft:rgba(138,107,28,.12);--up:#2E6A1E;--dn:#66786C;--track:#DBE3D9;--chip:#E3EADF;--ongold:#FFFFFF}
+html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{background:#0A1F14}
+</style>
+<script src="support.js?v=6" defer></script>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-template">
+<div class="{{modeClass}}" style="width: 100%; max-width: 480px; min-height: 100vh; margin: 0 auto; box-sizing: border-box; background: var(--bg); color: var(--ink); display: flex; flex-direction: column; font-size: 16px; line-height: 1.5">
+
+<header style="display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 16px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink)">
+<svg width="26" height="31" viewBox="0 0 60 72" aria-hidden="true"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="4"></path><ellipse cx="30" cy="37" rx="13" ry="8" fill="#9A5530" transform="rotate(-28 30 37)"></ellipse><path d="M24 40.5 L36 33.5" stroke="#F4F1E4" stroke-width="2"></path></svg>
+<span style="font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-size: 21px; letter-spacing: .03em; line-height: 1">PHILLY WINS POOL</span>
+</a>
+<button type="button" aria-label="Switch to light mode" style="margin-left: auto; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--soft); cursor: pointer">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+</button>
+</header>
+
+<nav aria-label="Site sections" style="display: flex; gap: 2px; overflow-x: auto; padding: 0 8px; border-bottom: 1px solid var(--line)">
+<a href="index.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">This week</a>
+<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Season</a>
+<a href="coaches.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Coaches</a>
+<a href="teams.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Teams</a>
+<a href="rosters.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rosters</a>
+<a href="rules.html" style="flex: none; display: flex; align-items: center; min-height: 46px; padding: 0 10px; font-size: 14px; font-weight: 600; color: var(--soft); text-decoration: none">Rules</a>
+</nav>
+
+<div role="group" aria-label="Pick a week" style="display: flex; align-items: center; gap: 6px; overflow-x: auto; padding: 10px 16px; border-bottom: 1px solid var(--line)">
+<span style="flex: none; font-size: 12.5px; font-weight: 700; color: var(--soft); margin-right: 2px">Week</span>
+<a href="week.html?w=1" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">1</a>
+<a href="week.html?w=2" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">2</a>
+<a href="week3.html" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">3</a>
+<a href="week4.html" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">4</a>
+<a href="week5.html" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">5</a>
+<a href="week6.html" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">6</a>
+<a href="week7.html" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">7</a>
+<a href="week8.html" aria-current="page" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--gold); border-radius: 6px; background: var(--gold); color: var(--ongold); font-weight: 800; font-size: 15px; text-decoration: none">8</a>
+<a href="week.html?w=9" aria-label="Week 9, in progress" style="flex: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px dashed var(--gold); border-radius: 6px; background: var(--panel); color: var(--ink); font-weight: 700; font-size: 15px; text-decoration: none">9</a>
+<a href="season.html" style="flex: none; display: flex; align-items: center; min-height: 44px; padding: 0 6px 0 8px; font-size: 13.5px; font-weight: 700; color: var(--gold); text-decoration: none">All weeks</a>
+</div>
+
+<section aria-labelledby="wk-title" style="position: relative; overflow: hidden; background-color: #0A1F14; background-image: radial-gradient(ellipse at 6% -6%, rgba(255,248,214,.13), transparent 42%), radial-gradient(ellipse at 94% -6%, rgba(255,248,214,.13), transparent 42%), repeating-linear-gradient(90deg, rgba(239,237,224,.045) 0 1px, transparent 1px 39px); color: #EFEDE0; padding: 24px 16px 22px; border-bottom: 4px solid #C9A24B; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: flex-start; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px; flex-grow: 1; min-width: 0">
+<span style="font-size: 13.5px; font-weight: 700; color: #C9A24B; letter-spacing: .02em">Week 8 · Final · Posted Tuesday, Nov 3</span>
+<h1 id="wk-title" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 56px; line-height: .95; letter-spacing: .005em; text-wrap: balance">Virginia takes first</h1>
+</div>
+<svg width="54" height="65" viewBox="0 0 60 72" aria-hidden="true" style="flex: none; margin-top: 4px"><path d="M30 3 L56 11 V35 C56 52 45 62 30 69 C15 62 4 52 4 35 V11 Z" fill="#14452C" stroke="#C9A24B" stroke-width="3"></path><path d="M30 9 L50 15 V35 C50 48 42 56 30 62 C18 56 10 48 10 35 V15 Z" fill="none" stroke="#9CCB55" stroke-opacity=".45" stroke-width="1"></path><ellipse cx="30" cy="35" rx="12" ry="7.5" fill="#9A5530" transform="rotate(-28 30 35)"></ellipse><path d="M24.5 38.5 L35.5 31.5" stroke="#F4F1E4" stroke-width="1.6"></path><path d="M27 34 L29 37.5 M29.5 32.6 L31.5 36 M32 31.2 L34 34.6" stroke="#F4F1E4" stroke-width="1.2"></path><rect x="18" y="49" width="24" height="9" rx="2" fill="#0A1F14" stroke="#C9A24B" stroke-width="1"></rect><text x="30" y="56.2" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="7" fill="#EFEDE0" letter-spacing=".6">2026</text></svg>
+</div>
+<p style="margin: 0; font-size: 16.5px; line-height: 1.5; color: #C3D2C7; text-wrap: pretty">Virginia went 3-1, beat Drew twice and leads on her own for the first time this season, by a point. Drew went 1-3. Nicole’s 3-1 moved her up to third, and Mike went 0-2 with two teams on bye and fell to sixth.</p>
+
+<svg width="358" height="30" viewBox="0 0 358 40" preserveAspectRatio="none" aria-hidden="true" style="display: block; margin-bottom: -12px"><path d="M0 40 V30 H14 V22 H26 V30 H34 V16 H48 V26 H58 V12 H64 V5 H66 V12 H72 V28 H84 V20 H98 V30 H110 V14 H118 V4 H121 V14 H128 V26 H142 V18 H156 V30 H168 V22 H178 V8 H181 V1 H183 V8 H186 V22 H196 V28 H210 V16 H224 V26 H236 V10 H244 V26 H256 V20 H270 V30 H282 V18 H290 V12 H300 V24 H314 V28 H326 V20 H338 V30 H358 V40 Z" fill="#1D4530"></path></svg>
+<div role="group" aria-label="Standings after Week 8" style="position: relative; background: #051109; border: 1px solid #1D4530; border-radius: 6px; padding: 4px 12px 2px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid #1D4530; font-size: 12.5px; color: #8FA898"><span style="font-weight: 700; color: #C9A24B">Standings after Week 8</span><span>Final</span></div>
+<div style="display: grid; grid-template-columns: 30px minmax(0, 1fr) 44px 48px 36px; gap: 8px; padding: 7px 0 3px; font-size: 11px; color: #8FA898"><span></span><span>Coach and teams</span><span style="text-align: right">Wk 8</span><span style="text-align: right">Pts</span><span style="text-align: right">Move</span></div>
+<sc-for list="{{standings}}" as="r" hint-placeholder-count="8">
+<div style="display: grid; grid-template-columns: 30px minmax(0, 1fr) 44px 48px 36px; gap: 8px; align-items: center; height: 54px; border-top: 1px solid #12301F">
+<span style="font-family: Anton, Impact, sans-serif; font-size: 16px; color: #8FA898; text-align: right">{{r.rk}}</span>
+<span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 16px; font-weight: 700; color: {{r.nameColor}}">{{r.name}}</b><small style="font-size: 11.5px; color: #8FA898; letter-spacing: .04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.teams}}</small></span>
+<span style="font-size: 13px; color: #C3D2C7; text-align: right; font-variant-numeric: tabular-nums">{{r.wk}}</span>
+<span style="font-family: Anton, Impact, sans-serif; font-size: 32px; line-height: 1; text-align: right; color: {{r.ptsColor}}; font-variant-numeric: tabular-nums">{{r.pts}}</span>
+<span aria-label="{{r.mvLabel}}" style="font-size: 12px; font-weight: 700; text-align: right; white-space: nowrap; color: {{r.mvColor}}">{{r.mv}}</span>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 12.5px; line-height: 1.45; color: #8FA898">Big number is total points. Arrows are places moved since Week 7. Tied coaches share a rank.</p>
+<a href="rules.html" style="display: flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14.5px; font-weight: 700; color: #C9A24B; text-decoration: none">First time here? How scoring works<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</section>
+
+<section aria-label="Share" style="padding: 20px 16px 0">
+<div style="display: flex; gap: 14px; align-items: center; padding: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
+<div aria-hidden="true" style="flex: none; width: 64px; height: 85px; border-radius: 4px; background: #0A1F14; border: 2px solid #C9A24B; display: flex; flex-direction: column; gap: 4px; padding: 7px 6px">
+<div style="height: 6px; width: 34px; background: #C9A24B; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .8; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .55; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .55; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .55; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .55; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .55; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .55; border-radius: 1px"></div>
+<div style="height: 4px; background: #EFEDE0; opacity: .55; border-radius: 1px"></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; min-width: 0">
+<div style="display: flex; flex-direction: column"><b style="font-size: 15.5px">Standings for the group text</b><span style="font-size: 13.5px; color: var(--soft)">An image sized for iMessage, plus a text version.</span></div>
+<div style="display: flex; gap: 8px">
+<a href="share.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 14px; border-radius: 6px; background: var(--gold); color: var(--ongold); font-size: 14px; font-weight: 800; text-decoration: none">Save image</a>
+<button type="button" style="min-height: 44px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel2); color: var(--ink); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Copy text</button>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-labelledby="notes-h" style="padding: 38px 16px 0; display: flex; flex-direction: column">
+<h2 id="notes-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">How everyone's week went</h2>
+<p style="margin: 6px 0 4px; font-size: 14.5px; color: var(--soft)">In standings order. The chip is each coach's record for the week.</p>
+
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Virginia</b><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--gold); color: var(--ongold)">3-1</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px; color: var(--gold)">19 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">First place, alone. Buffalo beat Drew’s Ravens 36-10, Tampa Bay beat his Falcons 16-0 without completing a pass, and Joe Burrow threw five touchdowns and ran in the overtime winner as Cincinnati beat Luke’s Titans 43-36. Only Cleveland lost, 27-6 in Pittsburgh.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Drew</b><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--chip); color: var(--ink)">1-3</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px">18 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">Vikings-Lions was his own game, and Detroit won it 19-15 on Jared Goff’s touchdown to Jameson Williams with 4:35 left, so Minnesota isn’t unbeaten anymore. Baltimore lost by 26 in Buffalo, and Atlanta was shut out in Tampa. A point behind Virginia.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Nicole</b><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--chip); color: var(--ink)">3-1</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px">16 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">Chicago won 34-17 in Seattle on Monday night, and the Rams beat Court’s Chargers 24-9. Arizona beat her own Cowboys 33-30 in overtime after Dallas led by two touchdowns in the fourth quarter, so that point was hers either way. Up to third.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Caleb</b><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--chip); color: var(--ink)">2-1</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px">15 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">Denver sacked Patrick Mahomes on fourth-and-goal on the last play to beat Mike’s Chiefs 28-24, and New England won 24-19 in Miami. The Jets lost 38-33 to my Raiders. The Saints were on bye.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Jack</b><span style="font-size: 12px; color: var(--soft)">(me)</span><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--chip); color: var(--ink)">2-2</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px">15 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">Green Bay beat Mike’s Panthers 27-19 on Thursday night, and the Raiders ended a four-game losing streak, 38-33 at the Jets. Then the Colts lost 42-7 in Jacksonville, and Seattle lost 34-17 at home to Nicole’s Bears on Monday night. Still tied for fourth.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Mike</b><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--chip); color: var(--ink)">0-2</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px">14.5 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">Houston and the Giants were off, and the two teams that played both lost. Kansas City got to the Denver 1-yard line and lost 28-24 when Malcolm Roach sacked Mahomes on the final play, and Carolina lost 27-19 in Green Bay. Third to sixth.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Luke</b><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--chip); color: var(--ink)">2-2</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px">14 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">Jacksonville beat my Colts 42-7, and Pittsburgh beat Virginia’s Browns 27-6. Tennessee led Cincinnati 36-29 with under four minutes left and lost in overtime, and the Eagles gave up 27 straight points in Washington. That’s six losses in a row for Philadelphia.</p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line)">
+<div style="display: flex; align-items: center; gap: 8px"><b style="font-size: 16.5px">Court</b><span style="font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 4px; background: var(--chip); color: var(--ink)">1-2</span><span style="margin-left: auto; font-family: Anton, Impact, sans-serif; font-size: 20px">9.5 pts</span></div>
+<p style="margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--soft); text-wrap: pretty">Washington scored the last 27 points to beat Luke’s Eagles 27-10 on Sunday night, its second win of the season. The Chargers are 0-7 after losing 24-9 to Nicole’s Rams, and Miami lost 24-19 to Caleb’s Patriots. San Francisco was on bye.</p>
+</article>
+</section>
+
+<section aria-labelledby="ledger-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 id="ledger-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Head-to-head ledger</h2>
+<p style="margin: 0; font-size: 14.5px; color: var(--soft)">All 32 teams are owned, so every game is one of us against another. The winner's coach gets the point.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{ledger}}" as="g" hint-placeholder-count="16">
+<div style="background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px 8px; display: flex; flex-direction: column; gap: 1px; min-width: 0">
+<span style="font-size: 11px; color: var(--soft); margin-bottom: 2px">{{g.day}}</span>
+<div style="display: grid; grid-template-columns: 38px minmax(0, 1fr) 24px; gap: 4px; align-items: baseline; font-size: 13.5px"><b style="letter-spacing: .02em; color: {{g.aColor}}">{{g.a}}</b><span style="color: {{g.aColor}}; font-weight: {{g.aWeight}}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{g.ac}}</span><span style="font-family: Anton, Impact, sans-serif; font-size: 16px; text-align: right; color: {{g.aColor}}">{{g.as}}</span></div>
+<div style="display: grid; grid-template-columns: 38px minmax(0, 1fr) 24px; gap: 4px; align-items: baseline; font-size: 13.5px"><b style="letter-spacing: .02em; color: {{g.hColor}}">{{g.h}}</b><span style="color: {{g.hColor}}; font-weight: {{g.hWeight}}; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{g.hc}}</span><span style="font-family: Anton, Impact, sans-serif; font-size: 16px; text-align: right; color: {{g.hColor}}">{{g.hs}}</span></div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="awards-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
+<h2 id="awards-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Weekly awards</h2>
+<span style="font-size: 12.5px; color: var(--soft)">Swipe for all 7</span>
+</div>
+<div style="display: flex; gap: 10px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 10px; scroll-snap-type: x mandatory">
+<article style="flex: 0 0 272px; scroll-snap-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--gold)">Virginia</span>
+<h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1">Zero completions</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: var(--soft)">Tampa Bay beat Drew’s Falcons 16-0 while Baker Mayfield went 0 for 3. The Bucs ran for 324 yards, and nobody had won by double digits without a completion since 1945.</p>
+</article>
+<article style="flex: 0 0 272px; scroll-snap-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--gold)">Drew</span>
+<h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1">No more unbeatens</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: var(--soft)">Detroit handed his own Vikings their first loss, 19-15, so there are no undefeated teams left. He’s second, a point back.</p>
+</article>
+<article style="flex: 0 0 272px; scroll-snap-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--gold)">Nicole</span>
+<h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1">Hers either way</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: var(--soft)">Arizona missed a go-ahead extra point with six seconds left, then Chad Ryland hit a 42-yarder in overtime to beat Dallas 33-30. Both teams are hers.</p>
+</article>
+<article style="flex: 0 0 272px; scroll-snap-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--gold)">Caleb</span>
+<h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1">Fourth-and-goal</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: var(--soft)">Kansas City got the ball down four with 1:56 left and reached the Denver 1. Malcolm Roach sacked Mahomes on the last play, and the Broncos are 6-2 and first in the AFC West.</p>
+</article>
+<article style="flex: 0 0 272px; scroll-snap-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--gold)">Luke</span>
+<h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1">92 yards</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: var(--soft)">Rayuan Lane returned an interception 92 yards for a touchdown as Jacksonville beat my Colts 42-7. Pittsburgh beat the Browns 27-6.</p>
+</article>
+<article style="flex: 0 0 272px; scroll-snap-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--gold)">Court</span>
+<h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1">27 straight</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: var(--soft)">Washington trailed the Eagles 10-0 and won 27-10, with four Drew Stevens field goals. The Chargers are 0-7.</p>
+</article>
+<article style="flex: 0 0 272px; scroll-snap-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 15px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12.5px; font-weight: 700; color: var(--gold)">Me</span>
+<h3 style="margin: 0; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: 22px; line-height: 1.1">Thursday and Sunday</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.45; color: var(--soft)">Packers on Thursday night, Raiders on Sunday, sealed by Jeremy Chinn’s end-zone interception with 14 seconds left. Then 42-7 in Jacksonville and a Monday night loss to Nicole.</p>
+</article>
+</div>
+</section>
+
+<section aria-labelledby="next-h" style="padding: 30px 16px 0; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 id="next-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Week 9 preview</h2>
+<p style="margin: 0; font-size: 14.5px; color: var(--soft)">Kicks off Thursday night, and Sunday starts with a 9:30 a.m. game. Pittsburgh and Tennessee are on bye, so it’s 15 games. Times are Eastern.</p>
+</div>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px">
+<li style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; background: var(--goldsoft); border-radius: 6px">
+<span style="font-size: 12px; font-weight: 800; color: var(--gold); letter-spacing: .03em">ONE POINT AGAIN</span>
+<span style="font-size: 14.5px; line-height: 1.45">Virginia leads Drew by a point, and they meet twice more: the Bengals at the Falcons Sunday morning and the Bills at the Vikings on Monday night.</span>
+</li>
+<li style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
+<span style="font-size: 12px; font-weight: 800; color: var(--gold); letter-spacing: .03em">LUKE’S TWO</span>
+<span style="font-size: 14.5px; line-height: 1.45">Pittsburgh and Tennessee are off, so Luke plays with two: the Jaguars at Drew’s Ravens on Thursday night and the Giants at his Eagles.</span>
+</li>
+<li style="display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px">
+<span style="font-size: 12px; font-weight: 800; color: var(--gold); letter-spacing: .03em">NICOLE TWICE</span>
+<span style="font-size: 14.5px; line-height: 1.45">I’m a point behind Nicole, and I play her twice: the Cowboys at my Colts and the Cardinals at my Seahawks.</span>
+</li>
+</ol>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{nextWeek}}" as="g" hint-placeholder-count="16">
+<div style="background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px 8px; display: flex; flex-direction: column; gap: 1px; min-width: 0">
+<span style="font-size: 11px; color: var(--soft); margin-bottom: 2px">{{g.day}}</span>
+<div style="display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 4px; align-items: baseline; font-size: 13.5px"><b style="letter-spacing: .02em; white-space: nowrap">{{g.a}}</b><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{g.ac}}</span><span style="font-size: 12px; color: var(--soft)">{{g.ar}}</span></div>
+<div style="display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 4px; align-items: baseline; font-size: 13.5px"><b style="letter-spacing: .02em; white-space: nowrap">{{g.h}}</b><span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{g.hc}}</span><span style="font-size: 12px; color: var(--soft)">{{g.hr}}</span></div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="bye-h" style="padding: 34px 16px 0; display: flex; flex-direction: column; gap: 10px">
+<h2 id="bye-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 30px; line-height: 1.05">Bye watch</h2>
+<p style="margin: 0; font-size: 15px">Pittsburgh and Tennessee are off in Week 9, and both are Luke’s, so he plays this week with two teams.</p>
+<div style="display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 6px; background: var(--panel)">
+<div style="display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; align-items: start; padding: 12px 14px; border-bottom: 1px solid var(--line)">
+<span style="font-size: 13px; font-weight: 800; color: var(--soft); padding-top: 3px">Week 10</span>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>CHI</b> Nicole</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>DEN</b> Caleb</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>PHI</b> Luke</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>TB</b> Virginia</span></div>
+<span style="font-size: 13.5px; color: var(--soft)">Four teams off, one each for four coaches.</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 10px; align-items: start; padding: 12px 14px">
+<span style="font-size: 13px; font-weight: 800; color: var(--soft); padding-top: 3px">Week 11</span>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>ATL</b> Drew</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>CLE</b> Virginia</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>GB</b> Jack</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>LAR</b> Nicole</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>NE</b> Caleb</span><span style="font-size: 13px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px"><b>SEA</b> Jack</span></div>
+<span style="font-size: 13.5px; color: var(--soft)">I lose the Packers and Seahawks in the same week.</span>
+</div>
+</div>
+</div>
+<a href="rosters.html" style="display: flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 700; text-decoration: none">Full bye map for the season</a>
+</section>
+
+<footer style="margin-top: auto; padding: 40px 16px 44px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; border-top: 1px solid var(--line)">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: .06em; color: var(--soft)">QUOTE OF THE SEASON</span>
+<span style="font-family: Anton, Impact, sans-serif; font-size: 36px; line-height: 1.1; color: var(--gold)">“WE LOVE AI”</span>
+<span style="font-size: 14px; font-style: italic; color: var(--soft)">Luke Eisenhardt</span>
+<span style="margin-top: 22px; font-size: 12.5px; color: var(--soft)">Filed by Jackie Ternus, commissioner. Scores from NFL.com and FootballDB.</span>
+<span style="font-size: 11.5px; font-weight: 700; letter-spacing: .08em; color: var(--up)">FOUR TEAMS. ONE GOAL. BRAGGING RIGHTS FOR A YEAR.</span>
+</footer>
+</div>
+</template>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Theme"},"$preview":{"width":390,"height":4900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var mode = this.props.mode ?? 'dark';
+    // One week's data. Posting a new week means swapping these rows, not redesigning the page.
+    var standings = [
+      ["1", "Virginia", "BUF CIN TB CLE", "3-1", 19, 1],
+      ["2", "Drew", "BAL DET MIN ATL", "1-3", 18, -1],
+      ["3", "Nicole", "LAR CHI DAL ARI", "3-1", 16, 1],
+      ["T4", "Caleb", "DEN NE NO NYJ", "2-1", 15, 0],
+      ["T4", "Jack", "SEA GB IND LV", "2-2", 15, 0],
+      ["6", "Mike", "HOU KC NYG CAR", "0-2", 14.5, -3],
+      ["7", "Luke", "PHI JAX PIT TEN", "2-2", 14, 0],
+      ["8", "Court", "SF LAC WAS MIA", "1-2", 9.5, 0]
+    ].map(function (s, i) {
+      var mv = s[5];
+      return {
+        rk: s[0], name: s[1], teams: s[2], wk: s[3], pts: s[4],
+        nameColor: i === 0 ? '#C9A24B' : '#EFEDE0',
+        ptsColor: i === 0 ? '#C9A24B' : '#EFEDE0',
+        mv: mv > 0 ? '▲' + mv : mv < 0 ? '▼' + (-mv) : '–',
+        mvColor: mv > 0 ? '#9CCB55' : '#8FA898',
+        mvLabel: mv > 0 ? 'up ' + mv : mv < 0 ? 'down ' + (-mv) : 'no change'
+      };
+    });
+    var ledger = [
+      ["Thu", "CAR", "Mike", 19, "GB", "Jack", 27],
+      ["Sun", "TEN", "Luke", 36, "CIN", "Virginia", 43],
+      ["Sun", "IND", "Jack", 7, "JAX", "Luke", 42],
+      ["Sun", "CLE", "Virginia", 6, "PIT", "Luke", 27],
+      ["Sun", "BAL", "Drew", 10, "BUF", "Virginia", 36],
+      ["Sun", "ATL", "Drew", 0, "TB", "Virginia", 16],
+      ["Sun", "MIN", "Drew", 15, "DET", "Drew", 19],
+      ["Sun", "ARI", "Nicole", 33, "DAL", "Nicole", 30],
+      ["Sun", "LV", "Jack", 38, "NYJ", "Caleb", 33],
+      ["Sun", "LAC", "Court", 9, "LAR", "Nicole", 24],
+      ["Sun", "KC", "Mike", 24, "DEN", "Caleb", 28],
+      ["Sun", "NE", "Caleb", 24, "MIA", "Court", 19],
+      ["Sun night", "PHI", "Luke", 10, "WAS", "Court", 27],
+      ["Mon night", "CHI", "Nicole", 34, "SEA", "Jack", 17]
+    ].map(function (g) {
+      var tie = g[3] === g[6], aw = g[3] > g[6]; // a tie is half a point to each coach
+      return {
+        day: g[0], a: g[1], ac: g[2] + (tie ? '  +½' : aw ? '  +1' : ''), as: g[3], h: g[4], hc: g[5] + (tie ? '  +½' : aw ? '' : '  +1'), hs: g[6],
+        aColor: aw || tie ? 'var(--ink)' : 'var(--soft)', hColor: !aw || tie ? 'var(--ink)' : 'var(--soft)',
+        aWeight: aw && !tie ? '700' : '400', hWeight: !aw && !tie ? '700' : '400'
+      };
+    });
+    var rec = { LAR: "4-4", CHI: "6-2", DAL: "3-5", ARI: "3-5", PHI: "2-6", JAX: "5-2", PIT: "6-2", TEN: "1-7", BUF: "6-1", CIN: "5-2", TB: "3-5", CLE: "5-3", SEA: "4-4", GB: "5-3", IND: "2-6", LV: "4-4", DEN: "6-2", NE: "5-3", NO: "2-5", NYJ: "2-6", SF: "6-1", LAC: "0-7", WAS: "2-4-1", MIA: "1-6", BAL: "4-4", DET: "5-2", MIN: "6-1", ATL: "3-5", HOU: "2-5", KC: "5-2", NYG: "4-2-1", CAR: "3-4" };
+    // Week 9 schedule. Teams not listed are on bye.
+    var nextWeek = [
+      ["Thu 8:15", "JAX", "Luke", "BAL", "Drew"],
+      ["Sun 9:30 a.m.", "CIN", "Virginia", "ATL", "Drew"],
+      ["Sun 1:00", "NYJ", "Caleb", "KC", "Mike"],
+      ["Sun 1:00", "CLE", "Virginia", "NO", "Caleb"],
+      ["Sun 1:00", "DEN", "Caleb", "CAR", "Mike"],
+      ["Sun 1:00", "DAL", "Nicole", "IND", "Jack"],
+      ["Sun 1:00", "DET", "Drew", "MIA", "Court"],
+      ["Sun 1:00", "NYG", "Mike", "PHI", "Luke"],
+      ["Sun 1:00", "LAR", "Nicole", "WAS", "Court"],
+      ["Sun 4:05", "HOU", "Mike", "LAC", "Court"],
+      ["Sun 4:25", "LV", "Jack", "SF", "Court"],
+      ["Sun 4:25", "ARI", "Nicole", "SEA", "Jack"],
+      ["Sun 4:25", "GB", "Jack", "NE", "Caleb"],
+      ["Sun 8:20", "TB", "Virginia", "CHI", "Nicole"],
+      ["Mon 8:15", "BUF", "Virginia", "MIN", "Drew"]
+    ].map(function (g) {
+      return { day: g[0], a: g[1], ac: g[2], ar: rec[g[1]], h: '@ ' + g[3], hc: g[4], hr: rec[g[3]] };
+    });
+    return { modeClass: 'pwp-' + mode, standings: standings, ledger: ledger, nextWeek: nextWeek };
+  }
+}
+</script>
+</body>
+</html>
