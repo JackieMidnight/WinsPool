@@ -48,10 +48,15 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 <p style="margin: 0; font-size: 15px; color: var(--soft)">Every Tuesday update stays here. Tap a week to reopen it exactly as it went out.</p>
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px">
-<a href="week.html?w=9" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border: 1px dashed var(--gold); border-radius: 6px; text-decoration: none; color: var(--ink)">
-<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700; color: var(--soft)">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px">9</span></span>
-<span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 16px">Live standings so far</b><span style="font-size: 13px; color: var(--soft)">Games Nov 5–9 · Write-up posts Tuesday, Nov 10</span></span>
+<a href="week.html?w=10" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border: 1px dashed var(--gold); border-radius: 6px; text-decoration: none; color: var(--ink)">
+<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700; color: var(--soft)">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px">10</span></span>
+<span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 16px">Live standings so far</b><span style="font-size: 13px; color: var(--soft)">Games Nov 12–16 · Write-up posts Tuesday, Nov 17</span></span>
 <span style="font-size: 11.5px; font-weight: 800; padding: 3px 7px; border-radius: 4px; border: 1px solid var(--gold); color: var(--gold)">IN PROGRESS</span>
+</a>
+<a href="week.html?w=9" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink)">
+<span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700; color: var(--soft)">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px">9</span></span>
+<span style="display: flex; flex-direction: column; min-width: 0"><b style="font-size: 16px">Week 9 so far</b><span style="font-size: 13px; color: var(--soft)">Games Nov 5–9 · Leader: Virginia, 21</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--soft)"><path d="M9 6l6 6-6 6"></path></svg>
 </a>
 <a href="week8.html" style="display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; text-decoration: none; color: var(--ink)">
 <span style="display: flex; flex-direction: column; align-items: center; line-height: 1"><span style="font-size: 11px; font-weight: 700; color: var(--soft)">WEEK</span><span style="font-family: Anton, Impact, sans-serif; font-size: 30px">8</span></span>
@@ -167,7 +172,7 @@ class Component extends DCLogic {
       '/SEA DEN 14 17,HOU JAX 34 31,NYJ NE 19 26,PIT TB 26 19,CAR PHI 25 14,CHI ATL 31 23,TEN IND 26 20,NO NYG 34 27,BAL CLE 10 13,ARI LAR 18 16,LAC KC 6 22,BUF LV 33 30,DAL GB 13 23,WAS SF 17 23' +
       '/NE CHI 24 30,PIT NO 16 10,CLE TEN 27 24,MIA NYJ 28 25,IND MIN 10 16,CIN BAL 35 13,NYG HOU 27 21,TB CAR 43 13,SF ATL 20 29,DEN ARI 30 16,LAR LV 35 21,GB DET 17 20,KC SEA 3 20,DAL PHI 38 21' +
       '/CAR GB 19 27,TEN CIN 36 43,IND JAX 7 42,CLE PIT 6 27,BAL BUF 10 36,ATL TB 0 16,MIN DET 15 19,ARI DAL 33 30,LV NYJ 38 33,LAC LAR 9 24,KC DEN 24 28,NE MIA 24 19,PHI WAS 10 27,CHI SEA 34 17' +
-      '/JAX BAL 33 10,CIN ATL 34 17,NYJ KC 12 35,CLE NO 22 23,DEN CAR 26 21,DAL IND 27 23,DET MIA 19 9,NYG PHI 19 11,LAR WAS 20 13,LV SF 17 38,HOU LAC 44 22,ARI SEA 3 17,GB NE 45 27,TB CHI 24 27';
+      '/JAX BAL 33 10,CIN ATL 34 17,NYJ KC 12 35,CLE NO 22 23,DEN CAR 26 21,DAL IND 27 23,DET MIA 19 9,NYG PHI 19 11,LAR WAS 20 13,LV SF 17 38,HOU LAC 44 22,ARI SEA 3 17,GB NE 45 27,TB CHI 24 27,BUF MIN 23 6';
     var C = ['Nicole', 'Luke', 'Virginia', 'Jack', 'Caleb', 'Court', 'Drew', 'Mike'];
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, self2 = {};
