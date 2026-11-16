@@ -144,13 +144,13 @@ class Component extends DCLogic {
       '/NE CHI 24 30,PIT NO 16 10,CLE TEN 27 24,MIA NYJ 28 25,IND MIN 10 16,CIN BAL 35 13,NYG HOU 27 21,TB CAR 43 13,SF ATL 20 29,DEN ARI 30 16,LAR LV 35 21,GB DET 17 20,KC SEA 3 20,DAL PHI 38 21' +
       '/CAR GB 19 27,TEN CIN 36 43,IND JAX 7 42,CLE PIT 6 27,BAL BUF 10 36,ATL TB 0 16,MIN DET 15 19,ARI DAL 33 30,LV NYJ 38 33,LAC LAR 9 24,KC DEN 24 28,NE MIA 24 19,PHI WAS 10 27,CHI SEA 34 17' +
       '/JAX BAL 33 10,CIN ATL 34 17,NYJ KC 12 35,CLE NO 22 23,DEN CAR 26 21,DAL IND 27 23,DET MIA 19 9,NYG PHI 19 11,LAR WAS 20 13,LV SF 17 38,HOU LAC 44 22,ARI SEA 3 17,GB NE 45 27,TB CHI 24 27,BUF MIN 23 6' +
-      '/WAS NYG 24 21,NE DET 10 35,CAR NO 20 17,HOU CLE 24 27,BUF NYJ 31 12,MIA IND 22 24,JAX TEN 40 23,KC ATL 35 13,MIN GB 30 10';
-    var NEXT = 'Sun 4:05|SEA|LV,Sun 4:05|LAR|ARI,Sun 4:25|SF|DAL,Sun 8:20|PIT|CIN,Mon 8:15|LAC|BAL'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
+      '/WAS NYG 24 21,NE DET 10 35,CAR NO 20 17,HOU CLE 24 27,BUF NYJ 31 12,MIA IND 22 24,JAX TEN 40 23,KC ATL 35 13,MIN GB 30 10,SEA LV 21 13,LAR ARI 34 6,SF DAL 46 40';
+    var NEXT = 'Sun 8:20|PIT|CIN,Mon 8:15|LAC|BAL'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
     // Title-odds model output after Week 9, written by tools/odds.py (win chance now, a week ago, 10th and 90th percentile final score), coach order as C.
     // LEV: for each NEXT game in order, odds if the away team wins, then if the home team wins.
     var WIN = [6.5, 3.4, 53.8, 1.8, 5.3, 0.0, 16.9, 12.3], W2 = [4.4, 3.2, 49.1, 1.5, 4.6, 0.1, 28.2, 8.8];
     var P10 = [32, 30, 41, 29, 31, 22.5, 36, 33.5], P90 = [46, 42, 56, 40, 44, 35.5, 50, 48.5];
-    var LEV = [[[6.5,3.5,54.0,1.9,5.2,0.0,16.7,12.2],[6.3,3.4,53.6,1.5,5.5,0.0,17.2,12.4]],[[6.7,3.4,53.7,1.8,5.3,0.0,16.8,12.3],[5.8,3.4,54.2,1.7,5.4,0.0,17.2,12.3]],[[5.6,3.6,54.4,1.7,5.3,0.0,16.7,12.6],[8.1,3.2,52.8,1.9,5.3,0.0,17.2,11.7]],[[7.0,5.2,47.4,2.0,6.1,0.0,18.8,13.4],[6.1,2.3,58.0,1.6,4.8,0.0,15.6,11.6]],[[6.2,3.8,56.2,1.8,5.7,0.0,13.4,12.8],[6.5,3.3,53.2,1.8,5.2,0.0,17.8,12.2]]];
+    var LEV = [[[7.0,5.2,47.4,2.0,6.1,0.0,18.8,13.4],[6.1,2.3,58.0,1.6,4.8,0.0,15.6,11.6]],[[6.2,3.8,56.2,1.8,5.7,0.0,13.4,12.8],[6.5,3.3,53.2,1.8,5.2,0.0,17.8,12.2]]];
 
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, selfGames = {}, rec = {}, log = {};
@@ -172,7 +172,7 @@ class Component extends DCLogic {
         if (OWN[win] === OWN[lose]) selfGames[OWN[win]]++; else { h2h[OWN[win] + '|' + OWN[lose]][0]++; h2h[OWN[lose] + '|' + OWN[win]][1]++; }
       });
     });
-    var display = ['Virginia', 'Drew', 'Mike', 'Nicole', 'Jack', 'Caleb', 'Luke', 'Court'];
+    var display = ['Virginia', 'Drew', 'Nicole', 'Mike', 'Jack', 'Caleb', 'Luke', 'Court'];
     var done = {};
     weeks[weeks.length - 1].forEach(function (g) { done[g.a] = done[g.h] = 1; });
     var lead = Math.max.apply(null, C.map(function (c) { return pts[c]; }));
