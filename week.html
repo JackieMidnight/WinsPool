@@ -168,12 +168,12 @@ class Component extends DCLogic {
       '/NE CHI 24 30,PIT NO 16 10,CLE TEN 27 24,MIA NYJ 28 25,IND MIN 10 16,CIN BAL 35 13,NYG HOU 27 21,TB CAR 43 13,SF ATL 20 29,DEN ARI 30 16,LAR LV 35 21,GB DET 17 20,KC SEA 3 20,DAL PHI 38 21' +
       '/CAR GB 19 27,TEN CIN 36 43,IND JAX 7 42,CLE PIT 6 27,BAL BUF 10 36,ATL TB 0 16,MIN DET 15 19,ARI DAL 33 30,LV NYJ 38 33,LAC LAR 9 24,KC DEN 24 28,NE MIA 24 19,PHI WAS 10 27,CHI SEA 34 17' +
       '/JAX BAL 33 10,CIN ATL 34 17,NYJ KC 12 35,CLE NO 22 23,DEN CAR 26 21,DAL IND 27 23,DET MIA 19 9,NYG PHI 19 11,LAR WAS 20 13,LV SF 17 38,HOU LAC 44 22,ARI SEA 3 17,GB NE 45 27,TB CHI 24 27,BUF MIN 23 6' +
-      '/WAS NYG 24 21,NE DET 10 35,CAR NO 20 17,HOU CLE 24 27,BUF NYJ 31 12,MIA IND 22 24,JAX TEN 40 23,KC ATL 35 13,MIN GB 30 10,SEA LV 21 13,LAR ARI 34 6,SF DAL 46 40,PIT CIN 18 38';
+      '/WAS NYG 24 21,NE DET 10 35,CAR NO 20 17,HOU CLE 24 27,BUF NYJ 31 12,MIA IND 22 24,JAX TEN 40 23,KC ATL 35 13,MIN GB 30 10,SEA LV 21 13,LAR ARI 34 6,SF DAL 46 40,PIT CIN 18 38,LAC BAL 23 20';
     // A week in progress lists its unplayed games here, e.g. 5: [['Thu 8:15', 'TB', 'DAL'], ...].
     // When the week is over, add its last games to RESULTS and empty its PENDING entry.
     // The next week can be listed here before any of its games are final.
     var PENDING = {
-      10: [['Mon 8:15', 'LAC', 'BAL']]
+      11: [['Thu 8:15', 'IND', 'HOU'], ['Sun 1:00', 'BAL', 'CAR'], ['Sun 1:00', 'NO', 'CHI'], ['Sun 1:00', 'TB', 'DET'], ['Sun 1:00', 'MIA', 'BUF'], ['Sun 4:25', 'JAX', 'NYG'], ['Sun 1:00', 'TEN', 'DAL'], ['Sun 1:00', 'ARI', 'KC'], ['Sun 4:05', 'NYJ', 'LAC'], ['Sun 1:00', 'PIT', 'PHI'], ['Sun 4:25', 'LV', 'DEN'], ['Sun 8:20', 'MIN', 'SF'], ['Mon 8:15', 'CIN', 'WAS']]
     };
     var INFO = [
       { headline: 'Luke and Drew open 3-1', posted: 'Tuesday, Sep 15' },
@@ -185,10 +185,11 @@ class Component extends DCLogic {
       { headline: 'Virginia moves up to second', posted: 'Tuesday, Oct 27' },
       { headline: 'Virginia takes first', posted: 'Tuesday, Nov 3' },
       { headline: 'Week 9 so far', posted: '' },
-      { headline: 'Week 10 so far', posted: '' }
+      { headline: 'Week 10 so far', posted: '' },
+      { headline: 'Week 11 so far', posted: '' }
     ];
     var POSTED = 8; // the week the home page's write-up covers
-    var SEASON_WEEKS = 18, SHOWN_WEEKS = 10;
+    var SEASON_WEEKS = 18, SHOWN_WEEKS = 11;
     var OWN = {}; Object.keys(ROSTER).forEach(function (c) { ROSTER[c].forEach(function (t) { OWN[t] = c; }); });
     var C = Object.keys(ROSTER);
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
@@ -262,7 +263,7 @@ class Component extends DCLogic {
         border: cur ? 'var(--gold)' : 'var(--line)', bg: cur ? 'var(--gold)' : 'var(--panel)', fg: cur ? 'var(--ongold)' : 'var(--ink)', weight: cur ? '800' : '700' });
     }
 
-    var CURRENT = 10; // the week "This week" opens (keep in step with index.html)
+    var CURRENT = 11; // the week "This week" opens (keep in step with index.html)
     var deskWeeks = [];
     for (var d = 1; d <= SEASON_WEEKS; d++) {
       var dcur = d === wk, dpast = d <= latest;
