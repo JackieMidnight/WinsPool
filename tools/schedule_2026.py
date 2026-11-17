@@ -34,6 +34,7 @@ NEUTRAL = {
     7: {("PIT", "NO")},           # Paris
     9: {("CIN", "ATL")},          # Madrid
     10: {("NE", "DET")},          # 9:30 a.m. ET game
+    11: {("MIN", "SF")},          # Mexico City
 }
 
 DIVISIONS = {
