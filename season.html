@@ -179,7 +179,7 @@ class Component extends DCLogic {
       '/CAR GB 19 27,TEN CIN 36 43,IND JAX 7 42,CLE PIT 6 27,BAL BUF 10 36,ATL TB 0 16,MIN DET 15 19,ARI DAL 33 30,LV NYJ 38 33,LAC LAR 9 24,KC DEN 24 28,NE MIA 24 19,PHI WAS 10 27,CHI SEA 34 17' +
       '/JAX BAL 33 10,CIN ATL 34 17,NYJ KC 12 35,CLE NO 22 23,DEN CAR 26 21,DAL IND 27 23,DET MIA 19 9,NYG PHI 19 11,LAR WAS 20 13,LV SF 17 38,HOU LAC 44 22,ARI SEA 3 17,GB NE 45 27,TB CHI 24 27,BUF MIN 23 6' +
       '/WAS NYG 24 21,NE DET 10 35,CAR NO 20 17,HOU CLE 24 27,BUF NYJ 31 12,MIA IND 22 24,JAX TEN 40 23,KC ATL 35 13,MIN GB 30 10,SEA LV 21 13,LAR ARI 34 6,SF DAL 46 40,PIT CIN 18 38,LAC BAL 23 20' +
-      '/IND HOU 3 26';
+      '/IND HOU 3 26,BAL CAR 33 35,NO CHI 13 21,TB DET 21 31,MIA BUF 9 26,TEN DAL 30 51,ARI KC 7 34,PIT PHI 16 19';
     var C = ['Nicole', 'Luke', 'Virginia', 'Jack', 'Caleb', 'Court', 'Drew', 'Mike'];
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, self2 = {};
@@ -206,7 +206,7 @@ class Component extends DCLogic {
       });
     });
     // standings order; tied coaches are alphabetical, matching week.html
-    var display = ['Virginia', 'Drew', 'Mike', 'Nicole', 'Jack', 'Caleb', 'Luke', 'Court'];
+    var display = ['Virginia', 'Mike', 'Drew', 'Nicole', 'Jack', 'Caleb', 'Luke', 'Court'];
     var sel = st.sel || 'Drew';
     var n = weeks.length, L = 34, R = 28, T = 14, step = 28;
     var xAt = function (i) { return n === 1 ? L : L + i * (356 - L - R) / (n - 1); };
