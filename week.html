@@ -185,11 +185,11 @@ class Component extends DCLogic {
       { headline: 'Mike closes to a half', posted: 'Tuesday, Oct 20' },
       { headline: 'Virginia moves up to second', posted: 'Tuesday, Oct 27' },
       { headline: 'Virginia takes first', posted: 'Tuesday, Nov 3' },
-      { headline: 'Week 9 so far', posted: '' },
-      { headline: 'Week 10 so far', posted: '' },
-      { headline: 'Week 11 so far', posted: '' }
+      { headline: 'Virginia leads by two', posted: 'Tuesday, Nov 10' },
+      { headline: 'Virginia stretches it to three', posted: 'Tuesday, Nov 17' },
+      { headline: 'Mike’s perfect week cuts it to 1.5', posted: 'Tuesday, Nov 24' }
     ];
-    var POSTED = 8; // the week the home page's write-up covers
+    var POSTED = 11; // the week the home page's write-up covers
     var SEASON_WEEKS = 18, SHOWN_WEEKS = 11;
     var OWN = {}; Object.keys(ROSTER).forEach(function (c) { ROSTER[c].forEach(function (t) { OWN[t] = c; }); });
     var C = Object.keys(ROSTER);
@@ -260,7 +260,7 @@ class Component extends DCLogic {
     var weekChips = [];
     for (var n = 1; n <= Math.min(SHOWN_WEEKS, SEASON_WEEKS); n++) {
       var cur = n === wk, played = n <= latest;
-      weekChips.push({ n: n, link: played, future: !played, href: (n >= 3 && n <= POSTED) ? 'week' + n + '.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
+      weekChips.push({ n: n, link: played, future: !played, href: (n >= 1 && n <= POSTED) ? 'week' + n + '.html' : 'week.html?w=' + n, current: cur ? 'page' : 'false',
         border: cur ? 'var(--gold)' : 'var(--line)', bg: cur ? 'var(--gold)' : 'var(--panel)', fg: cur ? 'var(--ongold)' : 'var(--ink)', weight: cur ? '800' : '700' });
     }
 
@@ -268,7 +268,7 @@ class Component extends DCLogic {
     var deskWeeks = [];
     for (var d = 1; d <= SEASON_WEEKS; d++) {
       var dcur = d === wk, dpast = d <= latest;
-      deskWeeks.push({ n: d, href: dcur ? 'week.html?w=' + d : (d >= 3 && d <= POSTED) ? 'week' + d + '.html' : dpast ? 'week.html?w=' + d : 'season.html', current: dcur ? 'page' : 'false',
+      deskWeeks.push({ n: d, href: dcur ? 'week.html?w=' + d : (d >= 1 && d <= POSTED) ? 'week' + d + '.html' : dpast ? 'week.html?w=' + d : 'season.html', current: dcur ? 'page' : 'false',
         border: dcur ? '1px solid var(--gold)' : dpast ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: dcur ? 'var(--gold)' : dpast ? 'var(--panel)' : 'transparent',
         fg: dcur ? 'var(--ongold)' : dpast ? 'var(--ink)' : 'var(--soft)', weight: dcur ? '800' : dpast ? '700' : '500',
