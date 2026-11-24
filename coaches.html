@@ -146,7 +146,7 @@ class Component extends DCLogic {
       '/JAX BAL 33 10,CIN ATL 34 17,NYJ KC 12 35,CLE NO 22 23,DEN CAR 26 21,DAL IND 27 23,DET MIA 19 9,NYG PHI 19 11,LAR WAS 20 13,LV SF 17 38,HOU LAC 44 22,ARI SEA 3 17,GB NE 45 27,TB CHI 24 27,BUF MIN 23 6' +
       '/WAS NYG 24 21,NE DET 10 35,CAR NO 20 17,HOU CLE 24 27,BUF NYJ 31 12,MIA IND 22 24,JAX TEN 40 23,KC ATL 35 13,MIN GB 30 10,SEA LV 21 13,LAR ARI 34 6,SF DAL 46 40,PIT CIN 18 38,LAC BAL 23 20' +
       '/IND HOU 3 26,BAL CAR 33 35,NO CHI 13 21,TB DET 21 31,MIA BUF 9 26,JAX NYG 18 23,TEN DAL 30 51,ARI KC 7 34,NYJ LAC 27 24,PIT PHI 16 19,LV DEN 24 38,MIN SF 10 35,CIN WAS 20 22';
-    var NEXT = 'Wed Nov 25|GB|LAR,Week 12|CHI|DET,Week 12|PHI|DAL,Week 12|KC|BUF,Week 12|DEN|PIT,Week 12|NO|CIN,Week 12|BAL|HOU,Week 12|NYG|IND,Week 12|LV|CLE,Week 12|ATL|MIN,Week 12|NYJ|MIA,Week 12|TEN|JAX,Week 12|SEA|SF,Week 12|WAS|ARI,Week 12|NE|LAC,Week 12|CAR|TB'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
+    var NEXT = 'Wed 8:00|GB|LAR,Thu 1:00|CHI|DET,Thu 4:30|PHI|DAL,Thu 8:20|KC|BUF,Fri 3:00|DEN|PIT,Sun 1:00|NO|CIN,Sun 1:00|BAL|HOU,Sun 1:00|NYG|IND,Sun 8:20|LV|CLE,Sun 1:00|ATL|MIN,Sun 1:00|NYJ|MIA,Sun 1:00|TEN|JAX,Sun 4:25|SEA|SF,Sun 4:25|WAS|ARI,Sun 4:05|NE|LAC,Mon 8:15|CAR|TB'.split(',').map(function (g) { var f = g.split('|'); return { day: f[0], a: f[1], h: f[2] }; });
     // Title-odds model output after Week 11, written by tools/odds.py (win chance now, a week ago, 10th and 90th percentile final score), coach order as C.
     // LEV: for each NEXT game in order, odds if the away team wins, then if the home team wins.
     var WIN = [5.1, 1.0, 59.7, 0.6, 3.1, 0.2, 10.8, 19.5], W2 = [4.1, 1.9, 67.4, 0.8, 1.9, 0.1, 14.4, 9.4];
@@ -174,8 +174,6 @@ class Component extends DCLogic {
       });
     });
     var display = ['Virginia', 'Mike', 'Drew', 'Nicole', 'Caleb', 'Jack', 'Luke', 'Court'];
-    var done = {};
-    weeks[weeks.length - 1].forEach(function (g) { done[g.a] = done[g.h] = 1; });
     var lead = Math.max.apply(null, C.map(function (c) { return pts[c]; }));
     var better = C.filter(function (c) { return pts[c] > pts[sel]; }).length;
     var tied = C.some(function (c) { return c !== sel && pts[c] === pts[sel]; });
@@ -194,14 +192,12 @@ class Component extends DCLogic {
       var opp = nx && (nx.a === t ? nx.h : nx.a), oppOwner = nx && OWN[opp];
       return { abbr: t, nick: NICK[t], rec: rec[t][0] + '-' + rec[t][1] + (rec[t][2] ? '-' + rec[t][2] : ''), games: log[t], pts: won,
         pace: pace.toFixed(1), vegas: VEGAS[t], diff: (d >= 0 ? '+' : '') + d.toFixed(1), diffColor: d >= 0 ? 'var(--up)' : 'var(--soft)',
-        bye: BYE[t], next: (nx && !(done[nx.a] && done[nx.h])) ? 'Week 12 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + oppOwner + ')' + (nx.day === 'Week 12' ? '' : ' · ' + nx.day) : done[t] ? 'Played Week 11' : 'Bye in Week 11' };
+        bye: BYE[t], next: nx ? 'Week 12 ' + (nx.a === t ? '@ ' : 'vs ') + NICK[opp] + ' (' + oppOwner + ') · ' + nx.day : 'Bye in Week 12' };
     });
     var rooting = LEV.map(function (g, gi) {
-      var nx = NEXT[gi];
-      if (!nx || (done[nx.a] && done[nx.h])) return null;
-      var d = g[0][i] - g[1][i];
+      var d = g[0][i] - g[1][i], nx = NEXT[gi];
       return { d: Math.abs(d), label: NICK[d > 0 ? nx.a : nx.h] + ' over ' + NICK[d > 0 ? nx.h : nx.a], swing: Math.abs(d).toFixed(1) };
-    }).filter(Boolean).sort(function (x, y) { return y.d - x.d; }).slice(0, 3);
+    }).sort(function (x, y) { return y.d - x.d; }).slice(0, 3);
     var vs = display.filter(function (c) { return c !== sel; }).map(function (c) {
       var wl = h2h[sel + '|' + c];
       return { name: c, rec: wl[0] + wl[1] + wl[2] ? wl[0] + '-' + wl[1] + (wl[2] ? '-' + wl[2] : '') : 'Not yet', color: wl[0] > wl[1] ? 'var(--up)' : wl[0] < wl[1] ? 'var(--soft)' : 'var(--ink)' };

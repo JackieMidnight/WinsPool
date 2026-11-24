@@ -169,7 +169,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 </section>
 
 <section aria-labelledby="dnext-h" style="display: flex; flex-direction: column; gap: 16px">
-<div style="display: flex; align-items: baseline; gap: 16px"><h2 id="dnext-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 36px; line-height: 1.05">Week 12 preview</h2><span style="font-size: 15px; color: var(--soft)">Opens Wednesday, Nov 25: my Packers at Nicole’s Rams. No teams are on bye, so it’s 16 games.</span></div>
+<div style="display: flex; align-items: baseline; gap: 16px"><h2 id="dnext-h" style="margin: 0; font-family: Anton, Impact, 'Arial Narrow', sans-serif; font-weight: 400; font-size: 36px; line-height: 1.05">Week 12 preview</h2><span style="font-size: 15px; color: var(--soft)">Opens Wednesday at 8:00, Packers at Rams. No teams are on bye, so it’s 16 games. Times are Eastern.</span></div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
 <div style="display: flex; flex-direction: column; gap: 4px; padding: 15px 17px; background: var(--goldsoft); border-radius: 8px"><span style="font-size: 12px; font-weight: 800; color: var(--gold); letter-spacing: .04em">A GAME AND A HALF</span><span style="font-size: 15px; line-height: 1.5">Mike is 1.5 back of Virginia, and they meet twice: his Chiefs at her Bills, and his Panthers at her Buccaneers.</span></div><div style="display: flex; flex-direction: column; gap: 4px; padding: 15px 17px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px"><span style="font-size: 12px; font-weight: 800; color: var(--gold); letter-spacing: .04em">WEDNESDAY</span><span style="font-size: 15px; line-height: 1.5">Nicole is three points ahead of me, at 22 to my 19, and we open the week: Packers at Rams.</span></div><div style="display: flex; flex-direction: column; gap: 4px; padding: 15px 17px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px"><span style="font-size: 12px; font-weight: 800; color: var(--gold); letter-spacing: .04em">TWO BUILT-IN POINTS</span><span style="font-size: 15px; line-height: 1.5">Drew’s Falcons are at his Vikings, and Luke’s Titans are at his Jaguars. Each of those points stays home.</span></div></div>
 <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
@@ -258,22 +258,22 @@ class Component extends DCLogic {
     var rec = { ARI: "3-8", ATL: "3-7", BAL: "4-7", BUF: "9-1", CAR: "5-5", CHI: "8-2", CIN: "7-3", CLE: "6-4", DAL: "5-6", DEN: "8-2", DET: "8-2", GB: "6-4", HOU: "4-6", IND: "3-8", JAX: "7-3", KC: "8-2", LAC: "1-9", LAR: "6-4", LV: "4-7", MIA: "1-9", MIN: "7-3", NE: "5-5", NO: "3-7", NYG: "6-3-1", NYJ: "3-8", PHI: "3-7", PIT: "6-4", SEA: "6-4", SF: "9-1", TB: "3-7", TEN: "1-9", WAS: "4-5-1" };
     // Week 11 schedule. Teams not listed are on bye.
     var nextWeek = [
-      ["Wednesday", "GB", "Jack", "LAR", "Nicole"],
-      ["Week 12", "CHI", "Nicole", "DET", "Drew"],
-      ["Week 12", "PHI", "Luke", "DAL", "Nicole"],
-      ["Week 12", "KC", "Mike", "BUF", "Virginia"],
-      ["Week 12", "DEN", "Caleb", "PIT", "Luke"],
-      ["Week 12", "NO", "Caleb", "CIN", "Virginia"],
-      ["Week 12", "BAL", "Drew", "HOU", "Mike"],
-      ["Week 12", "NYG", "Mike", "IND", "Jack"],
-      ["Week 12", "LV", "Jack", "CLE", "Virginia"],
-      ["Week 12", "ATL", "Drew", "MIN", "Drew"],
-      ["Week 12", "NYJ", "Caleb", "MIA", "Court"],
-      ["Week 12", "TEN", "Luke", "JAX", "Luke"],
-      ["Week 12", "SEA", "Jack", "SF", "Court"],
-      ["Week 12", "WAS", "Court", "ARI", "Nicole"],
-      ["Week 12", "NE", "Caleb", "LAC", "Court"],
-      ["Week 12", "CAR", "Mike", "TB", "Virginia"]
+      ["Wednesday 8:00", "GB", "Jack", "LAR", "Nicole"],
+      ["Thursday 1:00", "CHI", "Nicole", "DET", "Drew"],
+      ["Thursday 4:30", "PHI", "Luke", "DAL", "Nicole"],
+      ["Thursday 8:20", "KC", "Mike", "BUF", "Virginia"],
+      ["Friday 3:00", "DEN", "Caleb", "PIT", "Luke"],
+      ["Sunday 1:00", "NO", "Caleb", "CIN", "Virginia"],
+      ["Sunday 1:00", "BAL", "Drew", "HOU", "Mike"],
+      ["Sunday 1:00", "NYG", "Mike", "IND", "Jack"],
+      ["Sunday 1:00", "ATL", "Drew", "MIN", "Drew"],
+      ["Sunday 1:00", "NYJ", "Caleb", "MIA", "Court"],
+      ["Sunday 1:00", "TEN", "Luke", "JAX", "Luke"],
+      ["Sunday 4:05", "NE", "Caleb", "LAC", "Court"],
+      ["Sunday 4:25", "SEA", "Jack", "SF", "Court"],
+      ["Sunday 4:25", "WAS", "Court", "ARI", "Nicole"],
+      ["Sunday 8:20", "LV", "Jack", "CLE", "Virginia"],
+      ["Monday 8:15", "CAR", "Mike", "TB", "Virginia"]
     ].map(function (g) { return { day: g[0], a: g[1], ac: g[2], ar: rec[g[1]], h: '@ ' + g[3], hc: g[4], hr: rec[g[3]] }; });
     var weeks = [];
     for (var n = 1; n <= 18; n++) {
