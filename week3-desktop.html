@@ -218,7 +218,7 @@ class Component extends DCLogic {
       ['8', 'Court', 'SF LAC WAS MIA', '2-2', 4, 0]
     ];
     var notesText = {
-      Drew: 'Four for four, the first perfect week anyone has had. Atlanta ran all over my Packers on Thursday, Baltimore won in Rio, and first place is his alone.',
+      Drew: 'Four for four, the first perfect week anyone has had. Atlanta ran all over my Packers on Thursday, Baltimore won in Dallas, and first place is his alone.',
       Virginia: 'Buffalo won through five turnovers and Cleveland beat Carolina on a go-ahead touchdown pass. Cincinnati lost on a last-drive strip-sack in Pittsburgh, and Tampa Bay is 0-3.',
       Jack: 'The Raiders are 3-0 on a 5.5-win total, and the Colts won on a 53-yard kick. Seattle outgained Washington by 179 yards and still lost.',
       Mike: 'Kansas City is 3-0 and the Giants beat Luke’s Titans on four field goals. Houston lost on a 53-yarder and is still winless.',
@@ -284,7 +284,7 @@ class Component extends DCLogic {
     var weeks = [];
     for (var n = 1; n <= 18; n++) {
       var past = n <= 11, cur = n === 3;
-      weeks.push({ n: n, href: cur ? 'week3-desktop.html' : (n >= 3 && n <= 10) ? 'week' + n + '-desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
+      weeks.push({ n: n, href: cur ? 'week3-desktop.html' : (n >= 1 && n <= 11) ? 'week' + n + '-desktop.html' : past ? 'week.html?w=' + n : 'season.html', current: cur ? 'page' : 'false',
         border: cur ? '1px solid var(--gold)' : past ? '1px solid var(--line)' : '1px dashed var(--line)',
         bg: cur ? 'var(--gold)' : past ? 'var(--panel)' : 'transparent',
         fg: cur ? 'var(--ongold)' : past ? 'var(--ink)' : 'var(--soft)', weight: cur ? '800' : past ? '700' : '500',
