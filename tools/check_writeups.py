@@ -5,6 +5,8 @@ Checks weeks 1-11, phone and desktop pages, plus share pages:
   weekly records, season totals, ranks, rank moves,
   "from X to Y" / "up from" rank claims, leads, best and worst weeks,
   and that every ledger score is a real result.
+  Also checks his/her/my before a team name: the pronoun has to be that
+  team's owner, and in a preview the owner's name has to be in the sentence.
 """
 import re, sys
 from pathlib import Path
@@ -216,6 +218,92 @@ def check_file(path, truth, errors):
             if "best week" in text.lower() and who in T["wkpts"] and T["wkpts"][who] != T["best"]:
                 errors.append(f"{path.name}: award calls {who} best but {T['wkpts'][who]} != {T['best']}")
 
+NICK = {
+    "Ravens": "Drew", "Lions": "Drew", "Vikings": "Drew", "Falcons": "Drew",
+    "Texans": "Mike", "Chiefs": "Mike", "Giants": "Mike", "Panthers": "Mike",
+    "Bills": "Virginia", "Bengals": "Virginia", "Buccaneers": "Virginia", "Bucs": "Virginia", "Browns": "Virginia",
+    "Broncos": "Caleb", "Patriots": "Caleb", "Saints": "Caleb", "Jets": "Caleb",
+    "Seahawks": "Jack", "Packers": "Jack", "Colts": "Jack", "Raiders": "Jack",
+    "Eagles": "Luke", "Jaguars": "Luke", "Steelers": "Luke", "Titans": "Luke",
+    "Rams": "Nicole", "Bears": "Nicole", "Cowboys": "Nicole", "Cardinals": "Nicole",
+    "49ers": "Court", "Chargers": "Court", "Commanders": "Court", "Dolphins": "Court",
+}
+WOMEN = {"Virginia", "Nicole", "Court"}
+POSS = re.compile(
+    r"\b((?:his|her|my)(?: own)?)\s+(" + "|".join(sorted(NICK, key=len, reverse=True)) + r")\b",
+    re.I,
+)
+
+def sentence_around(body, pos):
+    prev = 0
+    for m in re.finditer(r"\.(?!\d)\s+", body[:pos]):
+        prev = m.end()
+    nxt = re.search(r"\.(?!\d)", body[pos:])
+    end = pos + nxt.start() if nxt else len(body)
+    return body[prev:end].strip()
+
+def prose_chunks(html):
+    """(section coach or None, text). Section is the coach a note or award is about."""
+    chunks = []
+    if "var notesText" in html:
+        m = re.search(r"var notesText = \{(.*?)\n    \};", html, re.S)
+        if m:
+            for name, body in re.findall(r'(\w+): "(.*?)"', m.group(1)):
+                chunks.append((name, body))
+        m = re.search(r"var awards = \[(.*?)\]\.map", html, re.S)
+        if m:
+            for who, title, body in re.findall(r'\[\s*"(\w+)"\s*,\s*"(.*?)"\s*,\s*"(.*?)"\s*\]', m.group(1)):
+                chunks.append(("Jack" if who == "Me" else who, title + " " + body))
+        for body in re.findall(r'line-height: 1\.5">(.*?)</span>', html):
+            chunks.append((None, re.sub(r"<[^>]+>", "", body)))
+    else:
+        for art in re.findall(r"<article[\s\S]*?</article>", html):
+            b = re.search(r"<b[^>]*>([^<]+)</b>", art)
+            who = re.search(r'color: var\(--gold\)">([^<]+)</span>', art)
+            h3 = re.search(r"<h3[^>]*>(.*?)</h3>", art)
+            paras = " ".join(re.sub(r"<[^>]+>", "", x) for x in re.findall(r"<p[^>]*>(.*?)</p>", art, re.S))
+            if h3 and who:
+                w = who.group(1)
+                chunks.append(("Jack" if w == "Me" else w, re.sub(r"<[^>]+>", "", h3.group(1)) + " " + paras))
+            elif b:
+                chunks.append((b.group(1).replace(" (me)", ""), paras))
+        for body in re.findall(r'line-height: 1\.45">(.*?)</span>', html):
+            chunks.append((None, re.sub(r"<[^>]+>", "", body)))
+        sm = re.search(r'text-wrap: pretty">(.*?)</p>', html)
+        if sm:
+            chunks.append((None, re.sub(r"<[^>]+>", "", sm.group(1))))
+    return chunks
+
+def check_possessives(path, errors):
+    """his/her/my before a team must be that team's owner.
+
+    Inside a coach's note, the pronoun has to be that coach (or "my" for Jack).
+    In a summary or preview, the owner's name has to be in the same sentence.
+    """
+    if not re.match(r"week\d+", path.name):
+        return
+    for sec, body in prose_chunks(path.read_text()):
+        for m in POSS.finditer(body):
+            pron, team = m.group(1).lower(), m.group(2)
+            team = next(k for k in NICK if k.lower() == team.lower())
+            owner = NICK[team]
+            sent = sentence_around(body, m.start())
+            if pron == "my" or pron == "my own":
+                if owner != "Jack":
+                    errors.append(f"{path.name}: “my {team}” but {team} is {owner}'s ({sent})")
+                continue
+            expect = "her" if owner in WOMEN else "his"
+            if not pron.startswith(expect):
+                errors.append(f"{path.name}: “{m.group(1)} {team}” should be {expect}, {owner} owns the {team} ({sent})")
+                continue
+            if sec:
+                if owner != sec:
+                    errors.append(f"{path.name}: {sec}'s note says “{m.group(1)} {team}”, which is {owner}'s ({sent})")
+            else:
+                names = re.findall(r"\b(Nicole|Luke|Virginia|Jack|Caleb|Court|Drew|Mike)\b", sent)
+                if owner not in names:
+                    errors.append(f"{path.name}: “{m.group(1)} {team}” with no {owner} in the sentence ({sent})")
+
 def main():
     weeks = results()
     if len(weeks) < 11 or len(weeks[10]) != 13:
@@ -241,6 +329,7 @@ def main():
             errors.append(f"missing {name}")
     for p in pages:
         check_file(p, truth, errors)
+        check_possessives(p, errors)
     # headlines in week.html INFO vs h1
     info = re.findall(r"headline: '([^']*)'", (ROOT / "week.html").read_text())
     for n in range(1, 12):
