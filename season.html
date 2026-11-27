@@ -158,7 +158,7 @@ html[data-theme=light] body{background:#EEF2EA}html[data-theme=dark] body{backgr
 </div>
 </sc-for>
 </div>
-<p style="margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--soft)">Five sweeps of three games or more: Drew is 6-0 against me, Mike is 6-0 against Luke, Virginia is 6-0 against Mike, Luke is 3-0 against me, and Mike is 4-0 against Drew. Nicole’s 4-0 against Luke ended when the Eagles beat the Cowboys. My record against Nicole is 4-3. Drew’s 3-0 against Court ended when the Chargers won in Baltimore. Drew’s old 3-0 against Nicole ended when the Bears beat the Falcons. Every pair has met at least once, and Mike and Court still have the pool’s only tie. The dashes are you against yourself: Luke has had four of those games, Nicole three, Virginia, Court and Drew two, and Caleb, Mike and I one each.</p>
+<p style="margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--soft)">Five sweeps of three games or more: Drew is 6-0 against me, Mike is 6-0 against Luke, Virginia is 6-0 against Mike, Luke is 3-0 against me, and Mike is 4-0 against Drew. Nicole’s 4-0 against Luke ended when the Eagles beat the Cowboys. My record against Nicole is 4-4. Drew’s 3-0 against Court ended when the Chargers won in Baltimore. Drew’s old 3-0 against Nicole ended when the Bears beat the Falcons. Every pair has met at least once, and Mike and Court still have the pool’s only tie. The dashes are you against yourself: Luke has had four of those games, Nicole three, Virginia, Court and Drew two, and Caleb, Mike and I one each.</p>
 </section>
 
 <footer style="margin-top: auto; padding: 36px 16px 40px; text-align: center; border-top: 1px solid var(--line)">
@@ -185,7 +185,7 @@ class Component extends DCLogic {
       '/JAX BAL 33 10,CIN ATL 34 17,NYJ KC 12 35,CLE NO 22 23,DEN CAR 26 21,DAL IND 27 23,DET MIA 19 9,NYG PHI 19 11,LAR WAS 20 13,LV SF 17 38,HOU LAC 44 22,ARI SEA 3 17,GB NE 45 27,TB CHI 24 27,BUF MIN 23 6' +
       '/WAS NYG 24 21,NE DET 10 35,CAR NO 20 17,HOU CLE 24 27,BUF NYJ 31 12,MIA IND 22 24,JAX TEN 40 23,KC ATL 35 13,MIN GB 30 10,SEA LV 21 13,LAR ARI 34 6,SF DAL 46 40,PIT CIN 18 38,LAC BAL 23 20' +
       '/IND HOU 3 26,BAL CAR 33 35,NO CHI 13 21,TB DET 21 31,MIA BUF 9 26,JAX NYG 18 23,TEN DAL 30 51,ARI KC 7 34,NYJ LAC 27 24,PIT PHI 16 19,LV DEN 24 38,MIN SF 10 35,CIN WAS 20 22' +
-      '/CHI DET 39 35,PHI DAL 39 38,KC BUF 10 13';
+      '/GB LAR 13 26,CHI DET 39 35,PHI DAL 39 38,KC BUF 10 13';
     var C = ['Nicole', 'Luke', 'Virginia', 'Jack', 'Caleb', 'Court', 'Drew', 'Mike'];
     var weeks = RESULTS.split('/').map(function (w) { return w.split(',').map(function (g) { var f = g.split(' '); return { a: f[0], h: f[1], as: +f[2], hs: +f[3] }; }); });
     var pts = {}, h2h = {}, self2 = {};
@@ -212,7 +212,7 @@ class Component extends DCLogic {
       });
     });
     // standings order; tied coaches are alphabetical, matching week.html
-    var display = ['Virginia', 'Mike', 'Nicole', 'Drew', 'Caleb', 'Jack', 'Luke', 'Court'];
+    var display = ['Virginia', 'Nicole', 'Mike', 'Drew', 'Caleb', 'Jack', 'Luke', 'Court'];
     var sel = st.sel || 'Drew';
     var n = weeks.length, L = 34, R = 28, T = 14, step = 28;
     var xAt = function (i) { return n === 1 ? L : L + i * (356 - L - R) / (n - 1); };
